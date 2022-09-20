@@ -6,4 +6,4 @@ Rails.application.routes.draw do
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
   resources :users, only: [:create]
   post "login", to: "authentication#login"
-en
+end
