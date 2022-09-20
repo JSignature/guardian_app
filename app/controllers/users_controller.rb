@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
 
     def create
-        render json: User.create!(user_params)
+        user = User.create(user_params)
+        if !user.valid?
+            render json: { errors: user.errors.full_messages}, status: :unauthorized
+        else
+        render json: user, status: :created
+        end
     end
 
 private 
