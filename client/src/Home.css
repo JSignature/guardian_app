@@ -1,0 +1,126 @@
+body {
+}
+
+.navHome {
+  display: flex;
+  background-color: #086375;
+  color: #f7ebe8;
+  width: 1475px;
+  justify-content: space-between;
+}
+
+li {
+  list-style: none;
+}
+
+.sign {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.pricing_boxes {
+  display: flex;
+  width: 1475px;
+  height: 420px;
+  justify-content: center;
+  margin-top: 15px;
+  font-size: 16px;
+  background-color: #ffa987;
+}
+.price_box_1 {
+  border: 2px solid #086375;
+  width: 200px;
+  height: 300px;
+  text-align: center;
+  margin-top: 40px;
+  margin-right: 65px;
+  color: #474350;
+  background-color: snow;
+}
+
+.price_box_2 {
+  border: 2px solid #086375;
+  width: 200px;
+  height: 400px;
+  text-align: center;
+  margin-top: 8px;
+  background-color: snow;
+}
+
+.price_box_3 {
+  border: 2px solid #086375;
+  width: 200px;
+  height: 300px;
+  text-align: center;
+  margin-top: 40px;
+  margin-left: 65px;
+  color: #474350;
+  background-color: snow;
+}
+
+.hero_image_1 {
+  width: 1475px;
+  height: 320px;
+  text-align: center;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.hero_image_2 {
+  width: 1475px;
+  height: 320px;
+  text-align: center;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+.hero_image_3 {
+  width: 1475px;
+  height: 320px;
+  text-align: center;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 30px;
+}
+
+h1 {
+  text-align: center;
+  color: #474350;
+}
+button {
+  color: #2e86ab;
+  border-radius: 5px;
+  border-color: #2e86ab;
+  background-color: #f7ebe8;
+  width: 80px;
+  height: 26px;
+  margin-right: 8px;
+}
+.button:hover {
+  background-color: #474350;
+  color: aquamarine;
+}
+
+.block_img {
+  width: 500px;
+  border-radius: 10px;
+}
+.block_text {
+  color: #ffa987;
+  font-size: 45px;
+  text-shadow: 4px 4px 2px #888392c7;
+}
+.block_text_3 {
+  font-size: 18px;
+}
+.review_text {
+  margin-top: 185px;
+  text-align: center;
+  color: #49393b;
+}
