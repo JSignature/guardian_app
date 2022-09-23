@@ -1,0 +1,8 @@
+.navBar {
+  display: flex;
+  background-color: #086375;
+  color: #f7ebe8;
+  width: 1475px;
+  height: 45px;
+  justify-content: space-around;
+}
