@@ -1,10 +1,10 @@
 import React from 'react'
 import GuardianCard from './GuardianCard'
 
-const GuardianCards = () => {
+const GuardianCards = ({ guardians }) => {
   return (
     <div>
-      <GuardianCard />
+      <GuardianCard guardians={guardians} />
     </div>
   )
 }

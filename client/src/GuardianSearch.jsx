@@ -1,9 +1,11 @@
-import { React } from 'react'
+import { React, useEffect, useState } from 'react'
 import { SearchBar } from './components/SearchBar'
 import NavBar from './components/NavBar'
 import GuardianCards from './components/GuardianCards'
 
 const GuardianSearch = () => {
+  const [guardians, setGuardians] = useState([])
+
   return (
     <>
       <NavBar />
@@ -11,7 +13,7 @@ const GuardianSearch = () => {
         <h1>Guardians</h1>
         <button>Add Family</button>
         <SearchBar />
-        <GuardianCards />
+        <GuardianCards guardians={guardians} />
       </div>
     </>
   )
