@@ -1,5 +1,6 @@
 import { React, useState } from 'react'
 import Modal from 'react-modal'
+import { useFetcher } from 'react-router-dom'
 Modal.setAppElement('#root')
 const AddGuardianModal = ({ modalIsOpen, setModalIsOpen }) => {
   const [firstName, setFirstName] = useState('')
@@ -12,6 +13,33 @@ const AddGuardianModal = ({ modalIsOpen, setModalIsOpen }) => {
   const [email, setEmail] = useState('')
   const [image, setImage] = useState('')
 
+  function handleNewGuardian(e) {
+    console.log('clicked')
+    e.preventDefault()
+    const newGuardian = {
+      is_primary: true,
+      guardian_first_name: firstName,
+      guardian_last_name: lastName,
+      guardian_address_street: streetAddress,
+      guardian_address_city: city,
+      guardian_address_state: state,
+      guardian_address_zip: zip,
+      guardian_phone: phone,
+      guardian_email: email,
+      guardian_image: image,
+    }
+
+    fetch('/guardians', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newGuardian),
+    })
+      .then(resp => resp.json())
+      .then(obj => alert('Client was Added'))
+  }
+
   return (
     <div>
       <Modal
@@ -23,7 +51,7 @@ const AddGuardianModal = ({ modalIsOpen, setModalIsOpen }) => {
         onRequestClose={() => setModalIsOpen(false)}
       >
         <h1>Add Family Modal</h1>
-        <form action="">
+        <form onSubmit={handleNewGuardian}>
           <input
             onChange={e => {
               setFirstName(e.target.value)
@@ -96,6 +124,7 @@ const AddGuardianModal = ({ modalIsOpen, setModalIsOpen }) => {
             name="image"
             placeholder="Image"
           />
+          <button type="submit">Submit</button>
         </form>
 
         <button onClick={() => setModalIsOpen(false)}>X</button>
