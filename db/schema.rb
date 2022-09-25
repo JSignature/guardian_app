@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_19_150244) do
+ActiveRecord::Schema.define(version: 2022_09_25_154617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "guardians", force: :cascade do |t|
+    t.boolean "is_primary"
+    t.string "guardian_first_name"
+    t.string "guardian_last_name"
+    t.string "guardian_address_street"
+    t.string "guardian_address_city"
+    t.string "guardian_address_state"
+    t.integer "guardian_address_zip"
+    t.string "guardian_phone"
+    t.string "guardian_email"
+    t.string "guardian_image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "user_first_name"
@@ -25,7 +40,5 @@ ActiveRecord::Schema.define(version: 2022_09_19_150244) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
-
-  # 
 
 end
