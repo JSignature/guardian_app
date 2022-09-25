@@ -7,7 +7,6 @@ const GuardianCard = ({ guardian }) => {
       <h2>
         {guardian.guardian_first_name} {guardian.guardian_last_name}
       </h2>
-      <h2></h2>
     </div>
   )
 }
