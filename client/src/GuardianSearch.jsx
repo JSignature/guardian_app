@@ -6,6 +6,12 @@ import GuardianCards from './components/GuardianCards'
 const GuardianSearch = () => {
   const [guardians, setGuardians] = useState([])
 
+  useEffect(() => {
+    fetch('http://localhost:3000/guardians')
+      .then(resp => resp.json())
+      .then(obj => setGuardians(obj))
+  }, [])
+
   return (
     <>
       <NavBar />
