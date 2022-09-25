@@ -4,7 +4,9 @@ import GuardianCard from './GuardianCard'
 const GuardianCards = ({ guardians }) => {
   return (
     <div>
-      <GuardianCard guardians={guardians} />
+      {guardians.map(guardian => (
+        <GuardianCard key={guardian.id} guardian={guardian} />
+      ))}
     </div>
   )
 }
