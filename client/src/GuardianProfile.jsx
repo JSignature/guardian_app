@@ -2,27 +2,30 @@ import { React, useState, useEffect } from 'react'
 import NavBar from './components/NavBar'
 import AddGuardianModal from './components/modals/AddGuardianModal'
 import GuardianProfileUpdate from './components/GuardianProfileUpdate'
+import { useParams } from 'react-router-dom'
 
 const GuardianProfile = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const [guardian, setGuardian] = useState([])
 
-  // useEffect(() => {
-  //   fetch('/guardians')
-  //     .then(resp => resp.json())
-  //     .then(obj => setGuardian(obj))
-  // }, [])
+  const params = useParams()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await fetch(`/guardians/${params.guardian_id}`)
+        .then(resp => resp.json())
+        .then(obj => setGuardian(obj))
+    }
+    fetchData()
+  }, [])
 
   return (
     <>
       <NavBar />
       <h1>Guardian Profile</h1>
       <div>
-        <img
-          src="https://upload.wikimedia.org/wikipedia/en/3/33/Elaine-benes-3707.jpg"
-          alt=""
-        />
-        <GuardianProfileUpdate />
+        <img style={{ width: '12rem' }} src={guardian.guardian_image} alt="" />
+        <GuardianProfileUpdate guardian={guardian} />
         <button>Delete</button>
       </div>
       <div>

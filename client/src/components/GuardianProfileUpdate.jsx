@@ -1,8 +1,8 @@
 import { React, useState } from 'react'
 
-const GuardianProfileUpdate = () => {
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
+const GuardianProfileUpdate = ({ guardian }) => {
+  const [firstName, setFirstName] = useState(guardian.guardian_first_name)
+  const [lastName, setLastName] = useState('dina')
   const [streetAddress, setStreetAddress] = useState('')
   const [city, setCity] = useState('')
   const [state, setState] = useState('')
@@ -10,7 +10,7 @@ const GuardianProfileUpdate = () => {
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
   const [image, setImage] = useState('')
-
+  console.log(guardian.guardian_first_name)
   return (
     <div>
       <form>
@@ -20,7 +20,7 @@ const GuardianProfileUpdate = () => {
           }}
           type="text"
           name="firstName"
-          placeholder="First Name"
+          placeholder={firstName}
         />
         <input
           onChange={e => {
@@ -28,7 +28,7 @@ const GuardianProfileUpdate = () => {
           }}
           type="text"
           name="lastName"
-          placeholder="Last Name"
+          placeholder={lastName}
         />
         <input
           onChange={e => {
