@@ -19,6 +19,39 @@ def index
     render json: guardians, status: :ok
     end
 
+def show
+        guardian = Guardian.find(params[:id])
+        render json: guardian, status: :ok
+
+
+    rescue ActiveRecord::RecordNotFound => error
+        render json: {message: error.message}
+end
+
+
+def destroy
+
+guardian = Guardian.find(params[:id])
+guardian.destroy
+head :no_content
+
+    rescue ActiveRecord::RecordNotFound => error
+        render json: {message: error.message}
+
+
+end
+
+def update
+
+        guardian = Guardian.find(params[:id])
+        guardian.update(guardian_params)
+        render json: guardian, status: :ok
+
+    rescue ActiveRecord::RecordNotFound => error
+        render json: {message: error.message}
+
+end
+
 private
 
 def guardian_params
