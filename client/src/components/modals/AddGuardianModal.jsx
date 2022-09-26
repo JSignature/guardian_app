@@ -50,7 +50,7 @@ const AddGuardianModal = ({ modalIsOpen, setModalIsOpen }) => {
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
       >
-        <h1>Add Family Modal</h1>
+        <h1>Add Guardian</h1>
         <form onSubmit={handleNewGuardian}>
           <input
             onChange={e => {
