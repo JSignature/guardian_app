@@ -19,26 +19,39 @@ def index
     render json: guardians, status: :ok
     end
 
-    def show
-        guardian = Guardian.find_by_id(params[:id])
-
-        if guardian
-            render json: guardian, status: :ok
-
-        else
-            render json: {message: "This guardian does not exist"}
-        end
-    end
+def show
+        guardian = Guardian.find(params[:id])
+        render json: guardian, status: :ok
 
 
-    def destroy
+    rescue ActiveRecord::RecordNotFound => error
+        render json: {message: error.message}
+end
 
-guardian = Guardian.find_by_id(params[:id])
+
+def destroy
+
+guardian = Guardian.find(params[:id])
 guardian.destroy
 head :no_content
 
+    rescue ActiveRecord::RecordNotFound => error
+        render json: {message: error.message}
 
-    end
+
+end
+
+def update
+
+        guardian = Guardian.find(params[:id])
+        guardian.update(guardian_params)
+        render json: guardian, status: :ok
+
+    rescue ActiveRecord::RecordNotFound => error
+        render json: {message: error.message}
+
+end
+
 private
 
 def guardian_params
