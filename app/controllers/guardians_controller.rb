@@ -19,6 +19,26 @@ def index
     render json: guardians, status: :ok
     end
 
+    def show
+        guardian = Guardian.find_by_id(params[:id])
+
+        if guardian
+            render json: guardian, status: :ok
+
+        else
+            render json: {message: "This guardian does not exist"}
+        end
+    end
+
+
+    def destroy
+
+guardian = Guardian.find_by_id(params[:id])
+guardian.destroy
+head :no_content
+
+
+    end
 private
 
 def guardian_params
