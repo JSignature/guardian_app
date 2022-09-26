@@ -7,11 +7,11 @@ const GuardianProfile = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
   const [guardian, setGuardian] = useState([])
 
-  //   useEffect(() => {
-  //     fetch('/guardians')
-  //       .then(resp => resp.json())
-  //       .then(obj => setGuardian(obj))
-  //   }, [])
+  // useEffect(() => {
+  //   fetch('/guardians')
+  //     .then(resp => resp.json())
+  //     .then(obj => setGuardian(obj))
+  // }, [])
 
   return (
     <>
