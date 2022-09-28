@@ -5,6 +5,7 @@ import Home from './Home'
 import { Route, Routes } from 'react-router-dom'
 import GuardianSearch from './GuardianSearch'
 import GuardianProfile from './GuardianProfile'
+import KidsSearch from './KidsSearch'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           path={'/guardians/profile/:guardian_id'}
           element={<GuardianProfile />}
         />
+        <Route path={'/kids'} element={<KidsSearch />} />
       </Routes>
     </>
     // {/* <Home /> */}
