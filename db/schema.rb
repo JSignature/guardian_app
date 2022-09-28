@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_25_154617) do
+ActiveRecord::Schema.define(version: 2022_09_28_003955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,21 @@ ActiveRecord::Schema.define(version: 2022_09_25_154617) do
     t.string "guardian_phone"
     t.string "guardian_email"
     t.string "guardian_image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "kids", force: :cascade do |t|
+    t.string "kid_first_name"
+    t.string "kid_last_name"
+    t.string "kid_nickname"
+    t.integer "kid_age"
+    t.string "kid_gender"
+    t.string "kid_group"
+    t.string "kid_allergies"
+    t.string "kid_notes"
+    t.string "kid_image"
+    t.integer "guardian_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
