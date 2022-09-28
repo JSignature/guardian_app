@@ -1,8 +1,19 @@
 .navBar {
   display: flex;
-  background-color: #086375;
+  background-color: #2e86ab;
   color: #f7ebe8;
   width: 1475px;
-  height: 45px;
+  height: 40px;
   justify-content: space-around;
+  align-items: center;
+  text-shadow: 2px 2px 4px black;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  text-align: center;
+}
+
+.navLogo {
+  margin-top: 6px;
+}
+.navLink {
+  margin-top: 6px;
 }
