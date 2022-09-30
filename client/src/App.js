@@ -6,6 +6,7 @@ import { Route, Routes } from 'react-router-dom'
 import GuardianSearch from './GuardianSearch'
 import GuardianProfile from './GuardianProfile'
 import KidsSearch from './KidsSearch'
+import KidsProfile from './KidsProfile'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           element={<GuardianProfile />}
         />
         <Route path={'/kids'} element={<KidsSearch />} />
+        <Route path={'/kids/profile/:kid_id'} element={<KidsProfile />} />
       </Routes>
     </>
     // {/* <Home /> */}
