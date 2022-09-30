@@ -1,9 +1,9 @@
 import React from 'react';
 
-const GuardianCard = ({}) => {
+const GuardianCard = ({ guardian_first_name }) => {
   return (
     <div>
-      <h2>Example Guardian</h2>
+      <h2>{guardian_first_name}</h2>
     </div>
   );
 };
