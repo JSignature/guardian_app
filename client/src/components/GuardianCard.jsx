@@ -1,14 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-const GuardianCard = ({ guardian }) => {
+const GuardianCard = ({}) => {
   return (
     <div>
-      <img style={{ width: '12rem' }} src={guardian.guardian_image} alt="" />
-      <h2>
-        {guardian.guardian_first_name} {guardian.guardian_last_name}
-      </h2>
+      <h2>Example Guardian</h2>
     </div>
-  )
-}
+  );
+};
 
-export default GuardianCard
+export default GuardianCard;
