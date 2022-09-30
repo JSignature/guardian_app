@@ -2,10 +2,12 @@ import { React, useState, useEffect } from 'react'
 import NavBar from './components/NavBar'
 import { useParams } from 'react-router-dom'
 import KidsProfileUpdate from './KidsProfileUpdate'
+// import AddKidModal from './components/modals/AddKidModal'
 
 const KidsProfile = () => {
   const [kid, setKid] = useState([])
   const params = useParams()
+  //   const [modalIsOpen, setModalIsOpen] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -31,6 +33,9 @@ const KidsProfile = () => {
 
       <h2>Guardians</h2>
       <h2>Activities</h2>
+
+      {/* <AddKidModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
+      <button onClick={() => setModalIsOpen(true)}>Add Additional Kid</button> */}
     </>
   )
 }
