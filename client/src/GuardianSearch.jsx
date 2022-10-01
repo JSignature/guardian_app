@@ -1,19 +1,20 @@
-import { React, useEffect, useState } from 'react'
-
-import { SearchBar } from './components/SearchBar'
-import NavBar from './components/NavBar'
-import GuardianCards from './components/GuardianCards'
-import AddGuardianModal from './components/modals/AddGuardianModal'
+import { React, useEffect, useState } from 'react';
+import { useGetGuardiansQuery } from './features/api/apiSlice';
+import { SearchBar } from './components/SearchBar';
+import NavBar from './components/NavBar';
+import GuardianCards from './components/GuardianCards';
+import AddGuardianModal from './components/modals/AddGuardianModal';
 
 const GuardianSearch = () => {
-  const [guardians, setGuardians] = useState([])
-  const [modalIsOpen, setModalIsOpen] = useState(false)
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const { data = [], error } = useGetGuardiansQuery();
 
   useEffect(() => {
-    fetch('/guardians')
-      .then(resp => resp.json())
-      .then(obj => setGuardians(obj))
-  }, [])
+    if (error) {
+      alert('Something Went Wrong');
+    }
+  }, [error]);
 
   return (
     <>
@@ -26,10 +27,11 @@ const GuardianSearch = () => {
         <h1>Guardians</h1>
         <button onClick={() => setModalIsOpen(true)}>Add Family</button>
         <SearchBar />
-        <GuardianCards guardians={guardians} />
+
+        <GuardianCards data={data} />
       </div>
     </>
-  )
-}
+  );
+};
 
-export default GuardianSearch
+export default GuardianSearch;

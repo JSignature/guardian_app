@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const GuardianCard = ({ guardian }) => {
   return (
@@ -7,8 +7,11 @@ const GuardianCard = ({ guardian }) => {
       <h2>
         {guardian.guardian_first_name} {guardian.guardian_last_name}
       </h2>
+      <a href={`/guardians/${guardian.id}`}>
+        <button>Edit Guardian</button>
+      </a>
     </div>
-  )
-}
+  );
+};
 
-export default GuardianCard
+export default GuardianCard;
