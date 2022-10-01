@@ -2,12 +2,15 @@ import { React, useState, useEffect } from 'react'
 import NavBar from './components/NavBar'
 import { useParams } from 'react-router-dom'
 import KidsProfileUpdate from './KidsProfileUpdate'
+import AddActivityModal from './components/modals/AddActivityModal'
+
+import { Btn, DarkerBtn } from './components/styles/ButtonStyle'
 // import AddKidModal from './components/modals/AddKidModal'
 
 const KidsProfile = () => {
   const [kid, setKid] = useState([])
   const params = useParams()
-  //   const [modalIsOpen, setModalIsOpen] = useState(false)
+  const [modalIsOpen, setModalIsOpen] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,16 +31,30 @@ const KidsProfile = () => {
         </h3>
         <img style={{ width: '12rem' }} src={kid.kid_image} alt="" />
         <KidsProfileUpdate kid={kid} />
-        <button>Delete</button>
+        <Btn>Delete</Btn>
       </div>
 
       <h2>Guardians</h2>
-      <h2>Activities</h2>
 
-      {/* <AddKidModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
-      <button onClick={() => setModalIsOpen(true)}>Add Additional Kid</button> */}
+      <div>
+        <h2>Activities</h2>
+        <AddActivityModal
+          modalIsOpen={modalIsOpen}
+          setModalIsOpen={setModalIsOpen}
+        />
+        <DarkerBtn onClick={() => setModalIsOpen(true)}>Add Activity</DarkerBtn>
+      </div>
     </>
   )
 }
 
 export default KidsProfile
+
+{
+  /* 
+      ---- needs to go on guardian page */
+}
+{
+  /* <AddKidModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
+      // <button onClick={() => setModalIsOpen(true)}>Add Additional Kid</button> */
+}

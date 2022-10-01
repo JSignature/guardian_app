@@ -1,4 +1,5 @@
 import { React, useState } from 'react'
+import { Btn } from './components/styles/ButtonStyle'
 
 const KidsProfileUpdate = ({ kid }) => {
   const [kidFirstName, setKidFirstName] = useState('')
@@ -86,7 +87,7 @@ const KidsProfileUpdate = ({ kid }) => {
           name="image"
           placeholder={kidImage}
         />
-        <button type="submit">Update</button>
+        <Btn type="submit">Update</Btn>
       </form>
     </div>
   )
