@@ -31,7 +31,6 @@ const AddGuardianModal = ({ modalIsOpen, setModalIsOpen }) => {
       guardian_image: image,
     };
     await addGuardian(newGuardianData);
-    console.log(newGuardianData);
     setModalIsOpen(false);
     alert('User Has been added succesfully');
   };

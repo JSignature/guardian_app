@@ -7,8 +7,6 @@ import { useParams } from 'react-router-dom';
 const GuardianProfileUpdate = ({ guardian }) => {
   const params = useParams();
   const paramsId = parseInt(params.guardian_id);
-
-  console.log(paramsId);
   const [updateGuardian] = useUpdateGuardianMutation();
 
   const {
