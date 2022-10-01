@@ -1,10 +1,11 @@
 import React from 'react'
-import './styles/NavBar.css'
+// import './styles/NavBar.css'
 import logo2 from './styles/logo2.png'
+import styled from 'styled-components'
 
 const NavBar = () => {
   return (
-    <>
+    <NavWrapper>
       <div className="navBar">
         <div className="navLogo">
           <a href="/">
@@ -24,12 +25,70 @@ const NavBar = () => {
         <a className="logOutBtn" href="">
           <button className="navButton">Log Out</button>
         </a>
-        {/* <div className="navLink">Guardians</div>
-      <div className="navLink">Kids</div>
-      <div className="navLink">Welcome, User!</div> */}
       </div>
-    </>
+    </NavWrapper>
   )
 }
+
+const NavWrapper = styled.div`
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+  li,
+  a,
+  button {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #f7ebe8;
+  }
+
+  .navBar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 30px, 10%;
+    width: 1475px;
+    height: 60px;
+    background-color: #56a3a6;
+  }
+  .navLogo {
+    margin-right: auto;
+  }
+  .navLogo img {
+    width: 50px;
+
+    border-radius: 50%;
+    margin-left: 20px;
+  }
+  .navLogo div:hover {
+    cursor: pointer;
+  }
+  .navLinks {
+    list-style: none;
+  }
+  .navLinks li {
+    display: inline-block;
+    padding: 0px 20px;
+  }
+  .navLinks li a {
+    transition: all 0.03s ease 0s;
+    text-decoration: none;
+  }
+  .logOutBtn {
+    text-decoration: none;
+    list-style: none;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .logOutBtn h4:hover {
+    color: #ffa987;
+  }
+  .navLinks li a:hover {
+    color: #ffa987;
+  }
+  .navButton {
+    color: black;
+    font-size: 10px;
+  }
+`
 
 export default NavBar
