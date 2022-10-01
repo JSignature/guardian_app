@@ -1,6 +1,3 @@
-body {
-}
-
 .navHome {
   display: flex;
   background-color: #086375;
@@ -97,7 +94,7 @@ h2 {
   text-align: center;
   color: #474350;
 }
-button {
+/* button {
   color: #2e86ab;
   border-radius: 5px;
   border-color: #2e86ab;
@@ -105,11 +102,11 @@ button {
   width: 80px;
   height: 26px;
   margin-right: 8px;
-}
-.button:hover {
+} */
+/* .button:hover {
   background-color: #474350;
   color: aquamarine;
-}
+} */
 
 .block_img {
   width: 500px;

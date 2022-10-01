@@ -3,6 +3,8 @@ import NavBar from './components/NavBar'
 import { useParams } from 'react-router-dom'
 import KidsProfileUpdate from './KidsProfileUpdate'
 import AddActivityModal from './components/modals/AddActivityModal'
+
+import { Btn } from './components/styles/ButtonStyle'
 // import AddKidModal from './components/modals/AddKidModal'
 
 const KidsProfile = () => {
@@ -29,7 +31,7 @@ const KidsProfile = () => {
         </h3>
         <img style={{ width: '12rem' }} src={kid.kid_image} alt="" />
         <KidsProfileUpdate kid={kid} />
-        <button>Delete</button>
+        <Btn>Delete</Btn>
       </div>
 
       <h2>Guardians</h2>
@@ -40,7 +42,7 @@ const KidsProfile = () => {
           modalIsOpen={modalIsOpen}
           setModalIsOpen={setModalIsOpen}
         />
-        <button onClick={() => setModalIsOpen(true)}>Add Activity</button>
+        <Btn onClick={() => setModalIsOpen(true)}>Add Activity</Btn>
       </div>
     </>
   )
