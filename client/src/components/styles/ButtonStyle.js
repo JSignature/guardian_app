@@ -21,3 +21,7 @@ export const Btn = styled.button`
     color: #086375;
   }
 `
+export const DarkerBtn = styled(Btn)`
+  background: #086375;
+  color: #d3d4d9;
+`

@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import KidsProfileUpdate from './KidsProfileUpdate'
 import AddActivityModal from './components/modals/AddActivityModal'
 
-import { Btn } from './components/styles/ButtonStyle'
+import { Btn, DarkerBtn } from './components/styles/ButtonStyle'
 // import AddKidModal from './components/modals/AddKidModal'
 
 const KidsProfile = () => {
@@ -42,7 +42,7 @@ const KidsProfile = () => {
           modalIsOpen={modalIsOpen}
           setModalIsOpen={setModalIsOpen}
         />
-        <Btn onClick={() => setModalIsOpen(true)}>Add Activity</Btn>
+        <DarkerBtn onClick={() => setModalIsOpen(true)}>Add Activity</DarkerBtn>
       </div>
     </>
   )
