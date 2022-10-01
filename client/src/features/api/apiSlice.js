@@ -23,13 +23,27 @@ export const apiSlice = createApi({
         url: `/guardians/${id}`,
         method: 'DELETE',
       }),
+      invalidatesTags: ['Guardian'],
     }),
-    invalidatesTags: ['Guuardians'],
+    getGuardian: builder.query({
+      query: (id) => `/guardians/${id}`,
+      providesTags: ['Guardian'],
+    }),
+    updateGuardian: builder.mutation({
+      query: ({ id, ...data }) => ({
+        url: `/guardians/${id}`,
+        method: 'PATCH',
+        body: data,
+      }),
+      invalidatesTags: ['Guardian'],
+    }),
   }),
 });
 
 export const {
   useGetGuardiansQuery,
+  useGetGuardianQuery,
   useAddGuardianMutation,
   useDeleteGuardianMutation,
+  useUpdateGuardianMutation,
 } = apiSlice;

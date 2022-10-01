@@ -3,17 +3,26 @@ import NavBar from './components/NavBar';
 import AddGuardianModal from './components/modals/AddGuardianModal';
 import GuardianProfileUpdate from './components/GuardianProfileUpdate';
 import { useParams } from 'react-router-dom';
-import { useDeleteGuardianMutation } from './features/api/apiSlice';
+import {
+  useDeleteGuardianMutation,
+  useGetGuardianQuery,
+} from './features/api/apiSlice';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const GuardianProfile = () => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [guardian, setGuardian] = useState([]);
-  const [deleteGuardian] = useDeleteGuardianMutation();
-  const navigate = useNavigate();
-
   const params = useParams();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  // const [guardian, setGuardian] = useState([]);
+  const [deleteGuardian] = useDeleteGuardianMutation();
+  const {
+    data = [],
+    isLoading,
+    isSuccess,
+    isError,
+    error,
+  } = useGetGuardianQuery(params.guardian_id);
+  const navigate = useNavigate();
 
   const handleDelete = async (id) => {
     await deleteGuardian(id);
@@ -21,13 +30,26 @@ const GuardianProfile = () => {
     navigate('/guardians');
   };
 
+  useEffect(() => {
+    if (error) {
+      alert('Something Went Wrong');
+    }
+  }, [error]);
+  console.log(data);
+
   return (
     <>
       <NavBar />
       <h1>Guardian Profile</h1>
       <div>
-        <img style={{ width: '12rem' }} src={guardian.guardian_image} alt="" />
-        <GuardianProfileUpdate guardian={guardian} />
+        <img style={{ width: '12rem' }} src={data.guardian_image} alt="" />
+
+        {isSuccess ? (
+          <GuardianProfileUpdate guardian={data} />
+        ) : (
+          <div>loading</div>
+        )}
+
         <button onClick={() => handleDelete(params.guardian_id)}>Delete</button>
       </div>
       <div>

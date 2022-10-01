@@ -22,7 +22,6 @@ const GuardianSearch = () => {
       alert('Something Went Wrong');
     }
   }, [error]);
-  console.log(data);
 
   // let guardiansObj;
 
