@@ -10,22 +10,24 @@ const GuardianSearch = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const {
-    data: guardians,
+    data = [],
     isLoading,
     isSuccess,
     isError,
     error,
   } = useGetGuardiansQuery();
 
-  let guardiansObj;
+  console.log(data);
 
-  if (isLoading) {
-    return (guardiansObj = <p>Loading...</p>);
-  } else if (isSuccess) {
-    guardiansObj = JSON.stringify(guardians);
-  } else if (isError) {
-    return (guardiansObj = <p>{error}</p>);
-  }
+  // let guardiansObj;
+
+  // if (isLoading) {
+  //   return (guardiansObj = <p>Loading...</p>);
+  // } else if (isSuccess) {
+  //   guardiansObj = JSON.stringify(guardians);
+  // } else if (isError) {
+  //   return (guardiansObj = <p>{error}</p>);
+  // }
 
   // useEffect(() => {
   //   fetch('/guardians')
@@ -45,7 +47,7 @@ const GuardianSearch = () => {
         <button onClick={() => setModalIsOpen(true)}>Add Family</button>
         <SearchBar />
 
-        <GuardianCards guardians={guardians} />
+        <GuardianCards data={data} />
       </div>
     </>
   );
