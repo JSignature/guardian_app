@@ -1,14 +1,14 @@
-import React from 'react'
-import GuardianCard from './GuardianCard'
+import React from 'react';
+import GuardianCard from './GuardianCard';
 
-const GuardianCards = ({ guardians }) => {
+const GuardianCards = ({ data }) => {
   return (
     <div>
-      {guardians.map(guardian => (
+      {data.map((guardian) => (
         <GuardianCard key={guardian.id} guardian={guardian} />
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default GuardianCards
+export default GuardianCards;

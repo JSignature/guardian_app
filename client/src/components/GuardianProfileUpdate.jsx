@@ -1,95 +1,87 @@
-import { React, useState } from 'react'
+import { React, useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import { useUpdateGuardianMutation } from '../features/api/apiSlice';
+import { useParams } from 'react-router-dom';
 
 const GuardianProfileUpdate = ({ guardian }) => {
-  const [firstName, setFirstName] = useState(guardian.guardian_first_name)
-  const [lastName, setLastName] = useState('dina')
-  const [streetAddress, setStreetAddress] = useState('')
-  const [city, setCity] = useState('')
-  const [state, setState] = useState('')
-  const [zip, setZip] = useState('')
-  const [phone, setPhone] = useState('')
-  const [email, setEmail] = useState('')
-  const [image, setImage] = useState('')
-  console.log(guardian.guardian_first_name)
+  const params = useParams();
+  const paramsId = parseInt(params.guardian_id);
+  const [updateGuardian] = useUpdateGuardianMutation();
+
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      firstName: `${guardian.guardian_first_name}`,
+      lastName: `${guardian.guardian_last_name}`,
+      streetAddress: `${guardian.guardian_address_street}`,
+      city: `${guardian.guardian_address_city}`,
+      state: `${guardian.guardian_address_state}`,
+      zip: `${guardian.guardian_address_zip}`,
+      phone: `${guardian.guardian_phone}`,
+      email: `${guardian.guardian_email}`,
+      image: `${guardian.guardian_image}`,
+    },
+  });
+
+  const onSubmit = async (data) => {
+    const updatedGuardian = {
+      id: paramsId,
+      guardian_first_name: data.firstName,
+      guardian_last_name: data.lastName,
+      guardian_address_street: data.streetAddress,
+      guardian_address_city: data.city,
+      guardian_address_state: data.state,
+      guardian_address_zip: data.zip,
+      guardian_phone: data.phone,
+      guardian_email: data.email,
+      guardian_image: data.image,
+    };
+
+    await updateGuardian(updatedGuardian);
+    toast.success('Contact has been Updated');
+  };
+  console.log(errors);
+
   return (
     <div>
-      <form>
+      <h1>{guardian.guardian_first_name}</h1>
+
+      <form onSubmit={handleSubmit(onSubmit)}>
         <input
-          onChange={e => {
-            setFirstName(e.target.value)
-          }}
           type="text"
-          name="firstName"
-          placeholder={firstName}
+          placeholder="First name"
+          {...register('firstName', { required: true, maxLength: 80 })}
         />
         <input
-          onChange={e => {
-            setLastName(e.target.value)
-          }}
           type="text"
-          name="lastName"
-          placeholder={lastName}
+          placeholder="Last name"
+          {...register('lastName', { required: true, maxLength: 100 })}
         />
         <input
-          onChange={e => {
-            setStreetAddress(e.target.value)
-          }}
           type="text"
-          name="streetAddress"
           placeholder="Street Address"
+          {...register('streetAddress', {})}
         />
+        <input type="text" placeholder="City" {...register('city', {})} />
         <input
-          onChange={e => {
-            setCity(e.target.value)
-          }}
           type="text"
-          name="city"
-          placeholder="City"
-        />
-        <input
-          onChange={e => {
-            setState(e.target.value)
-          }}
-          type="text"
-          name="state"
           placeholder="State"
+          {...register('state', { maxLength: 2 })}
         />
-        <input
-          onChange={e => {
-            setZip(e.target.value)
-          }}
-          type="text"
-          name="zip"
-          placeholder="Zip"
-        />
-        <input
-          onChange={e => {
-            setPhone(e.target.value)
-          }}
-          type="text"
-          name="phone"
-          placeholder="Phone"
-        />
-        <input
-          onChange={e => {
-            setEmail(e.target.value)
-          }}
-          type="email"
-          name="email"
-          placeholder="Email"
-        />
-        <input
-          onChange={e => {
-            setImage(e.target.value)
-          }}
-          type="text"
-          name="image"
-          placeholder="Image"
-        />
-        <button type="submit">Update</button>
+        <input type="text" placeholder="Zip" {...register('zip', {})} />
+        <input type="tel" placeholder="Phone" {...register('phone', {})} />
+        <input type="email" placeholder="Email" {...register('email', {})} />
+        <input type="text" placeholder="Image" {...register('image', {})} />
+
+        <input type="submit" />
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default GuardianProfileUpdate
+export default GuardianProfileUpdate;
