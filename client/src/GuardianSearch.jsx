@@ -17,6 +17,11 @@ const GuardianSearch = () => {
     error,
   } = useGetGuardiansQuery();
 
+  useEffect(() => {
+    if (error) {
+      alert('Something Went Wrong');
+    }
+  }, [error]);
   console.log(data);
 
   // let guardiansObj;
