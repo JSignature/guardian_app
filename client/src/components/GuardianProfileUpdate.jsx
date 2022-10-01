@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import { React } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useUpdateGuardianMutation } from '../features/api/apiSlice';
@@ -11,7 +11,6 @@ const GuardianProfileUpdate = ({ guardian }) => {
 
   const {
     register,
-    reset,
     handleSubmit,
     formState: { errors },
   } = useForm({

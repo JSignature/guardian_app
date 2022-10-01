@@ -13,13 +13,10 @@ import { toast } from 'react-toastify';
 const GuardianProfile = () => {
   const params = useParams();
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  // const [guardian, setGuardian] = useState([]);
   const [deleteGuardian] = useDeleteGuardianMutation();
   const {
     data = [],
-    isLoading,
     isSuccess,
-    isError,
     error,
   } = useGetGuardianQuery(params.guardian_id);
   const navigate = useNavigate();
