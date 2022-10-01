@@ -1,12 +1,10 @@
-// import { isCompositeComponentWithType } from 'react-dom/test-utils'
-import './App.css'
-import Home from './Home'
-// import GuardianView from './GuardianView'
-import { Route, Routes } from 'react-router-dom'
-import GuardianSearch from './GuardianSearch'
-import GuardianProfile from './GuardianProfile'
-import KidsSearch from './KidsSearch'
-import KidsProfile from './KidsProfile'
+import './App.css';
+import Home from './Home';
+import { Route, Routes } from 'react-router-dom';
+import GuardianSearch from './GuardianSearch';
+import GuardianProfile from './GuardianProfile';
+import KidsSearch from './KidsSearch';
+import KidsProfile from './KidsProfile';
 
 function App() {
   return (
@@ -23,7 +21,7 @@ function App() {
       </Routes>
     </>
     // {/* <Home /> */}
-  )
+  );
 }
 
-export default App
+export default App;
