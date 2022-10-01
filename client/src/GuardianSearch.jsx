@@ -6,38 +6,15 @@ import GuardianCards from './components/GuardianCards';
 import AddGuardianModal from './components/modals/AddGuardianModal';
 
 const GuardianSearch = () => {
-  // const [guardians, setGuardians] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const {
-    data = [],
-    isLoading,
-    isSuccess,
-    isError,
-    error,
-  } = useGetGuardiansQuery();
+  const { data = [], error } = useGetGuardiansQuery();
 
   useEffect(() => {
     if (error) {
       alert('Something Went Wrong');
     }
   }, [error]);
-
-  // let guardiansObj;
-
-  // if (isLoading) {
-  //   return (guardiansObj = <p>Loading...</p>);
-  // } else if (isSuccess) {
-  //   guardiansObj = JSON.stringify(guardians);
-  // } else if (isError) {
-  //   return (guardiansObj = <p>{error}</p>);
-  // }
-
-  // useEffect(() => {
-  //   fetch('/guardians')
-  //     .then((resp) => resp.json())
-  //     .then((obj) => setGuardians(obj));
-  // }, []);
 
   return (
     <>
