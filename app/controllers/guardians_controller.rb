@@ -16,7 +16,7 @@ end
 
 def index 
     guardians = Guardian.all
-    render json: guardians, status: :ok
+    render json: guardians, include: :kids, status: :ok
     end
 
 def show
