@@ -35,7 +35,6 @@ const GuardianProfile = () => {
       alert('Something Went Wrong');
     }
   }, [error]);
-  console.log(data);
 
   return (
     <>
@@ -68,9 +67,7 @@ const GuardianProfile = () => {
           modalIsOpen={kidModalIsOpen}
           setModalIsOpen={setKidModalIsOpen}
         />
-        <button onClick={() => setKidModalIsOpen(true)}>
-          Add Additional Kid
-        </button>
+        <button onClick={() => setKidModalIsOpen(true)}>Add Kid</button>
       </div>
     </>
   );
