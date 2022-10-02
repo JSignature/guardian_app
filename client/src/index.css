@@ -7,6 +7,7 @@
   -moz-osx-font-smoothing: grayscale;
 } */
 
+/* var(--primary) */
 :root {
   --primary: #56a3a6;
   --secondary: #fb8f67;
@@ -29,7 +30,7 @@ code {
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 body {
-  background: #fff;
+  background: lightgrey;
   font-family: 'Poppins', san-serif;
   font-size: 1.15em;
   margin: 0;
