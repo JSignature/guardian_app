@@ -1,6 +1,7 @@
 import React from 'react';
 
 const KidCard = ({ kid }) => {
+  console.log(kid);
   return (
     <div>
       <img style={{ width: '12rem' }} src={kid.kid_image} alt="" />
