@@ -1,45 +1,42 @@
-import { React, useState } from 'react'
-import Modal from 'react-modal'
-import { useFetcher } from 'react-router-dom'
-Modal.setAppElement('#root')
+import { React } from 'react';
+import Modal from 'react-modal';
+import { useParams } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { useAddKidMutation } from '../../features/api/apiSlice';
+import { toast } from 'react-toastify';
+
+Modal.setAppElement('#root');
 
 const AddKidModal = ({ modalIsOpen, setModalIsOpen }) => {
-  const [kidFirstName, setKidFirstName] = useState('')
-  const [kidLastName, setKidLastName] = useState('')
-  const [kidNickName, setKidNickName] = useState('')
-  const [age, setAge] = useState('')
-  const [gender, setGender] = useState('')
-  const [group, setGroup] = useState('')
-  const [allergies, setAllergies] = useState('')
-  const [notes, setNotes] = useState('')
-  const [kidImage, setKidImage] = useState('')
+  const params = useParams();
+  const paramsId = parseInt(params.guardian_id);
+  const [addKid] = useAddKidMutation();
 
-  function handleNewKid(e) {
-    console.log('clicked')
-    e.preventDefault()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
     const newKid = {
-      kid_first_name: kidFirstName,
-      kid_last_name: kidLastName,
-      kid_NickName: kidNickName,
-      kid_age: age,
-      kid_gender: gender,
-      kid_group: group,
-      kid_allergies: allergies,
-      kid_group: group,
-      kid_notes: notes,
-      kid_image: kidImage,
-    }
-
-    fetch('/guardians', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newKid),
-    })
-      .then(resp => resp.json())
-      .then(obj => alert('Client was Added'))
-  }
+      guardian_id: paramsId,
+      kid_first_name: data.firstName,
+      kid_last_name: data.lastName,
+      kid_nickname: data.nickname,
+      kid_age: data.age,
+      kid_gender: data.gender,
+      kid_group: data.group,
+      kid_allergies: data.allergies,
+      kid_notes: data.notes,
+      kid_image: data.image,
+    };
+    await addKid(newKid);
+    toast.success('Kid has been added!! Yaayy!');
+    setModalIsOpen(false);
+    console.log(data);
+  };
+  console.log(errors);
 
   return (
     <div>
@@ -52,86 +49,41 @@ const AddKidModal = ({ modalIsOpen, setModalIsOpen }) => {
         onRequestClose={() => setModalIsOpen(false)}
       >
         <h1>Add Kid</h1>
-        <form onSubmit={handleNewKid}>
+
+        <form onSubmit={handleSubmit(onSubmit)}>
           <input
-            onChange={e => {
-              setKidFirstName(e.target.value)
-            }}
             type="text"
-            name="kidFirstName"
-            placeholder="First Name"
+            placeholder="First name"
+            {...register('firstName', { required: true, maxLength: 80 })}
           />
           <input
-            onChange={e => {
-              setKidLastName(e.target.value)
-            }}
             type="text"
-            name="kidLastName"
-            placeholder="Last Name"
+            placeholder="Last name"
+            {...register('lastName', { required: true, maxLength: 100 })}
           />
           <input
-            onChange={e => {
-              setKidNickName(e.target.value)
-            }}
             type="text"
-            name="kidNickName"
-            placeholder="NickName"
+            placeholder="Nickname"
+            {...register('nickname', {})}
           />
+          <input type="number" placeholder="Age" {...register('age', {})} />
+          <input type="text" placeholder="Gender" {...register('gender', {})} />
+          <input type="text" placeholder="Group" {...register('group', {})} />
           <input
-            onChange={e => {
-              setAge(e.target.value)
-            }}
             type="text"
-            name="age"
-            placeholder="Age"
-          />
-          <input
-            onChange={e => {
-              setGender(e.target.value)
-            }}
-            type="text"
-            name="gender"
-            placeholder="Gender"
-          />
-          <input
-            onChange={e => {
-              setGroup(e.target.value)
-            }}
-            type="text"
-            name="group"
-            placeholder="Group"
-          />
-          <input
-            onChange={e => {
-              setAllergies(e.target.value)
-            }}
-            type="text"
-            name="allergies"
             placeholder="Allergies"
+            {...register('allergies', {})}
           />
-          <input
-            onChange={e => {
-              setNotes(e.target.value)
-            }}
-            type="text"
-            name="notes"
-            placeholder="Notes"
-          />
-          <input
-            onChange={e => {
-              setKidImage(e.target.value)
-            }}
-            type="text"
-            name="kidImage"
-            placeholder="Image"
-          />
-          <button type="submit">Submit</button>
+          <textarea {...register('notes', {})} />
+          <input type="text" placeholder="Image" {...register('image', {})} />
+
+          <input type="submit" />
         </form>
 
         <button onClick={() => setModalIsOpen(false)}>X</button>
       </Modal>
     </div>
-  )
-}
+  );
+};
 
-export default AddKidModal
+export default AddKidModal;

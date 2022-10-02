@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 function App() {
   return (
     <>
-      <ToastContainer />
+      <ToastContainer autoClose={1000} />
       <Routes>
         <Route path={'/'} element={<Home />} />
         <Route path={'/guardians'} element={<GuardianSearch />} />
