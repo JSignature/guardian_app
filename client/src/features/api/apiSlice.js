@@ -75,6 +75,13 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ['Kid'],
     }),
+    deleteActivity: builder.mutation({
+      query: (id) => ({
+        url: `/activities/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Kid'],
+    }),
   }),
 });
 
@@ -90,4 +97,5 @@ export const {
   useDeleteKidMutation,
   useUpdateKidMutation,
   useAddActivityMutation,
+  useDeleteActivityMutation,
 } = apiSlice;

@@ -19,6 +19,18 @@ class ActivitiesController < ApplicationController
         
     end
 
+    def destroy
+
+        activity = Activity.find(params[:id])
+        activity.destroy
+        head :no_content
+        
+            rescue ActiveRecord::RecordNotFound => error
+                render json: {message: error.message}
+        
+        
+        end
+
 private
 
     def activity_params
