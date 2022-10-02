@@ -1,10 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-// import GuardianCard from '../../components/GuardianCard';
 
 export const apiSlice = createApi({
   reducerPath: 'apiSlice',
   baseQuery: fetchBaseQuery({ baseUrl: ' ' }),
-  tagTypes: ['Guardian'],
+  tagTypes: ['Guardian', 'Kid'],
   endpoints: (builder) => ({
     getGuardians: builder.query({
       query: () => '/guardians',
@@ -37,6 +36,38 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ['Guardian'],
     }),
+    //Need to make kids
+    getKids: builder.query({
+      query: () => '/kids',
+      providesTags: ['Kid'],
+    }),
+    addKid: builder.mutation({
+      query: (kid) => ({
+        url: '/kids',
+        method: 'POST',
+        body: kid,
+      }),
+      invalidatesTags: ['Kid'],
+    }),
+    deleteKid: builder.mutation({
+      query: (id) => ({
+        url: `/kids/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Kid'],
+    }),
+    getKid: builder.query({
+      query: (id) => `/kids/${id}`,
+      providesTags: ['Kid'],
+    }),
+    updateKid: builder.mutation({
+      query: ({ id, ...data }) => ({
+        url: `/kids/${id}`,
+        method: 'PATCH',
+        body: data,
+      }),
+      invalidatesTags: ['Kid'],
+    }),
   }),
 });
 
@@ -46,4 +77,9 @@ export const {
   useAddGuardianMutation,
   useDeleteGuardianMutation,
   useUpdateGuardianMutation,
+  useGetKidsQuery,
+  useGetKidQuery,
+  useAddKidMutation,
+  useDeleteKidMutation,
+  useUpdateKidMutation,
 } = apiSlice;

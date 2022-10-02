@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const KidCard = ({ kid }) => {
   return (
@@ -7,8 +7,11 @@ const KidCard = ({ kid }) => {
       <h2>
         {kid.kid_first_name} {kid.kid_last_name}
       </h2>
+      <a href={`/kids/${kid.id}`}>
+        <button>Edit Kids</button>
+      </a>
     </div>
-  )
-}
+  );
+};
 
-export default KidCard
+export default KidCard;
