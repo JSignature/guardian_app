@@ -10,6 +10,7 @@ import {
 } from './features/api/apiSlice';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import KidCard from './components/KidCard';
 
 const GuardianProfile = () => {
   const params = useParams();
@@ -20,6 +21,7 @@ const GuardianProfile = () => {
   const {
     data = [],
     isSuccess,
+    refetch,
     error,
   } = useGetGuardianQuery(params.guardian_id);
   const navigate = useNavigate();
@@ -32,13 +34,17 @@ const GuardianProfile = () => {
 
   useEffect(() => {
     if (error) {
-      alert('Something Went Wrong');
+      refetch();
+      // alert('Something Went Wrong');
     }
   }, [error]);
 
   if (isSuccess) {
     console.log(data);
   }
+
+  const kidData = data.kids;
+  console.log(kidData);
 
   return (
     <>
@@ -72,6 +78,12 @@ const GuardianProfile = () => {
           setModalIsOpen={setKidModalIsOpen}
         />
         <button onClick={() => setKidModalIsOpen(true)}>Add Kid</button>
+
+        {isSuccess ? (
+          kidData.map((kid) => <KidCard kid={kid} />)
+        ) : (
+          <div>loading</div>
+        )}
       </div>
     </>
   );

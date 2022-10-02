@@ -47,7 +47,7 @@ export const apiSlice = createApi({
         method: 'POST',
         body: kid,
       }),
-      invalidatesTags: ['Kid'],
+      invalidatesTags: ['Guardian', 'Kid'],
     }),
     deleteKid: builder.mutation({
       query: (id) => ({

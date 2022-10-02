@@ -19,7 +19,7 @@ const KidsProfile = () => {
   const handleDelete = async (id) => {
     await deleteKid(id);
     toast.success('Kid has been Deleted');
-    navigate('/kids');
+    navigate(`/guardians/${data.guardian_id}`);
   };
 
   useEffect(() => {
