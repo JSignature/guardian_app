@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   
+  resources :activities
   resources :kids
   resources :guardians
   # Routing logic: fallback requests for React Router.
