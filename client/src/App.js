@@ -17,7 +17,7 @@ function App() {
         <Route path={'/guardians'} element={<GuardianSearch />} />
         <Route path={'/guardians/:guardian_id'} element={<GuardianProfile />} />
         <Route path={'/kids'} element={<KidsSearch />} />
-        <Route path={'/kids/profile/:kid_id'} element={<KidsProfile />} />
+        <Route path={'/kids/:kid_id'} element={<KidsProfile />} />
       </Routes>
     </>
     // {/* <Home /> */}
