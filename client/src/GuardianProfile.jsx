@@ -35,7 +35,7 @@ const GuardianProfile = () => {
   useEffect(() => {
     if (error) {
       refetch();
-      // alert('Something Went Wrong');
+      alert('Something Went Wrong');
     }
   }, [error]);
 

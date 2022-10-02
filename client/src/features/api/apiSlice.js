@@ -36,7 +36,6 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ['Guardian'],
     }),
-    //Need to make kids
     getKids: builder.query({
       query: () => '/kids',
       providesTags: ['Kid'],
@@ -68,6 +67,14 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ['Kid'],
     }),
+    addActivity: builder.mutation({
+      query: (activity) => ({
+        url: '/activities',
+        method: 'POST',
+        body: activity,
+      }),
+      invalidatesTags: ['Kid'],
+    }),
   }),
 });
 
@@ -82,4 +89,5 @@ export const {
   useAddKidMutation,
   useDeleteKidMutation,
   useUpdateKidMutation,
+  useAddActivityMutation,
 } = apiSlice;

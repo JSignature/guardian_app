@@ -1,27 +1,34 @@
-import { React, useState } from 'react'
-import Modal from 'react-modal'
-Modal.setAppElement('#root')
+import Modal from 'react-modal';
+import { useAddActivityMutation } from '../../features/api/apiSlice';
+import { useParams } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+Modal.setAppElement('#root');
 
 const AddActivityModal = ({ modalIsOpen, setModalIsOpen }) => {
-  const [activity, setActivity] = useState('')
+  const params = useParams();
+  const paramsId = parseInt(params.kid_id);
 
-  function handleNewActivity(e) {
-    console.log('clicked')
-    e.preventDefault()
+  const [addActivity] = useAddActivityMutation();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    console.log(data);
     const newActivity = {
-      activity: activity,
-    }
+      user_id: 1, //This needs to be dynamic
+      kid_id: paramsId,
+      description: data.description,
+    };
+    await addActivity(newActivity);
 
-    fetch('/activities', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newActivity),
-    })
-      .then(resp => resp.json())
-      .then(obj => alert('Activity was Added'))
-  }
+    toast.success('A new activity has been added');
+    setModalIsOpen(false);
+  };
 
   return (
     <div>
@@ -34,23 +41,19 @@ const AddActivityModal = ({ modalIsOpen, setModalIsOpen }) => {
         onRequestClose={() => setModalIsOpen(false)}
       >
         <h1>Add Activity</h1>
-        <form onSubmit={handleNewActivity}>
-          <input
-            onChange={e => {
-              setActivity(e.target.value)
-            }}
-            type="text"
-            name="activity"
-            placeholder="Activity"
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <textarea
+            placeholder="Enter Activity Description"
+            {...register('description', { required: true })}
           />
 
-          <button type="submit">Submit</button>
+          <input type="submit" />
         </form>
 
         <button onClick={() => setModalIsOpen(false)}>X</button>
       </Modal>
     </div>
-  )
-}
+  );
+};
 
-export default AddActivityModal
+export default AddActivityModal;

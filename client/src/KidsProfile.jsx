@@ -11,7 +11,12 @@ import { Btn, DarkerBtn } from './components/styles/ButtonStyle';
 const KidsProfile = () => {
   const [deleteKid] = useDeleteKidMutation();
   const params = useParams();
-  const { data = [], isSuccess, error } = useGetKidQuery(params.kid_id);
+  const {
+    data = [],
+    isSuccess,
+    error,
+    refetch,
+  } = useGetKidQuery(params.kid_id);
 
   const navigate = useNavigate();
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -24,11 +29,12 @@ const KidsProfile = () => {
 
   useEffect(() => {
     if (error) {
-      alert('Something Went Wrong');
+      refetch();
+      // alert('Something Went Wrong');
+      console.log('Error from the fetch:' + error);
     }
   }, [error]);
   console.log(data);
-
   return (
     <>
       <NavBar />
