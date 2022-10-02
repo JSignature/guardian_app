@@ -15,7 +15,7 @@ class ActivitiesController < ApplicationController
 
     def index 
         activities = Activity.all
-        render json: activities, status: :ok
+        render json: activities, include: :kids, status: :ok
         
     end
 
