@@ -3,7 +3,11 @@ import NavBar from './components/NavBar';
 import { useParams } from 'react-router-dom';
 import KidsProfileUpdate from './KidsProfileUpdate';
 import AddActivityModal from './components/modals/AddActivityModal';
-import { useDeleteKidMutation, useGetKidQuery } from './features/api/apiSlice';
+import {
+  useDeleteKidMutation,
+  useGetKidQuery,
+  useDeleteActivityMutation,
+} from './features/api/apiSlice';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Btn, DarkerBtn } from './components/styles/ButtonStyle';
@@ -11,7 +15,12 @@ import { Btn, DarkerBtn } from './components/styles/ButtonStyle';
 const KidsProfile = () => {
   const [deleteKid] = useDeleteKidMutation();
   const params = useParams();
-  const { data = [], isSuccess, error } = useGetKidQuery(params.kid_id);
+  const {
+    data = [],
+    isSuccess,
+    error,
+    refetch,
+  } = useGetKidQuery(params.kid_id);
 
   const navigate = useNavigate();
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -22,13 +31,21 @@ const KidsProfile = () => {
     navigate(`/guardians/${data.guardian_id}`);
   };
 
+  const [deleteActivity] = useDeleteActivityMutation();
+
+  const handleActivityDelete = (id) => {
+    deleteActivity(id);
+    toast.success('Activity Deleted');
+  };
+
   useEffect(() => {
     if (error) {
-      alert('Something Went Wrong');
+      refetch();
+      // alert('Something Went Wrong');
+      console.log('Error from the fetch:' + error);
     }
   }, [error]);
   console.log(data);
-
   return (
     <>
       <NavBar />
@@ -53,6 +70,24 @@ const KidsProfile = () => {
           setModalIsOpen={setModalIsOpen}
         />
         <DarkerBtn onClick={() => setModalIsOpen(true)}>Add Activity</DarkerBtn>
+        {/* Prob need to make an activity card to clean this up */}
+        {isSuccess ? (
+          data.activities.map((activity) => (
+            <div>
+              <p key={activity.id}>
+                {activity.description}{' '}
+                {new Date(activity.created_at).toLocaleDateString()} at:
+                {new Date(activity.created_at).toLocaleTimeString()}
+                {activity.id}
+                <button onClick={() => handleActivityDelete(activity.id)}>
+                  Delete Activity
+                </button>
+              </p>
+            </div>
+          ))
+        ) : (
+          <div>loading</div>
+        )}
       </div>
     </>
   );

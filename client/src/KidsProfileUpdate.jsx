@@ -1,9 +1,8 @@
-import { React, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useUpdateKidMutation } from './features/api/apiSlice';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { Btn } from './components/styles/ButtonStyle';
+//import { Btn } from './components/styles/ButtonStyle';
 
 const KidsProfileUpdate = ({ kid }) => {
   const params = useParams();
@@ -45,7 +44,6 @@ const KidsProfileUpdate = ({ kid }) => {
     await updateKid(updatedKid);
     toast.success('Kid has been Updated');
   };
-  console.log(errors);
 
   return (
     <div>
