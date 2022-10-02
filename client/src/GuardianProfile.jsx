@@ -36,6 +36,10 @@ const GuardianProfile = () => {
     }
   }, [error]);
 
+  if (isSuccess) {
+    console.log(data);
+  }
+
   return (
     <>
       <NavBar />
