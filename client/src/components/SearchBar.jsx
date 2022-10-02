@@ -1,10 +1,11 @@
 import React from 'react'
+import { DarkerBtn } from './styles/ButtonStyle'
 
 export const SearchBar = () => {
   return (
     <div>
       <input type="search" />
-      <button>Search</button>
+      <DarkerBtn>Search</DarkerBtn>
     </div>
   )
 }

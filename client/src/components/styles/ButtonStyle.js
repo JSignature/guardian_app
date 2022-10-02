@@ -7,11 +7,13 @@ export const Btn = styled.button`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   cursor: pointer;
   font-family: 'Poppins';
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   padding: 5px 20px;
   background-color: #d3d4d9;
-  color: #44cfcb;
+  color: #56a3a6;
+  width: 20vh;
+  max-height: 5vh;
 
   text-align: center;
 
@@ -24,4 +26,9 @@ export const Btn = styled.button`
 export const DarkerBtn = styled(Btn)`
   background: #086375;
   color: #d3d4d9;
+  &:hover {
+    opacity: 0.9;
+    transform: scale (0.98);
+    color: #56a3a6;
+  }
 `
