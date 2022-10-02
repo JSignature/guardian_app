@@ -21,6 +21,7 @@ const GuardianProfile = () => {
   const {
     data = [],
     isSuccess,
+    refetch,
     error,
   } = useGetGuardianQuery(params.guardian_id);
   const navigate = useNavigate();
@@ -33,7 +34,8 @@ const GuardianProfile = () => {
 
   useEffect(() => {
     if (error) {
-      alert('Something Went Wrong');
+      refetch();
+      // alert('Something Went Wrong');
     }
   }, [error]);
 
