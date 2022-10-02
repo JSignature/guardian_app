@@ -1,25 +1,26 @@
-import { React, useState, useEffect } from 'react'
-import KidsCards from './components/KidsCards'
-import NavBar from './components/NavBar'
-import { SearchBar } from './components/SearchBar'
+import { React, useEffect } from 'react';
+import { useGetKidsQuery } from './features/api/apiSlice';
+import KidsCards from './components/KidsCards';
+import NavBar from './components/NavBar';
+import { SearchBar } from './components/SearchBar';
 
 const KidsSearch = () => {
-  const [kids, setKids] = useState([])
+  const { data = [], error } = useGetKidsQuery();
 
   useEffect(() => {
-    fetch('/kids')
-      .then(resp => resp.json())
-      .then(obj => setKids(obj))
-  }, [])
+    if (error) {
+      alert('Something Went Wrong');
+    }
+  }, [error]);
 
   return (
     <>
       <NavBar />
       <h1>Kids</h1>
       <SearchBar />
-      <KidsCards kids={kids} />
+      <KidsCards kids={data} />
     </>
-  )
-}
+  );
+};
 
-export default KidsSearch
+export default KidsSearch;

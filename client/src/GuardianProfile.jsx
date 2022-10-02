@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from 'react';
 import NavBar from './components/NavBar';
 import AddGuardianModal from './components/modals/AddGuardianModal';
+import AddKidModal from './components/modals/AddKidModal';
 import GuardianProfileUpdate from './components/GuardianProfileUpdate';
 import { useParams } from 'react-router-dom';
 import {
@@ -12,7 +13,9 @@ import { toast } from 'react-toastify';
 
 const GuardianProfile = () => {
   const params = useParams();
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [guardianModalIsOpen, setGuardianModalIsOpen] = useState(false);
+  const [kidModalIsOpen, setKidModalIsOpen] = useState(false);
+
   const [deleteGuardian] = useDeleteGuardianMutation();
   const {
     data = [],
@@ -52,16 +55,22 @@ const GuardianProfile = () => {
       <div>
         <h2>Additonal Guardians</h2>
         <AddGuardianModal
-          modalIsOpen={modalIsOpen}
-          setModalIsOpen={setModalIsOpen}
+          modalIsOpen={guardianModalIsOpen}
+          setModalIsOpen={setGuardianModalIsOpen}
         />
-        <button onClick={() => setModalIsOpen(true)}>
+        <button onClick={() => setGuardianModalIsOpen(true)}>
           Add Additional Guardian
         </button>
       </div>
       <div>
         <h2>Kids</h2>
-        <button>Add Kid</button>
+        <AddKidModal
+          modalIsOpen={kidModalIsOpen}
+          setModalIsOpen={setKidModalIsOpen}
+        />
+        <button onClick={() => setKidModalIsOpen(true)}>
+          Add Additional Kid
+        </button>
       </div>
     </>
   );
