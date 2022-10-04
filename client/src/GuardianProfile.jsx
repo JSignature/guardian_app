@@ -50,7 +50,7 @@ const GuardianProfile = () => {
 
   return (
     <>
-      <GuardianProfileWrapper>
+      <StyledGuardianProfile>
         <NavBar />
         <h1>Guardian Profile</h1>
         <div className="Firstdiv">
@@ -95,12 +95,12 @@ const GuardianProfile = () => {
             <div>loading</div>
           )}
         </div>
-      </GuardianProfileWrapper>
+      </StyledGuardianProfile>
     </>
   )
 }
 
-const GuardianProfileWrapper = style.div`
+const StyledGuardianProfile = style.div`
 .GuardianImg{
   width: 10rem;
   height: 10rem;

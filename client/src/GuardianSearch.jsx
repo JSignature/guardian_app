@@ -5,6 +5,7 @@ import NavBar from './components/NavBar'
 import GuardianCards from './components/GuardianCards'
 import AddGuardianModal from './components/modals/AddGuardianModal'
 import { DarkerBtn } from './components/styles/ButtonStyle'
+import styled from 'styled-components'
 
 const GuardianSearch = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
@@ -18,7 +19,7 @@ const GuardianSearch = () => {
   }, [error])
 
   return (
-    <>
+    <StyledGuardianSearch>
       <NavBar />
       <AddGuardianModal
         modalIsOpen={modalIsOpen}
@@ -30,8 +31,18 @@ const GuardianSearch = () => {
         <SearchBar />
       </div>
       <GuardianCards data={data} />
-    </>
+    </StyledGuardianSearch>
   )
 }
+
+const StyledGuardianSearch = styled.article`
+  .searchHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90vw;
+    margin: auto;
+  }
+`
 
 export default GuardianSearch

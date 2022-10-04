@@ -9,7 +9,7 @@ const NavBar = () => {
     <NavWrapper>
       <div className="navBar">
         <div className="navLogo">
-          <a href="/">
+          <a href="/dashboard">
             <img src={logo2} alt="" />
           </a>
         </div>
