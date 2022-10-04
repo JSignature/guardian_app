@@ -2,6 +2,7 @@ import React from 'react'
 // import './styles/NavBar.css'
 import logo2 from './styles/logo2.png'
 import styled from 'styled-components'
+import { Btn } from './styles/ButtonStyle'
 
 const NavBar = () => {
   return (
@@ -23,7 +24,7 @@ const NavBar = () => {
           </ul>
         </nav>
         <a className="logOutBtn" href="">
-          <button className="navButton">Log Out</button>
+          <Btn className="navButton">Log Out</Btn>
         </a>
       </div>
     </NavWrapper>
@@ -83,10 +84,10 @@ const NavWrapper = styled.div`
     color: #ffa987;
   }
   .navLinks li a:hover {
-    color: #ffa987;
+    color: #4f6d7a;
   }
   .navButton {
-    color: black;
+    color: #56a3a6;
     font-size: 10px;
   }
 `

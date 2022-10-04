@@ -1,13 +1,13 @@
-import { React } from 'react';
-import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
-import { useUpdateGuardianMutation } from '../features/api/apiSlice';
-import { useParams } from 'react-router-dom';
+import { React } from 'react'
+import { useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
+import { useUpdateGuardianMutation } from '../features/api/apiSlice'
+import { useParams } from 'react-router-dom'
 
 const GuardianProfileUpdate = ({ guardian }) => {
-  const params = useParams();
-  const paramsId = parseInt(params.guardian_id);
-  const [updateGuardian] = useUpdateGuardianMutation();
+  const params = useParams()
+  const paramsId = parseInt(params.guardian_id)
+  const [updateGuardian] = useUpdateGuardianMutation()
 
   const {
     register,
@@ -25,9 +25,9 @@ const GuardianProfileUpdate = ({ guardian }) => {
       email: `${guardian.guardian_email}`,
       image: `${guardian.guardian_image}`,
     },
-  });
+  })
 
-  const onSubmit = async (data) => {
+  const onSubmit = async data => {
     const updatedGuardian = {
       id: paramsId,
       guardian_first_name: data.firstName,
@@ -39,16 +39,18 @@ const GuardianProfileUpdate = ({ guardian }) => {
       guardian_phone: data.phone,
       guardian_email: data.email,
       guardian_image: data.image,
-    };
+    }
 
-    await updateGuardian(updatedGuardian);
-    toast.success('Contact has been Updated');
-  };
-  console.log(errors);
+    await updateGuardian(updatedGuardian)
+    toast.success('Contact has been Updated')
+  }
+  console.log(errors)
 
   return (
     <div>
-      <h1>{guardian.guardian_first_name}</h1>
+      <h3>
+        {guardian.guardian_first_name} {guardian.guardian_last_name}
+      </h3>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <input
@@ -80,7 +82,7 @@ const GuardianProfileUpdate = ({ guardian }) => {
         <input type="submit" />
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default GuardianProfileUpdate;
+export default GuardianProfileUpdate
