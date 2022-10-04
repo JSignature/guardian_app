@@ -25,7 +25,7 @@ const GuardianSearch = () => {
         setModalIsOpen={setModalIsOpen}
       />
       <div className="searchHeader">
-        <DarkerBtn onClick={() => setModalIsOpen(true)}>Add Family</DarkerBtn>
+        <DarkerBtn onClick={() => setModalIsOpen(true)}>+ Add Family</DarkerBtn>
         <h1>Guardians</h1>
         <SearchBar />
       </div>

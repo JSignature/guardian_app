@@ -40,7 +40,7 @@ const StyledGuardianCard = styled.article`
     height: 5rem;
     object-fit: cover;
     border-radius: 50%;
-    padding: 10px;
+
     box-shadow: 0px 0px 20px grey;
   }
   h2,
@@ -55,6 +55,9 @@ const StyledGuardianCard = styled.article`
   h4 {
     margin-top: 10px;
   }
+  /* @media (min-width: 768px) {
+    max-width: 600px;
+  } */
 `
 
 export default GuardianCard
