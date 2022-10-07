@@ -1,7 +1,14 @@
-import React from 'react'
+import { React, useState } from 'react'
 import './Home.css'
+import AddSignUpModal from './components/modals/AddSignUpModal'
+import AddSignInModal from './components/modals/AddSignInModal'
+import { Btn } from './components/styles/ButtonStyle'
+import logo2 from './components/styles/logo2.png'
 
 const Home = () => {
+  const [signUpIsOpen, setSignUpIsOpen] = useState(false)
+  const [signInIsOpen, setSignInIsOpen] = useState(false)
+
   return (
     <div>
       <div class="navHome">
@@ -10,8 +17,20 @@ const Home = () => {
         </ul>
 
         <div class="sign">
-          <button>Sign Up</button>
-          <button>Sign In</button>
+          <div>
+            <AddSignUpModal
+              modalIsOpen={signUpIsOpen}
+              setModalIsOpen={setSignUpIsOpen}
+            />
+            <Btn onClick={() => setSignUpIsOpen(true)}>Sign Up</Btn>
+          </div>
+          <div>
+            <AddSignInModal
+              modalIsOpen={signInIsOpen}
+              setModalIsOpen={setSignInIsOpen}
+            />
+            <Btn onClick={() => setSignInIsOpen(true)}>Sign In</Btn>
+          </div>
         </div>
       </div>
       <h1>Guardian App</h1>
