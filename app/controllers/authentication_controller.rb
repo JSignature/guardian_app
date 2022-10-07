@@ -9,7 +9,7 @@ class AuthenticationController < ApplicationController
                     secret_key = Rails.application.secrets.secret_key_base
                     token = JWT.encode({user_id: user.id, user_email: user.user_email}, secret_key)
 
-                    render json: {token: token}
+                    render json: {token: token, user_email: user.user_email}
                 else    
                     render json: {error: "PW is not correct"}, status:  :unauthorized
 

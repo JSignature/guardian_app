@@ -1,26 +1,41 @@
 import React from 'react';
 import Modal from 'react-modal';
+import { useForm } from 'react-hook-form';
+
 Modal.setAppElement('#root');
 
 const SignUpModal = ({ modalIsOpen, setModalIsOpen }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => console.log(data);
+  console.log(errors);
+
   return (
     <div>
       <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
         <h1>Sign Up for Guardian App!</h1>
-        <form>
-          <input type="text" name="UserName" placeholder="Create User Name" />
+        <form onSubmit={handleSubmit(onSubmit)}>
           <input
             type="text"
-            name="UserPassword"
-            placeholder="Create User Password"
+            placeholder="First name"
+            {...register('First name', { required: true, maxLength: 80 })}
           />
           <input
             type="text"
-            name="UserPassword"
-            placeholder="Re-Enter User Password"
+            placeholder="Last name"
+            {...register('Last name', { required: true, maxLength: 100 })}
+          />
+          <input type="email" placeholder="Email" {...register('Email', {})} />
+          <input
+            type="password"
+            placeholder="Password"
+            {...register('Password', { min: 2, maxLength: 12 })}
           />
 
-          <button type="submit">Submit</button>
+          <input type="submit" />
         </form>
         <button onClick={() => setModalIsOpen(false)}>X</button>
       </Modal>

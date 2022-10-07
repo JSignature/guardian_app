@@ -7,7 +7,7 @@ export const apiUserSlice = createApi({
     userLogin: builder.mutation({
       query: (userObject) => {
         return {
-          url: '/',
+          url: '/login',
           method: 'POST',
           body: userObject,
         };
