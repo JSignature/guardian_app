@@ -1,8 +1,8 @@
-import React from 'react'
-import Modal from 'react-modal'
-Modal.setAppElement('#root')
+import React from 'react';
+import Modal from 'react-modal';
+Modal.setAppElement('#root');
 
-const AddSignUpModal = ({ modalIsOpen, setModalIsOpen }) => {
+const SignUpModal = ({ modalIsOpen, setModalIsOpen }) => {
   return (
     <div>
       <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
@@ -25,7 +25,7 @@ const AddSignUpModal = ({ modalIsOpen, setModalIsOpen }) => {
         <button onClick={() => setModalIsOpen(false)}>X</button>
       </Modal>
     </div>
-  )
-}
+  );
+};
 
-export default AddSignUpModal
+export default SignUpModal;

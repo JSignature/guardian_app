@@ -1,13 +1,13 @@
-import { React, useState } from 'react'
-import './Home.css'
-import AddSignUpModal from './components/modals/AddSignUpModal'
-import AddSignInModal from './components/modals/AddSignInModal'
-import { Btn } from './components/styles/ButtonStyle'
-import logo2 from './components/styles/logo2.png'
+import { React, useState } from 'react';
+import './Home.css';
+import SignUpModal from './components/modals/SignUpModal';
+import SignInModal from './components/modals/SignInModal';
+import { Btn } from './components/styles/ButtonStyle';
+import logo2 from './components/styles/logo2.png';
 
 const Home = () => {
-  const [signUpIsOpen, setSignUpIsOpen] = useState(false)
-  const [signInIsOpen, setSignInIsOpen] = useState(false)
+  const [signUpIsOpen, setSignUpIsOpen] = useState(false);
+  const [signInIsOpen, setSignInIsOpen] = useState(false);
 
   return (
     <div>
@@ -18,14 +18,14 @@ const Home = () => {
 
         <div class="sign">
           <div>
-            <AddSignUpModal
+            <SignUpModal
               modalIsOpen={signUpIsOpen}
               setModalIsOpen={setSignUpIsOpen}
             />
             <Btn onClick={() => setSignUpIsOpen(true)}>Sign Up</Btn>
           </div>
           <div>
-            <AddSignInModal
+            <SignInModal
               modalIsOpen={signInIsOpen}
               setModalIsOpen={setSignInIsOpen}
             />
@@ -101,7 +101,7 @@ const Home = () => {
 
       <h2 class="review_text">See what people are saying about us!</h2>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
