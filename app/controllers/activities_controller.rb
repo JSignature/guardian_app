@@ -21,8 +21,8 @@ class ActivitiesController < ApplicationController
 
     def userActivities
         # activities = Activity.where(user_id: 1)
-        activitiesByDate = Activity.where('created_at > ?', 30.days.ago)
-        activities = activitiesByDate.where(user_id: 2)
+        activitiesByDate = Activity.where('created_at > ?', 5.days.ago)
+        activities = activitiesByDate.where(user_id: 1)
 
         render json: activities,  status: :ok
 
