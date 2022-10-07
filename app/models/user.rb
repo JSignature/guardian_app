@@ -6,4 +6,6 @@ class User < ApplicationRecord
         maximum: 20
     }
 
+    has_many :activities
+    has_many :kids, through: :activities
 end
