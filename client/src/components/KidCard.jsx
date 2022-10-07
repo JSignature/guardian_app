@@ -56,6 +56,12 @@ const StyledKidCard = styled.article`
   h4 {
     margin-top: 10px;
   }
+
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 3px 3px #44cfcb;
+  }
   /* @media (min-width: 768px) {
     max-width: 600px;
   } */

@@ -55,8 +55,15 @@ const StyledGuardianCard = styled.article`
   h4 {
     margin-top: 10px;
   }
-  /* @media (min-width: 768px) {
-    max-width: 600px;
+
+  transition: all 0.5s ease-in-out;
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 3px 3px #44cfcb;
+  }
+
+  /* @media (max-width: 300px) {
+    min-width: 600px;
   } */
 `
 

@@ -130,10 +130,7 @@ justify-content: space-between;
 .DarkerBtn{
   display:flex;
 align-items: center;
-
 }
-
-
 
 `
 
