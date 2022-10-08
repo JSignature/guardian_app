@@ -38,8 +38,11 @@ const SignInModal = ({ modalIsOpen, setModalIsOpen }) => {
     if (data) {
       const token = data.token;
       const user_id = data.user_id;
+      const user_first_name = data.user_first_name;
       localStorage.setItem('token', token);
       localStorage.setItem('user_id', user_id);
+      localStorage.setItem('user_first_name', user_first_name);
+
       navigate('/dashboard');
     }
   });

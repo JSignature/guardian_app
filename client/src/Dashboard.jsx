@@ -6,6 +6,8 @@ import { useParams } from 'react-router-dom';
 const Dashboard = () => {
   const params = useParams();
   const user_id = localStorage.getItem('user_id');
+  const user_first_name = localStorage.getItem('user_first_name');
+
   console.log(user_id);
   const {
     data = [],
@@ -17,7 +19,7 @@ const Dashboard = () => {
   return (
     <>
       <NavBar />
-      <h2>Hello, User!!</h2>
+      <h2>{`Howdy, ${user_first_name} these are your completed activities!!`}</h2>
       <h1>Activities</h1>
       {isSuccess ? (
         data.map((activity) => (
