@@ -1,5 +1,4 @@
 import React from 'react';
-// import './styles/NavBar.css'
 import logo2 from './styles/logo2.png';
 import styled from 'styled-components';
 import { Btn } from './styles/ButtonStyle';
