@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
 import { useAddUserMutation } from '../../features/api/apiUserSlice';
-
 import { toast } from 'react-toastify';
 
 Modal.setAppElement('#root');
