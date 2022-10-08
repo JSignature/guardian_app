@@ -12,7 +12,7 @@ const KidCard = ({ kid }) => {
         <h2>
           {kid.kid_first_name} {kid.kid_last_name}
         </h2>
-        <h4>{kid.kid_group}</h4>
+        <h2>{kid.kid_group}</h2>
       </div>
       <div>
         <a href={`/kids/${kid.id}`}>

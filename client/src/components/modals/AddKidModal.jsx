@@ -78,7 +78,9 @@ const AddKidModal = ({ modalIsOpen, setModalIsOpen }) => {
           <textarea {...register('notes', {})} />
           <input type="text" placeholder="Image" {...register('image', {})} />
 
-          <input type="submit" />
+          <BrighterBtn input type="submit">
+            Submit
+          </BrighterBtn>
         </form>
 
         <XBtn onClick={() => setModalIsOpen(false)}>X</XBtn>

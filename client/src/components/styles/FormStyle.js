@@ -19,7 +19,7 @@ export const StyledForm = styled.form`
     box-sizing: border-box;
     padding: 0.3rem;
     border-radius: 0.25rem;
-    background-color: f7ebe8;
+
     border-width: 2px;
     border: none;
 

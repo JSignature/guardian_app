@@ -30,10 +30,10 @@ const KidsSearch = () => {
 const StyledKidSearch = styled.article`
   .searchHeader {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     width: 90vw;
-    margin: auto;
+    margin-left: 200px;
   }
 `
 

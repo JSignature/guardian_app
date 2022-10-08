@@ -41,7 +41,8 @@ const StyledGuardianSearch = styled.article`
     justify-content: space-between;
     align-items: center;
     width: 90vw;
-    margin: auto;
+
+    margin-left: 120px;
   }
 `
 

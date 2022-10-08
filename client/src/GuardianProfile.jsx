@@ -118,16 +118,20 @@ const StyledGuardianProfile = style.div`
 
 }
 .Firstdiv{
-  width:svh;
+  width:100%;
+  height: 400px;
 display:flex;
 align-items: center;
-justify-content: space-between;
+justify-content: space-around;
+background-color: #fff;
+box-shadow: 5px 5px 20px #44cfcb;
+margin-bottom: 40px;
 
 }
 
   h2
 {
-
+  color: #56a3a6;
   width: 20rem;
   height:6rem;
   margin: 0 auto;

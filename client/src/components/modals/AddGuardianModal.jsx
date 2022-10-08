@@ -43,7 +43,7 @@ const AddGuardianModal = ({ modalIsOpen, setModalIsOpen }) => {
       isOpen={modalIsOpen}
       onRequestClose={() => setModalIsOpen(false)}
     >
-      <header className="ActivityHeader">
+      <header>
         <h1>Add Guardian</h1>
       </header>
       <form onSubmit={handleNewGuardian}>
