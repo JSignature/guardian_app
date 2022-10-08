@@ -8,6 +8,7 @@ Modal.setAppElement('#root');
 
 const SignInModal = ({ modalIsOpen, setModalIsOpen }) => {
   const navigate = useNavigate();
+
   const [loginUser, { data, isSuccess, isError, error }] =
     useUserLoginMutation();
 
@@ -18,24 +19,11 @@ const SignInModal = ({ modalIsOpen, setModalIsOpen }) => {
   } = useForm();
 
   const onSubmit = async (userData) => {
-    console.log(userData);
-    if (userData.user_email && userData.password) {
-      await loginUser(userData);
-
-      // const token = data.token;
-      // localStorage.setItem('token', token);
-    } else {
-      toast.error('Please complete both User Email and Password fields');
-    }
+    await loginUser(userData);
   };
-  useEffect(() => {
-    if (isError) {
-      toast.error(error.data.error);
-    }
-  });
 
   useEffect(() => {
-    if (data) {
+    if (isSuccess) {
       const token = data.token;
       const user_id = data.user_id;
       const user_first_name = data.user_first_name;
@@ -44,10 +32,13 @@ const SignInModal = ({ modalIsOpen, setModalIsOpen }) => {
       localStorage.setItem('user_first_name', user_first_name);
 
       navigate('/dashboard');
+      setModalIsOpen(false);
+      toast.success(`Welcome ${user_first_name}, you have been logged in!`);
+    } else if (isError) {
+      console.log(error);
+      toast.error(error.data.errors[0]);
     }
-  });
-
-  console.log(errors);
+  }, [isSuccess, isError, data, error, navigate, setModalIsOpen]);
 
   return (
     <div>
@@ -57,13 +48,17 @@ const SignInModal = ({ modalIsOpen, setModalIsOpen }) => {
           <input
             type="email"
             placeholder="User Email"
-            {...register('user_email', {})}
+            {...register('user_email', {
+              required: 'This is a required field',
+            })}
           />
+          <p>{errors.user_email?.message}</p>
           <input
             type="password"
             placeholder="User Password"
-            {...register('password', {})}
+            {...register('password', { required: 'This is a required field' })}
           />
+          <p>{errors.password?.message}</p>
 
           <input type="submit" />
         </form>

@@ -1,14 +1,13 @@
-import React from 'react';
+import { useEffect } from 'react';
 import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
 import { useAddUserMutation } from '../../features/api/apiUserSlice';
-
 import { toast } from 'react-toastify';
 
 Modal.setAppElement('#root');
 
 const SignUpModal = ({ modalIsOpen, setModalIsOpen }) => {
-  const [addUser, { data, isSuccess, isError, error }] = useAddUserMutation();
+  const [addUser, { error, isError, isSuccess }] = useAddUserMutation();
 
   const {
     register,
@@ -18,12 +17,16 @@ const SignUpModal = ({ modalIsOpen, setModalIsOpen }) => {
 
   const onSubmit = async (data) => {
     await addUser(data);
-
-    toast.success('A new user has been created, please login!!');
-    console.log(data);
-    setModalIsOpen(false);
   };
-  console.log(errors);
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success('A new user has been created, please login!!');
+      setModalIsOpen(false);
+    } else if (isError) {
+      toast.error(error.data.errors[0]);
+    }
+  }, [isSuccess, isError, setModalIsOpen, error]);
 
   return (
     <div>
