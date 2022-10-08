@@ -1,6 +1,8 @@
 class GuardiansController < ApplicationController
+    before_action :authenticate
 
 def create 
+    byebug
     guardian = Guardian.create(guardian_params)
 
     if guardian

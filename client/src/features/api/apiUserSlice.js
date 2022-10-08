@@ -7,13 +7,20 @@ export const apiUserSlice = createApi({
     userLogin: builder.mutation({
       query: (userObject) => {
         return {
-          url: '/',
+          url: '/login',
           method: 'POST',
           body: userObject,
         };
       },
     }),
+    addUser: builder.mutation({
+      query: (user) => ({
+        url: '/users',
+        method: 'POST',
+        body: user,
+      }),
+    }),
   }),
 });
 
-export const { useUserLoginMutation } = apiUserSlice;
+export const { useUserLoginMutation, useAddUserMutation } = apiUserSlice;

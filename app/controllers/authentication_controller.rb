@@ -7,9 +7,10 @@ class AuthenticationController < ApplicationController
             else
                 if user.authenticate(params[:password])
                     secret_key = Rails.application.secrets.secret_key_base
-                    token = JWT.encode({user_id: user.id, user_email: user.user_email}, secret_key)
+                    token = JWT.encode({user_id: user.id, user_email: user.user_email, user_first_name: user.user_first_name}, secret_key)
+                                  
 
-                    render json: {token: token}
+                    render json: {token: token, user_first_name: user.user_first_name, user_id: user.id}
                 else    
                     render json: {error: "PW is not correct"}, status:  :unauthorized
 
