@@ -25,10 +25,9 @@ const SignUpModal = ({ modalIsOpen, setModalIsOpen }) => {
       toast.success('A new user has been created, please login!!');
       setModalIsOpen(false);
     } else if (isError) {
-      console.log(error);
       toast.error(error.data.errors[0]);
     }
-  }, [isSuccess, isError]);
+  }, [isSuccess, isError, setModalIsOpen, error]);
 
   return (
     <div>
