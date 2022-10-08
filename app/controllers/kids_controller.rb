@@ -1,6 +1,6 @@
 class KidsController < ApplicationController
 
- 
+    before_action :authenticate
 
 
 def create

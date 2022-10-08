@@ -2,7 +2,14 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const apiSlice = createApi({
   reducerPath: 'apiSlice',
-  baseQuery: fetchBaseQuery({ baseUrl: ' ' }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: ' ',
+    prepareHeaders: (headers) => {
+      const token = localStorage.getItem('token');
+      headers.set('authorization', `Bearer ${token}`);
+      return headers;
+    },
+  }),
   tagTypes: ['Guardian', 'Kid'],
   endpoints: (builder) => ({
     getGuardians: builder.query({
@@ -82,6 +89,9 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ['Kid'],
     }),
+    getActivities: builder.query({
+      query: (id) => `/dashboard/${id}`,
+    }),
   }),
 });
 
@@ -98,4 +108,5 @@ export const {
   useUpdateKidMutation,
   useAddActivityMutation,
   useDeleteActivityMutation,
+  useGetActivitiesQuery,
 } = apiSlice;

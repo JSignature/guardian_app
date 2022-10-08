@@ -5,16 +5,18 @@ import NavBar from './components/NavBar'
 import GuardianCards from './components/GuardianCards'
 import AddGuardianModal from './components/modals/AddGuardianModal'
 import { DarkerBtn } from './components/styles/ButtonStyle'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 const GuardianSearch = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false)
-
+  const navigate = useNavigate()
   const { data = [], error } = useGetGuardiansQuery()
 
   useEffect(() => {
     if (error) {
-      alert('Something Went Wrong')
+      alert('You Must be logged in to access this feature')
+      navigate('/')
     }
   }, [error])
 

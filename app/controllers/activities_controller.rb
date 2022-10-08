@@ -1,5 +1,5 @@
 class ActivitiesController < ApplicationController
-
+   # before_action :authenticate
     def create
         activity = Activity.create(activity_params)
 
@@ -20,9 +20,9 @@ class ActivitiesController < ApplicationController
     end
 
     def userActivities
-        # activities = Activity.where(user_id: 1)
+       
         activitiesByDate = Activity.where('created_at > ?', 5.days.ago)
-        activities = activitiesByDate.where(user_id: 1)
+        activities = activitiesByDate.where(user_id: params[:id])
 
         render json: activities,  status: :ok
 

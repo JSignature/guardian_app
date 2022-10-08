@@ -4,13 +4,16 @@ import KidsCards from './components/KidsCards'
 import NavBar from './components/NavBar'
 import { SearchBar } from './components/SearchBar'
 import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
 
 const KidsSearch = () => {
+  const navigate = useNavigate()
   const { data = [], error } = useGetKidsQuery()
 
   useEffect(() => {
     if (error) {
-      alert('Something Went Wrong')
+      alert('You Must be logged in to access this feature')
+      navigate('/')
     }
   }, [error])
 
