@@ -38,7 +38,7 @@ const SignInModal = ({ modalIsOpen, setModalIsOpen }) => {
       console.log(error);
       toast.error(error.data.errors[0]);
     }
-  }, [isSuccess, isError, data, error]);
+  }, [isSuccess, isError, data, error, navigate, setModalIsOpen]);
 
   return (
     <div>
