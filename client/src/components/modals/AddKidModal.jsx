@@ -1,24 +1,26 @@
-import { React } from 'react';
-import Modal from 'react-modal';
-import { useParams } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
-import { useAddKidMutation } from '../../features/api/apiSlice';
-import { toast } from 'react-toastify';
+import { React } from 'react'
+import Modal from 'react-modal'
+import { useParams } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+import { useAddKidMutation } from '../../features/api/apiSlice'
+import { toast } from 'react-toastify'
+import { BrighterBtn, DarkerBtn, Btn, XBtn } from '../styles/ButtonStyle'
+import '../styles/ModalStyle.css'
 
-Modal.setAppElement('#root');
+Modal.setAppElement('#root')
 
 const AddKidModal = ({ modalIsOpen, setModalIsOpen }) => {
-  const params = useParams();
-  const paramsId = parseInt(params.guardian_id);
-  const [addKid] = useAddKidMutation();
+  const params = useParams()
+  const paramsId = parseInt(params.guardian_id)
+  const [addKid] = useAddKidMutation()
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm()
 
-  const onSubmit = async (data) => {
+  const onSubmit = async data => {
     const newKid = {
       guardian_id: paramsId,
       kid_first_name: data.firstName,
@@ -30,25 +32,24 @@ const AddKidModal = ({ modalIsOpen, setModalIsOpen }) => {
       kid_allergies: data.allergies,
       kid_notes: data.notes,
       kid_image: data.image,
-    };
-    await addKid(newKid);
-    toast.success('Kid has been added!! Yaayy!');
-    setModalIsOpen(false);
-    console.log(data);
-  };
-  console.log(errors);
+    }
+    await addKid(newKid)
+    toast.success('Kid has been added!! Yaayy!')
+    setModalIsOpen(false)
+    console.log(data)
+  }
+  console.log(errors)
 
   return (
     <div>
       <Modal
-        style={{
-          overlay: { backgroundColor: 'grey' },
-          content: { color: 'orange' },
-        }}
+        className="ModalStyle"
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
       >
-        <h1>Add Kid</h1>
+        <header>
+          <h1>Add Kid</h1>
+        </header>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
@@ -80,10 +81,10 @@ const AddKidModal = ({ modalIsOpen, setModalIsOpen }) => {
           <input type="submit" />
         </form>
 
-        <button onClick={() => setModalIsOpen(false)}>X</button>
+        <XBtn onClick={() => setModalIsOpen(false)}>X</XBtn>
       </Modal>
     </div>
-  );
-};
+  )
+}
 
-export default AddKidModal;
+export default AddKidModal

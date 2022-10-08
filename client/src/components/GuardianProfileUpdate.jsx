@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import { useUpdateGuardianMutation } from '../features/api/apiSlice'
 import { useParams } from 'react-router-dom'
+import { StyledForm } from './styles/FormStyle'
+import { Btn } from './styles/ButtonStyle'
 
 const GuardianProfileUpdate = ({ guardian }) => {
   const params = useParams()
@@ -47,41 +49,43 @@ const GuardianProfileUpdate = ({ guardian }) => {
   console.log(errors)
 
   return (
-    <div>
-      <h3>
-        {guardian.guardian_first_name} {guardian.guardian_last_name}
-      </h3>
+    <StyledForm>
+      <div>
+        <h3>
+          {guardian.guardian_first_name} {guardian.guardian_last_name}
+        </h3>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type="text"
-          placeholder="First name"
-          {...register('firstName', { required: true, maxLength: 80 })}
-        />
-        <input
-          type="text"
-          placeholder="Last name"
-          {...register('lastName', { required: true, maxLength: 100 })}
-        />
-        <input
-          type="text"
-          placeholder="Street Address"
-          {...register('streetAddress', {})}
-        />
-        <input type="text" placeholder="City" {...register('city', {})} />
-        <input
-          type="text"
-          placeholder="State"
-          {...register('state', { maxLength: 2 })}
-        />
-        <input type="text" placeholder="Zip" {...register('zip', {})} />
-        <input type="tel" placeholder="Phone" {...register('phone', {})} />
-        <input type="email" placeholder="Email" {...register('email', {})} />
-        <input type="text" placeholder="Image" {...register('image', {})} />
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <input
+            type="text"
+            placeholder="First name"
+            {...register('firstName', { required: true, maxLength: 80 })}
+          />
+          <input
+            type="text"
+            placeholder="Last name"
+            {...register('lastName', { required: true, maxLength: 100 })}
+          />
+          <input
+            type="text"
+            placeholder="Street Address"
+            {...register('streetAddress', {})}
+          />
+          <input type="text" placeholder="City" {...register('city', {})} />
+          <input
+            type="text"
+            placeholder="State"
+            {...register('state', { maxLength: 2 })}
+          />
+          <input type="text" placeholder="Zip" {...register('zip', {})} />
+          <input type="tel" placeholder="Phone" {...register('phone', {})} />
+          <input type="email" placeholder="Email" {...register('email', {})} />
+          <input type="text" placeholder="Image" {...register('image', {})} />
 
-        <input type="submit" />
-      </form>
-    </div>
+          <input type="submit" />
+        </form>
+      </div>
+    </StyledForm>
   )
 }
 

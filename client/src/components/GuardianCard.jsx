@@ -48,7 +48,7 @@ const StyledGuardianCard = styled.article`
     margin-bottom: 0.5rem;
     font-weight: 500;
     letter-spacing: 2px;
-    color: var(--primary);
+    color: #44cfcb;
     text-align: center;
     font-size: 20px;
   }

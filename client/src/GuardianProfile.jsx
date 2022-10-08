@@ -10,7 +10,7 @@ import {
 } from './features/api/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import style from 'styled-components'
+import style, { css } from 'styled-components/macro'
 import { DarkerBtn, Btn } from './components/styles/ButtonStyle'
 import KidCard from './components/KidCard'
 
@@ -71,6 +71,9 @@ const GuardianProfile = () => {
             setModalIsOpen={setGuardianModalIsOpen}
           />
           <DarkerBtn
+            css={`
+              margin-left: 1300px;
+            `}
             className="DarkerBtn"
             onClick={() => setGuardianModalIsOpen(true)}
           >
@@ -84,6 +87,9 @@ const GuardianProfile = () => {
             setModalIsOpen={setKidModalIsOpen}
           />
           <DarkerBtn
+            css={`
+              margin-left: 1300px;
+            `}
             className="DarkerBtn"
             onClick={() => setKidModalIsOpen(true)}
           >
@@ -127,10 +133,7 @@ justify-content: space-between;
   margin: 0 auto;
 
 }
-.DarkerBtn{
-  display:flex;
-align-items: center;
-}
+
 
 `
 

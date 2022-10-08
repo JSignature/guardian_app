@@ -11,7 +11,7 @@ export const Btn = styled.button`
   font-weight: 500;
   padding: 5px 20px;
   background-color: #d3d4d9;
-  color: #56a3a6;
+  color: #44cfcb;
   width: 20vh;
   max-height: 5vh;
 
@@ -24,11 +24,26 @@ export const Btn = styled.button`
   }
 `
 export const DarkerBtn = styled(Btn)`
-  background: #086375;
+  background: #56a3a6;
   color: #d3d4d9;
   &:hover {
     opacity: 0.9;
     transform: scale (0.98);
-    color: #56a3a6;
+    color: #44cfcb;
   }
+`
+export const BrighterBtn = styled(Btn)`
+  background: #44cfcb;
+  color: #d3d4d9;
+`
+export const XBtn = styled(Btn)`
+  background: transparent;
+  color: #fff;
+  width: 2vw;
+  box-shadow: 0px 0px 0px;
+  font-size: 16px;
+  border-color: none;
+  position: absolute;
+  margin-right: -1020px;
+  margin-top: -550px;
 `

@@ -56,11 +56,11 @@ const KidsProfile = () => {
       </div>
 
       <h2>Guardians</h2>
-      <div className="underline"></div>
+      <div></div>
 
       <div>
         <h2>Activities</h2>
-        <div className="underline"></div>
+        <div></div>
         <AddActivityModal
           modalIsOpen={modalIsOpen}
           setModalIsOpen={setModalIsOpen}
