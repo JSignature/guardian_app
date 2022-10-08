@@ -21,9 +21,6 @@ const SignInModal = ({ modalIsOpen, setModalIsOpen }) => {
     console.log(userData);
     if (userData.user_email && userData.password) {
       await loginUser(userData);
-
-      // const token = data.token;
-      // localStorage.setItem('token', token);
     } else {
       toast.error('Please complete both User Email and Password fields');
     }
@@ -46,8 +43,6 @@ const SignInModal = ({ modalIsOpen, setModalIsOpen }) => {
       navigate('/dashboard');
     }
   });
-
-  console.log(errors);
 
   return (
     <div>
