@@ -19,7 +19,7 @@ const Dashboard = () => {
   return (
     <>
       <NavBar />
-      <h2>{`Howdy, ${user_first_name}`}</h2>
+      <h2>{`Howdy, ${user_first_name} these are your completed activities!!`}</h2>
       <h1>Activities</h1>
       {isSuccess ? (
         data.map((activity) => (
