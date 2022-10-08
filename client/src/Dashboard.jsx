@@ -25,10 +25,10 @@ const Dashboard = () => {
   }, [isError, error])
 
   return (
-    <>
+    <StyledDashboard>
       <NavBar />
       <h2>{`Howdy, ${user_first_name} these are your completed activities!!`}</h2>
-      <h1>Activities</h1>
+      <h1>Kid's Activities</h1>
 
       {isSuccess ? (
         data.map(activity => (
@@ -37,8 +37,20 @@ const Dashboard = () => {
       ) : (
         <div>loading</div>
       )}
-    </>
+    </StyledDashboard>
   )
 }
+
+const StyledDashboard = styled.article`
+  @import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Montserrat:wght@400;500&family=Patrick+Hand+SC&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+  h2,
+  h1 {
+  }
+  h2 {
+    font-size: 16px;
+    color: #44cfcb;
+  }
+`
 
 export default Dashboard

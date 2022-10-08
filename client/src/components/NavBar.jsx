@@ -1,20 +1,20 @@
-import React from 'react';
-import logo2 from './styles/logo2.png';
-import styled from 'styled-components';
-import { Btn } from './styles/ButtonStyle';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import React from 'react'
+import logo2 from './styles/logo2.png'
+import styled from 'styled-components'
+import { Btn } from './styles/ButtonStyle'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const NavBar = () => {
-  const navigate = useNavigate();
-  const userName = localStorage.getItem('user_first_name');
+  const navigate = useNavigate()
+  const userName = localStorage.getItem('user_first_name')
 
-  const handleLogout = (e) => {
-    e.preventDefault();
-    toast.success(`${userName} is out!!! Come back soon!`);
-    localStorage.clear();
-    navigate('/');
-  };
+  const handleLogout = e => {
+    e.preventDefault()
+    toast.success(`${userName} is out!!! Come back soon!`)
+    localStorage.clear()
+    navigate('/')
+  }
 
   return (
     <NavWrapper>
@@ -25,7 +25,7 @@ const NavBar = () => {
           </a>
         </div>
         <div>
-          <p>{`Hello ${userName}`}</p>
+          <p>{`HI ${userName}`}</p>
         </div>
         <nav>
           <ul className="navLinks">
@@ -44,8 +44,8 @@ const NavBar = () => {
         </a>
       </div>
     </NavWrapper>
-  );
-};
+  )
+}
 
 const NavWrapper = styled.div`
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
@@ -106,6 +106,14 @@ const NavWrapper = styled.div`
     color: #56a3a6;
     font-size: 10px;
   }
-`;
+  p {
+    color: #fff;
+    font-size: larger;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+      'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-right: 292px;
+    text-shadow: 2px 2px 2px #ffa987;
+  }
+`
 
-export default NavBar;
+export default NavBar
