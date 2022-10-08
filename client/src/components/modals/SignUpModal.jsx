@@ -1,16 +1,21 @@
 import React from 'react';
 import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 Modal.setAppElement('#root');
 
 const SignUpModal = ({ modalIsOpen, setModalIsOpen }) => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+    navigate('/dashboard');
+  };
   console.log(errors);
 
   return (
