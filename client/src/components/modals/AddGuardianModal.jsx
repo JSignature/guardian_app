@@ -1,41 +1,46 @@
-import { React, useState } from 'react'
-import Modal from 'react-modal'
-import { useAddGuardianMutation } from '../../features/api/apiSlice'
-import '../styles/ModalStyle.css'
-import { BrighterBtn, DarkerBtn, Btn, XBtn } from '../styles/ButtonStyle'
+import { React, useEffect, useState } from 'react';
+import Modal from 'react-modal';
+import { useForm } from 'react-hook-form';
+import { useAddGuardianMutation } from '../../features/api/apiSlice';
+import '../styles/ModalStyle.css';
+import { BrighterBtn, DarkerBtn, Btn, XBtn } from '../styles/ButtonStyle';
+import { toast } from 'react-toastify';
 
-Modal.setAppElement('#root')
+Modal.setAppElement('#root');
 const AddGuardianModal = ({ modalIsOpen, setModalIsOpen }) => {
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [streetAddress, setStreetAddress] = useState('')
-  const [city, setCity] = useState('')
-  const [state, setState] = useState('')
-  const [zip, setZip] = useState('')
-  const [phone, setPhone] = useState('')
-  const [email, setEmail] = useState('')
-  const [image, setImage] = useState('')
-  const [addGuardian] = useAddGuardianMutation()
+  const [addGuardian, { error, isError, isSuccess }] = useAddGuardianMutation();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const handleNewGuardian = async e => {
-    console.log('clicked')
-    e.preventDefault()
-    const newGuardianData = {
+  const onSubmit = async (data) => {
+    console.log(data);
+    const newGuardian = {
       is_primary: true,
-      guardian_first_name: firstName,
-      guardian_last_name: lastName,
-      guardian_address_street: streetAddress,
-      guardian_address_city: city,
-      guardian_address_state: state,
-      guardian_address_zip: zip,
-      guardian_phone: phone,
-      guardian_email: email,
-      guardian_image: image,
+      guardian_first_name: data.firstName,
+      guardian_last_name: data.lastName,
+      guardian_address_street: data.streetAddress,
+      guardian_address_city: data.city,
+      guardian_address_state: data.state,
+      guardian_address_zip: data.zip,
+      guardian_phone: data.phone,
+      guardian_email: data.email,
+      guardian_image: data.image,
+    };
+    await addGuardian(newGuardian);
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success('A new Guardian has been added');
+      setModalIsOpen(false);
+    } else if (isError) {
+      console.log(error);
+      toast.error(error.data.errors[0]);
     }
-    await addGuardian(newGuardianData)
-    setModalIsOpen(false)
-    alert('User Has been added succesfully')
-  }
+  }, [error, isError, isSuccess]);
 
   return (
     <Modal
@@ -46,84 +51,80 @@ const AddGuardianModal = ({ modalIsOpen, setModalIsOpen }) => {
       <header>
         <h1>Add Guardian</h1>
       </header>
-      <form onSubmit={handleNewGuardian}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <input
-          onChange={e => {
-            setFirstName(e.target.value)
-          }}
           type="text"
-          name="firstName"
           placeholder="First Name"
+          {...register('firstName', {
+            required: 'This is a required field',
+          })}
         />
+        <p>{errors.firstName?.message}</p>
         <input
-          onChange={e => {
-            setLastName(e.target.value)
-          }}
           type="text"
-          name="lastName"
           placeholder="Last Name"
+          {...register('lastName', {
+            required: 'This is a required field',
+          })}
         />
+        <p>{errors.lastName?.message}</p>
         <input
-          onChange={e => {
-            setStreetAddress(e.target.value)
-          }}
           type="text"
-          name="streetAddress"
           placeholder="Street Address"
+          {...register('street', {
+            required: 'This is a required field',
+          })}
         />
+        <p>{errors.street?.message}</p>
         <input
-          onChange={e => {
-            setCity(e.target.value)
-          }}
           type="text"
-          name="city"
           placeholder="City"
+          {...register('city', {
+            required: 'This is a required field',
+            maxLength: 80,
+          })}
         />
+        <p>{errors.city?.message}</p>
         <input
-          onChange={e => {
-            setState(e.target.value)
-          }}
           type="text"
-          name="state"
           placeholder="State"
+          {...register('state', {
+            required: 'This is a required field',
+          })}
         />
+        <p>{errors.state?.message}</p>
         <input
-          onChange={e => {
-            setZip(e.target.value)
-          }}
-          type="text"
-          name="zip"
+          type="number"
           placeholder="Zip"
+          {...register('zip', {
+            required: 'This is a required field',
+          })}
         />
+        <p>{errors.zip?.message}</p>
         <input
-          onChange={e => {
-            setPhone(e.target.value)
-          }}
           type="text"
-          name="phone"
           placeholder="Phone"
+          {...register('phone', {
+            required: 'This is a required field',
+          })}
         />
+        <p>{errors.phone?.message}</p>
         <input
-          onChange={e => {
-            setEmail(e.target.value)
-          }}
           type="email"
-          name="email"
           placeholder="Email"
+          {...register('email', {
+            required: 'This is a required field',
+          })}
         />
-        <input
-          onChange={e => {
-            setImage(e.target.value)
-          }}
-          type="text"
-          name="image"
-          placeholder="Image"
-        />
+        <p>{errors.email?.message}</p>
+        <input type="text" placeholder="Image" {...register('image')} />
+        <p>{errors.image?.message}</p>
         <BrighterBtn type="submit">Submit</BrighterBtn>
+        {/* <input type="submit" /> */}
       </form>
       <XBtn onClick={() => setModalIsOpen(false)}>X</XBtn>
     </Modal>
-  )
-}
+  );
+};
 
-export default AddGuardianModal
+export default AddGuardianModal;
