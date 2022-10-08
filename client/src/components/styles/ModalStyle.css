@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.ModalStyle {
+  width: 80vw;
+  height: 85vh;
+  font-family: 'Poppins';
+  background-color: #d3d4d9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 80px;
+  margin-left: 120px;
+  border-radius: 20px;
+  font-size: 16px;
+}
+
+.ModalStyle h1 {
+  font-family: 'poppins';
+  color: #f7ebe8;
+  text-shadow: 5px 5px 20px rgb(32, 31, 31);
+}
+
+.ModalStyle input {
+  width: 300px;
+  margin-top: 15px;
+  display: flex;
+  border-radius: 5px;
+  border: none;
+  appearance: none;
+  padding: 5px;
+  width: 250px;
+  outline: none;
+  border-radius: 0;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  color: #44cfcb;
+}
+
+.ModalStyle input:hover {
+  cursor: pointer;
+  box-shadow: 0 3px 3px #44cfcb;
+  /* border-bottom: #44cfcb; */
+  transition: all 0.5s ease-in-out;
+}
+
+.ModalStyle input:focus::placeholder {
+  color: transparent;
+}
+.ModalStyle input::placeholder {
+  color: lightgrey;
+  transition: color 0.3s ease;
+}
+button {
+  margin-top: 10px;
+}
+.ModalStyle header {
+  background-color: #44cfcb;
+  width: 100%;
+  margin-top: -150px;
+}

@@ -1,26 +1,27 @@
-import { React, useEffect, useState } from 'react';
-import { useGetGuardiansQuery } from './features/api/apiSlice';
-import { SearchBar } from './components/SearchBar';
-import NavBar from './components/NavBar';
-import GuardianCards from './components/GuardianCards';
-import AddGuardianModal from './components/modals/AddGuardianModal';
-import { DarkerBtn } from './components/styles/ButtonStyle';
-import { useNavigate } from 'react-router-dom';
+import { React, useEffect, useState } from 'react'
+import { useGetGuardiansQuery } from './features/api/apiSlice'
+import { SearchBar } from './components/SearchBar'
+import NavBar from './components/NavBar'
+import GuardianCards from './components/GuardianCards'
+import AddGuardianModal from './components/modals/AddGuardianModal'
+import { DarkerBtn } from './components/styles/ButtonStyle'
+import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
 
 const GuardianSearch = () => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const navigate = useNavigate();
-  const { data = [], error } = useGetGuardiansQuery();
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+  const navigate = useNavigate()
+  const { data = [], error } = useGetGuardiansQuery()
 
   useEffect(() => {
     if (error) {
-      alert('You Must be logged in to access this feature');
-      navigate('/');
+      alert('You Must be logged in to access this feature')
+      navigate('/')
     }
-  }, [error]);
+  }, [error])
 
   return (
-    <>
+    <StyledGuardianSearch>
       <NavBar />
       <AddGuardianModal
         modalIsOpen={modalIsOpen}
@@ -32,8 +33,19 @@ const GuardianSearch = () => {
         <SearchBar />
       </div>
       <GuardianCards data={data} />
-    </>
-  );
-};
+    </StyledGuardianSearch>
+  )
+}
 
-export default GuardianSearch;
+const StyledGuardianSearch = styled.article`
+  .searchHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90vw;
+
+    margin-left: 120px;
+  }
+`
+
+export default GuardianSearch

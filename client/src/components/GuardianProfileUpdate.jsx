@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import { useUpdateGuardianMutation } from '../features/api/apiSlice'
 import { useParams } from 'react-router-dom'
+import { StyledForm } from './styles/FormStyle'
+import { Btn } from './styles/ButtonStyle'
 
 const GuardianProfileUpdate = ({ guardian }) => {
   const params = useParams()
@@ -47,6 +49,7 @@ const GuardianProfileUpdate = ({ guardian }) => {
   console.log(errors)
 
   return (
+    // <StyledForm>
     <div>
       <h3>
         {guardian.guardian_first_name} {guardian.guardian_last_name}
@@ -79,9 +82,12 @@ const GuardianProfileUpdate = ({ guardian }) => {
         <input type="email" placeholder="Email" {...register('email', {})} />
         <input type="text" placeholder="Image" {...register('image', {})} />
 
-        <input type="submit" />
+        <Btn input type="submit">
+          Update
+        </Btn>
       </form>
     </div>
+    // </StyledForm>
   )
 }
 

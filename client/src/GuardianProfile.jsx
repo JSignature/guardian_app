@@ -10,7 +10,7 @@ import {
 } from './features/api/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import style from 'styled-components'
+import style, { css } from 'styled-components/macro'
 import { DarkerBtn, Btn } from './components/styles/ButtonStyle'
 import KidCard from './components/KidCard'
 
@@ -50,7 +50,7 @@ const GuardianProfile = () => {
 
   return (
     <>
-      <GuardianProfileWrapper>
+      <StyledGuardianProfile>
         <NavBar />
         <h1>Guardian Profile</h1>
         <div className="Firstdiv">
@@ -71,6 +71,9 @@ const GuardianProfile = () => {
             setModalIsOpen={setGuardianModalIsOpen}
           />
           <DarkerBtn
+            css={`
+              margin-left: 1300px;
+            `}
             className="DarkerBtn"
             onClick={() => setGuardianModalIsOpen(true)}
           >
@@ -84,6 +87,9 @@ const GuardianProfile = () => {
             setModalIsOpen={setKidModalIsOpen}
           />
           <DarkerBtn
+            css={`
+              margin-left: 1300px;
+            `}
             className="DarkerBtn"
             onClick={() => setKidModalIsOpen(true)}
           >
@@ -95,12 +101,12 @@ const GuardianProfile = () => {
             <div>loading</div>
           )}
         </div>
-      </GuardianProfileWrapper>
+      </StyledGuardianProfile>
     </>
   )
 }
 
-const GuardianProfileWrapper = style.div`
+const StyledGuardianProfile = style.div`
 .GuardianImg{
   width: 10rem;
   height: 10rem;
@@ -112,27 +118,25 @@ const GuardianProfileWrapper = style.div`
 
 }
 .Firstdiv{
-  width:svh;
+  width:100%;
+  height: 400px;
 display:flex;
 align-items: center;
-justify-content: space-between;
+justify-content: space-around;
+background-color: #fff;
+box-shadow: 5px 5px 20px #44cfcb;
+margin-bottom: 40px;
 
 }
 
   h2
 {
-
+  color: #56a3a6;
   width: 20rem;
   height:6rem;
   margin: 0 auto;
 
 }
-.DarkerBtn{
-  display:flex;
-align-items: center;
-
-}
-
 
 
 `
