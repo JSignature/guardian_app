@@ -12,9 +12,9 @@ const NavBar = () => {
 
   const handleLogout = (e) => {
     e.preventDefault();
+    toast.success(`${userName} is out!!! Come back soon!`);
     localStorage.clear();
     navigate('/');
-    toast.success('User has been logged out!!');
   };
 
   return (

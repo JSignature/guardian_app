@@ -1,21 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import NavBar from './components/NavBar';
 import { useGetActivitiesQuery } from '../src/features/api/apiSlice';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Dashboard = () => {
   const params = useParams();
   const user_id = localStorage.getItem('user_id');
   const user_first_name = localStorage.getItem('user_first_name');
 
-  console.log(user_id);
   const {
     data = [],
+    isError,
     isSuccess,
-    refetch,
     error,
   } = useGetActivitiesQuery(user_id);
-  console.log(data);
+
+  useEffect(() => {
+    if (isError) {
+      toast.error('Trouble connecting to the server');
+    }
+  }, [isError, error]);
+
   return (
     <>
       <NavBar />
@@ -23,8 +29,8 @@ const Dashboard = () => {
       <h1>Activities</h1>
       {isSuccess ? (
         data.map((activity) => (
-          <div>
-            <p key={activity.id}>
+          <div key={activity.id}>
+            <p>
               {activity.description}{' '}
               {new Date(activity.created_at).toLocaleDateString()} at:
               {new Date(activity.created_at).toLocaleTimeString()}
