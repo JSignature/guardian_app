@@ -1,15 +1,22 @@
 import { React } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
-import { useUpdateGuardianMutation } from '../features/api/apiSlice'
+import {
+  useUpdateGuardianMutation,
+  useDeleteGuardianMutation,
+} from '../features/api/apiSlice'
 import { useParams } from 'react-router-dom'
 import { StyledForm } from './styles/FormStyle'
 import { Btn } from './styles/ButtonStyle'
+import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components/macro'
 
 const GuardianProfileUpdate = ({ guardian }) => {
+  const navigate = useNavigate()
   const params = useParams()
   const paramsId = parseInt(params.guardian_id)
   const [updateGuardian] = useUpdateGuardianMutation()
+  const [deleteGuardian] = useDeleteGuardianMutation()
 
   const {
     register,
@@ -28,6 +35,12 @@ const GuardianProfileUpdate = ({ guardian }) => {
       image: `${guardian.guardian_image}`,
     },
   })
+
+  const handleDelete = async id => {
+    await deleteGuardian(id)
+    toast.success('Contact has been Deleted')
+    navigate('/guardians')
+  }
 
   const onSubmit = async data => {
     const updatedGuardian = {
@@ -49,45 +62,52 @@ const GuardianProfileUpdate = ({ guardian }) => {
   console.log(errors)
 
   return (
-    // <StyledForm>
-    <div>
-      <h3>
-        {guardian.guardian_first_name} {guardian.guardian_last_name}
-      </h3>
+    <StyledForm>
+      <div>
+        <div className="firstDiv">
+          <img className="GuardianImg" src={guardian.guardian_image} alt="" />
+          <h3>
+            {guardian.guardian_first_name} {guardian.guardian_last_name}
+          </h3>
+        </div>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type="text"
-          placeholder="First name"
-          {...register('firstName', { required: true, maxLength: 80 })}
-        />
-        <input
-          type="text"
-          placeholder="Last name"
-          {...register('lastName', { required: true, maxLength: 100 })}
-        />
-        <input
-          type="text"
-          placeholder="Street Address"
-          {...register('streetAddress', {})}
-        />
-        <input type="text" placeholder="City" {...register('city', {})} />
-        <input
-          type="text"
-          placeholder="State"
-          {...register('state', { maxLength: 2 })}
-        />
-        <input type="text" placeholder="Zip" {...register('zip', {})} />
-        <input type="tel" placeholder="Phone" {...register('phone', {})} />
-        <input type="email" placeholder="Email" {...register('email', {})} />
-        <input type="text" placeholder="Image" {...register('image', {})} />
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <input
+            type="text"
+            placeholder="First name"
+            {...register('firstName', { required: true, maxLength: 80 })}
+          />
+          <input
+            type="text"
+            placeholder="Last name"
+            {...register('lastName', { required: true, maxLength: 100 })}
+          />
+          <input
+            type="text"
+            placeholder="Street Address"
+            {...register('streetAddress', {})}
+          />
+          <input type="text" placeholder="City" {...register('city', {})} />
+          <input
+            type="text"
+            placeholder="State"
+            {...register('state', { maxLength: 2 })}
+          />
+          <input type="text" placeholder="Zip" {...register('zip', {})} />
+          <input type="tel" placeholder="Phone" {...register('phone', {})} />
+          <input type="email" placeholder="Email" {...register('email', {})} />
+          <input type="text" placeholder="Image" {...register('image', {})} />
 
-        <Btn input type="submit">
-          Update
+          <Btn>Update</Btn>
+        </form>
+        <Btn
+          className="deleteBtn"
+          onClick={() => handleDelete(params.guardian_id)}
+        >
+          Delete
         </Btn>
-      </form>
-    </div>
-    // </StyledForm>
+      </div>
+    </StyledForm>
   )
 }
 

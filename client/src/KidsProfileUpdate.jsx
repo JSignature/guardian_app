@@ -1,14 +1,26 @@
 import { useForm } from 'react-hook-form'
-import { useUpdateKidMutation } from './features/api/apiSlice'
+import {
+  useUpdateKidMutation,
+  useDeleteKidMutation,
+} from './features/api/apiSlice'
 import { useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { StyledForm } from './components/styles/FormStyle'
-//import { Btn } from './components/styles/ButtonStyle';
+import { useNavigate } from 'react-router-dom'
+import { Btn } from './components/styles/ButtonStyle'
 
 const KidsProfileUpdate = ({ kid }) => {
   const params = useParams()
   const paramsId = parseInt(params.kid_id)
   const [updateKid] = useUpdateKidMutation()
+  const navigate = useNavigate()
+  const [deleteKid] = useDeleteKidMutation()
+
+  const handleDelete = async id => {
+    await deleteKid(id)
+    toast.success('Kid has been Deleted')
+    navigate(`/guardians/${kid.guardian_id}`)
+  }
 
   const {
     register,
@@ -49,6 +61,12 @@ const KidsProfileUpdate = ({ kid }) => {
   return (
     <StyledForm>
       <div>
+        <div className="firstDiv">
+          <img className="KidImg" src={kid.kid_image} alt="" />
+          <h3>
+            {kid.kid_first_name} {kid.kid_last_name}
+          </h3>
+        </div>
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
             type="text"
@@ -80,8 +98,11 @@ const KidsProfileUpdate = ({ kid }) => {
           <input type="text" placeholder="Notes" {...register('notes', {})} />
           <input type="text" placeholder="Image" {...register('image', {})} />
 
-          <input type="submit" />
+          <Btn>Update</Btn>
         </form>
+        <Btn className="deleteBtn" onClick={() => handleDelete(params.kid_id)}>
+          Delete
+        </Btn>
       </div>
     </StyledForm>
   )

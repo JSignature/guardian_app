@@ -54,15 +54,13 @@ const GuardianProfile = () => {
         <NavBar />
         <h1>Guardian Profile</h1>
         <div className="Firstdiv">
-          <img className="GuardianImg" src={data.guardian_image} alt="" />
-
           {isSuccess ? (
             <GuardianProfileUpdate guardian={data} />
           ) : (
             <div>loading</div>
           )}
 
-          <Btn onClick={() => handleDelete(params.guardian_id)}>Delete</Btn>
+          {/* <Btn onClick={() => handleDelete(params.guardian_id)}>Delete</Btn> */}
         </div>
         <div>
           <h2>Additonal Guardians</h2>
@@ -107,18 +105,9 @@ const GuardianProfile = () => {
 }
 
 const StyledGuardianProfile = style.div`
-.GuardianImg{
-  width: 10rem;
-  height: 10rem;
-  object-fit: cover;
-  border-radius: 50%;
-  // padding: 10px;
-  box-shadow: 0px 0px 20px grey;
 
-
-}
 .Firstdiv{
-  width:100%;
+  width:87%;
   height: 400px;
 display:flex;
 align-items: center;
@@ -126,6 +115,7 @@ justify-content: space-around;
 background-color: #fff;
 box-shadow: 5px 5px 20px #44cfcb;
 margin-bottom: 40px;
+margin-left: 100px;
 
 }
 
