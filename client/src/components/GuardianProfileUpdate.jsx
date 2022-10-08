@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom'
 import { StyledForm } from './styles/FormStyle'
 import { Btn } from './styles/ButtonStyle'
 import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components/macro'
 
 const GuardianProfileUpdate = ({ guardian }) => {
   const navigate = useNavigate()
@@ -63,9 +64,12 @@ const GuardianProfileUpdate = ({ guardian }) => {
   return (
     <StyledForm>
       <div>
-        <h3>
-          {guardian.guardian_first_name} {guardian.guardian_last_name}
-        </h3>
+        <div className="firstDiv">
+          <img className="GuardianImg" src={guardian.guardian_image} alt="" />
+          <h3>
+            {guardian.guardian_first_name} {guardian.guardian_last_name}
+          </h3>
+        </div>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
@@ -94,11 +98,14 @@ const GuardianProfileUpdate = ({ guardian }) => {
           <input type="email" placeholder="Email" {...register('email', {})} />
           <input type="text" placeholder="Image" {...register('image', {})} />
 
-          <Btn input type="submit">
-            Update
-          </Btn>
+          <Btn>Update</Btn>
         </form>
-        <Btn onClick={() => handleDelete(params.guardian_id)}>Delete</Btn>
+        <Btn
+          className="deleteBtn"
+          onClick={() => handleDelete(params.guardian_id)}
+        >
+          Delete
+        </Btn>
       </div>
     </StyledForm>
   )

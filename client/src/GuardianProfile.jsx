@@ -54,8 +54,6 @@ const GuardianProfile = () => {
         <NavBar />
         <h1>Guardian Profile</h1>
         <div className="Firstdiv">
-          <img className="GuardianImg" src={data.guardian_image} alt="" />
-
           {isSuccess ? (
             <GuardianProfileUpdate guardian={data} />
           ) : (
@@ -107,18 +105,7 @@ const GuardianProfile = () => {
 }
 
 const StyledGuardianProfile = style.div`
-.GuardianImg{
-  width: 8rem;
-  height: 8rem;
-  object-fit: cover;
-  border-radius: 50%;
-  // padding: 10px;
-  box-shadow: 0px 0px 20px grey;
-  position: absolute;
-  margin-top: -125px;
-  margin-left: -550px;
 
-}
 .Firstdiv{
   width:87%;
   height: 400px;
