@@ -1,5 +1,5 @@
 class ActivitiesController < ApplicationController
-   # before_action :authenticate
+   before_action :authenticate
     def create
         activity = Activity.create(activity_params)
 
