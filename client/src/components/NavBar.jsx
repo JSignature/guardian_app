@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 // import './styles/NavBar.css'
-import logo2 from './styles/logo2.png'
-import styled from 'styled-components'
-import { Btn } from './styles/ButtonStyle'
+import logo2 from './styles/logo2.png';
+import styled from 'styled-components';
+import { Btn } from './styles/ButtonStyle';
 
 const NavBar = () => {
   return (
@@ -24,12 +24,17 @@ const NavBar = () => {
           </ul>
         </nav>
         <a className="logOutBtn" href="">
-          <Btn className="navButton">Log Out</Btn>
+          <Btn
+            onClick={() => console.log('logout Clicked')}
+            className="navButton"
+          >
+            Log Out
+          </Btn>
         </a>
       </div>
     </NavWrapper>
-  )
-}
+  );
+};
 
 const NavWrapper = styled.div`
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
@@ -90,6 +95,6 @@ const NavWrapper = styled.div`
     color: #56a3a6;
     font-size: 10px;
   }
-`
+`;
 
-export default NavBar
+export default NavBar;
