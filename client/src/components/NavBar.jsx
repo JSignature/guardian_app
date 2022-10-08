@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 
 const NavBar = () => {
   const navigate = useNavigate();
+  const userName = localStorage.getItem('user_first_name');
 
   const handleLogout = (e) => {
     e.preventDefault();
@@ -23,6 +24,9 @@ const NavBar = () => {
           <a href="/">
             <img src={logo2} alt="" />
           </a>
+        </div>
+        <div>
+          <p>{`Hello ${userName}`}</p>
         </div>
         <nav>
           <ul className="navLinks">
