@@ -10,7 +10,7 @@ class AuthenticationController < ApplicationController
                     token = JWT.encode({user_id: user.id, user_email: user.user_email, user_first_name: user.user_first_name}, secret_key)
                                   
 
-                    render json: {token: token, user_first_name: user.user_first_name}
+                    render json: {token: token, user_first_name: user.user_first_name, user_id: user.id}
                 else    
                     render json: {error: "PW is not correct"}, status:  :unauthorized
 

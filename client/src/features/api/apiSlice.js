@@ -89,6 +89,9 @@ export const apiSlice = createApi({
       }),
       invalidatesTags: ['Kid'],
     }),
+    getActivities: builder.query({
+      query: (id) => `/dashboard/${id}`,
+    }),
   }),
 });
 
@@ -105,4 +108,5 @@ export const {
   useUpdateKidMutation,
   useAddActivityMutation,
   useDeleteActivityMutation,
+  useGetActivitiesQuery,
 } = apiSlice;

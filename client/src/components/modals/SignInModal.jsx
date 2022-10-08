@@ -37,7 +37,9 @@ const SignInModal = ({ modalIsOpen, setModalIsOpen }) => {
   useEffect(() => {
     if (data) {
       const token = data.token;
+      const user_id = data.user_id;
       localStorage.setItem('token', token);
+      localStorage.setItem('user_id', user_id);
       navigate('/dashboard');
     }
   });

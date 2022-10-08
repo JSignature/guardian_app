@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../../../src/store';
+import { useAddUserMutation } from '../../features/api/apiUserSlice';
 
 // export interface AuthState {
 
