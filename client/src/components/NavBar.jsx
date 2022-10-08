@@ -3,8 +3,19 @@ import React from 'react';
 import logo2 from './styles/logo2.png';
 import styled from 'styled-components';
 import { Btn } from './styles/ButtonStyle';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const NavBar = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    localStorage.clear();
+    navigate('/');
+    toast.success('User has been logged out!!');
+  };
+
   return (
     <NavWrapper>
       <div className="navBar">
@@ -24,10 +35,7 @@ const NavBar = () => {
           </ul>
         </nav>
         <a className="logOutBtn" href="">
-          <Btn
-            onClick={() => console.log('logout Clicked')}
-            className="navButton"
-          >
+          <Btn onClick={handleLogout} className="navButton">
             Log Out
           </Btn>
         </a>
