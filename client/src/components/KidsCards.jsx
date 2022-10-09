@@ -1,14 +1,15 @@
-import React from 'react'
-import KidCard from './KidCard'
+import React from 'react';
+import KidCard from './KidCard';
 
-const KidsCards = ({ kids }) => {
+const KidsCards = ({ kid }) => {
+  console.log(kid);
   return (
     <div>
-      {kids.map(kid => (
+      {kid.map((kid) => (
         <KidCard key={kid.id} kid={kid} />
       ))}
     </div>
-  )
-}
+  );
+};
 
-export default KidsCards
+export default KidsCards;
