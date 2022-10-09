@@ -12,6 +12,7 @@ const ActivityCard = ({
   kidName,
   kidId,
   activityId,
+  userName,
 }) => {
   const navigate = useNavigate();
   const handleClick = (KidId) => {
@@ -33,8 +34,11 @@ const ActivityCard = ({
         <div className="dateTime">
           {new Date(createdAt).toLocaleDateString()} at:
           {new Date(createdAt).toLocaleTimeString()}
+          <p> User: {userName} </p>
         </div>
-        <p onClick={() => handleClick(kidId)}>{activity} </p>
+        <p onClick={() => handleClick(kidId)}>
+          Activity Description: {activity}{' '}
+        </p>
         <Btn onClick={() => handleActivityDelete(activityId)}>Delete</Btn>
       </div>
     </StyledActivityCard>

@@ -60,6 +60,7 @@ const KidsProfile = () => {
               createdAt={activity.created_at}
               kidName={data.kid_first_name}
               kidId={data.id}
+              userName={activity.user.user_first_name}
             />
           ))
         ) : (
