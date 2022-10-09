@@ -1,5 +1,4 @@
-import React from 'react'
-import { DarkerBtn } from './styles/ButtonStyle'
+import React from 'react';
 
 export const SearchBar = ({ setSearchText }) => {
   return (
@@ -7,8 +6,8 @@ export const SearchBar = ({ setSearchText }) => {
       <input
         placeholder="Search by First Name"
         type="search"
-        onChange={e => setSearchText(e.target.value)}
+        onChange={(e) => setSearchText(e.target.value)}
       />
     </div>
-  )
-}
+  );
+};
