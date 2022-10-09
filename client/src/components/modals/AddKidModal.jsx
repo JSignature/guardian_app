@@ -1,26 +1,26 @@
-import { React, useEffect } from 'react'
-import Modal from 'react-modal'
-import { useParams } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
-import { useAddKidMutation } from '../../features/api/apiSlice'
-import { toast } from 'react-toastify'
-import { BrighterBtn, XBtn } from '../styles/ButtonStyle'
-import '../styles/ModalStyle.css'
+import { React, useEffect } from 'react';
+import Modal from 'react-modal';
+import { useParams } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { useAddKidMutation } from '../../features/api/apiSlice';
+import { toast } from 'react-toastify';
+import { BrighterBtn, XBtn } from '../styles/ButtonStyle';
+import '../styles/ModalStyle.css';
 
-Modal.setAppElement('#root')
+Modal.setAppElement('#root');
 
 const AddKidModal = ({ modalIsOpen, setModalIsOpen }) => {
-  const params = useParams()
-  const paramsId = parseInt(params.guardian_id)
-  const [addKid, { error, isError, isSuccess }] = useAddKidMutation()
+  const params = useParams();
+  const paramsId = parseInt(params.guardian_id);
+  const [addKid, { error, isError, isSuccess }] = useAddKidMutation();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm();
 
-  const onSubmit = async data => {
+  const onSubmit = async (data) => {
     const newKid = {
       guardian_id: paramsId,
       kid_first_name: data.firstName,
@@ -32,19 +32,19 @@ const AddKidModal = ({ modalIsOpen, setModalIsOpen }) => {
       kid_allergies: data.allergies,
       kid_notes: data.notes,
       kid_image: data.image,
-    }
-    await addKid(newKid)
-  }
+    };
+    await addKid(newKid);
+  };
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success('A new Kid has been added')
-      setModalIsOpen(false)
+      toast.success('A new Kid has been added');
+      setModalIsOpen(false);
     } else if (isError) {
-      console.log(error)
-      toast.error(error.data.errors[0])
+      console.log(error);
+      toast.error(error.data.errors[0]);
     }
-  }, [error, isError, isSuccess])
+  }, [error, isError, isSuccess, setModalIsOpen]);
 
   return (
     <div>
@@ -114,7 +114,7 @@ const AddKidModal = ({ modalIsOpen, setModalIsOpen }) => {
         <XBtn onClick={() => setModalIsOpen(false)}>X</XBtn>
       </Modal>
     </div>
-  )
-}
+  );
+};
 
-export default AddKidModal
+export default AddKidModal;

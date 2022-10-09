@@ -1,37 +1,31 @@
-import { React, useState, useEffect } from 'react'
-import NavBar from './components/NavBar'
-import { useParams } from 'react-router-dom'
-import KidsProfileUpdate from './KidsProfileUpdate'
-import AddActivityModal from './components/modals/AddActivityModal'
-import { useGetKidQuery } from './features/api/apiSlice'
-import { useNavigate } from 'react-router-dom'
+import { React, useState, useEffect } from 'react';
+import NavBar from './components/NavBar';
+import { useParams } from 'react-router-dom';
+import KidsProfileUpdate from './KidsProfileUpdate';
+import AddActivityModal from './components/modals/AddActivityModal';
+import { useGetKidQuery } from './features/api/apiSlice';
 
-import { DarkerBtn } from './components/styles/ButtonStyle'
-import style from 'styled-components'
-import ActivityCard from './components/ActivityCard'
+import { DarkerBtn } from './components/styles/ButtonStyle';
+import style from 'styled-components';
+import ActivityCard from './components/ActivityCard';
 
 const KidsProfile = () => {
-  const params = useParams()
-  const { data = [], isSuccess, error, refetch } = useGetKidQuery(params.kid_id)
+  const params = useParams();
+  const {
+    data = [],
+    isSuccess,
+    error,
+    refetch,
+  } = useGetKidQuery(params.kid_id);
 
-  if (isSuccess) {
-    const activities = []
-    const kid_first_name = data.kid_first_name
-    activities.push(kid_first_name)
-    console.log(activities)
-  }
-
-  const navigate = useNavigate()
-  const [modalIsOpen, setModalIsOpen] = useState(false)
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
     if (error) {
-      refetch()
-      // alert('Something Went Wrong');
-      console.log('Error from the fetch:' + error)
+      refetch();
     }
-  }, [error])
-  console.log(data)
+  }, [error, refetch]);
+
   return (
     <StyledKidProfile>
       <NavBar />
@@ -57,7 +51,7 @@ const KidsProfile = () => {
         </div>
         {/* Prob need to make an activity card to clean this up */}
         {isSuccess ? (
-          data.activities.map(activity => (
+          data.activities.map((activity) => (
             <ActivityCard
               key={activity.id}
               activityId={activity.id}
@@ -73,8 +67,8 @@ const KidsProfile = () => {
         )}
       </div>
     </StyledKidProfile>
-  )
-}
+  );
+};
 
 const StyledKidProfile = style.div`
 
@@ -110,15 +104,6 @@ margin-bottom: 10px;
 
 }
 
-`
+`;
 
-export default KidsProfile
-
-{
-  /* 
-      ---- needs to go on guardian page */
-}
-{
-  /* <AddKidModal modalIsOpen={modalIsOpen} setModalIsOpen={setModalIsOpen} />
-      // <button onClick={() => setModalIsOpen(true)}>Add Additional Kid</button> */
-}
+export default KidsProfile;

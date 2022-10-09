@@ -26,7 +26,7 @@ const NavBar = () => {
       <div className="navBar">
         <div className="navLogo">
           <a href="/dashboard">
-            <img src={logo2} alt="picture of company logo" />
+            <img src={logo2} alt="Company logo" />
           </a>
         </div>
         <div>
@@ -42,11 +42,9 @@ const NavBar = () => {
             </li>
           </ul>
         </nav>
-        <a className="logOutBtn" href="">
-          <Btn onClick={handleLogout} className="navButton">
-            Log Out
-          </Btn>
-        </a>
+        <Btn onClick={handleLogout} className="navButton">
+          Log Out
+        </Btn>
       </div>
     </NavWrapper>
   );

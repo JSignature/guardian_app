@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 
 const KidsSearch = () => {
   const navigate = useNavigate();
-  // const { data = [], error } = useGetKidsQuery();
   const [searchText, setSearchText] = useState(' ');
 
   const { kid, isSuccess, error } = useGetKidsQuery(undefined, {
@@ -25,24 +24,20 @@ const KidsSearch = () => {
     }),
   });
 
-  console.log(kid);
-
   useEffect(() => {
     if (error) {
       alert('You Must be logged in to access this feature');
       navigate('/');
     }
-  }, [error]);
+  }, [error, navigate]);
 
   return (
     <StyledKidSearch>
       <NavBar />
       <div className="searchHeader">
-        <h5></h5>
         <h1>Kids</h1>
         <SearchBar setSearchText={setSearchText} />
       </div>
-      {/* <KidsCards kids={data} /> */}
       {isSuccess ? <KidsCards kid={kid} /> : <div>Loading</div>}
     </StyledKidSearch>
   );

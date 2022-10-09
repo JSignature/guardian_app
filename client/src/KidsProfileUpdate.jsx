@@ -1,31 +1,31 @@
-import { useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form';
 import {
   useUpdateKidMutation,
   useDeleteKidMutation,
-} from './features/api/apiSlice'
-import { useParams } from 'react-router-dom'
-import { toast } from 'react-toastify'
-import { StyledForm } from './components/styles/FormStyle'
-import { useNavigate } from 'react-router-dom'
-import { Btn } from './components/styles/ButtonStyle'
+} from './features/api/apiSlice';
+import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { StyledForm } from './components/styles/FormStyle';
+import { useNavigate } from 'react-router-dom';
+import { Btn } from './components/styles/ButtonStyle';
 
 const KidsProfileUpdate = ({ kid }) => {
-  const params = useParams()
-  const paramsId = parseInt(params.kid_id)
-  const [updateKid] = useUpdateKidMutation()
-  const navigate = useNavigate()
-  const [deleteKid] = useDeleteKidMutation()
+  const params = useParams();
+  const paramsId = parseInt(params.kid_id);
+  const [updateKid] = useUpdateKidMutation();
+  const navigate = useNavigate();
+  const [deleteKid] = useDeleteKidMutation();
 
-  const handleDelete = async id => {
-    await deleteKid(id)
-    toast.success('Kid has been Deleted')
-    navigate(`/guardians/${kid.guardian_id}`)
-  }
+  const handleDelete = async (id) => {
+    await deleteKid(id);
+    toast.success('Kid has been Deleted');
+    navigate(`/guardians/${kid.guardian_id}`);
+  };
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    // formState: { errors },
   } = useForm({
     defaultValues: {
       firstName: `${kid.kid_first_name}`,
@@ -38,9 +38,9 @@ const KidsProfileUpdate = ({ kid }) => {
       notes: `${kid.kid_notes}`,
       image: `${kid.kid_image}`,
     },
-  })
+  });
 
-  const onSubmit = async data => {
+  const onSubmit = async (data) => {
     const updatedKid = {
       id: paramsId,
       kid_first_name: data.firstName,
@@ -52,11 +52,11 @@ const KidsProfileUpdate = ({ kid }) => {
       kid_allergies: data.allergies,
       kid_notes: data.notes,
       kid_image: data.image,
-    }
+    };
 
-    await updateKid(updatedKid)
-    toast.success('Kid has been Updated')
-  }
+    await updateKid(updatedKid);
+    toast.success('Kid has been Updated');
+  };
 
   return (
     <StyledForm>
@@ -105,7 +105,7 @@ const KidsProfileUpdate = ({ kid }) => {
         </Btn>
       </div>
     </StyledForm>
-  )
-}
+  );
+};
 
-export default KidsProfileUpdate
+export default KidsProfileUpdate;

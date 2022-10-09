@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { apiSlice } from './features/api/apiSlice';
 import { apiUserSlice } from './features/api/apiUserSlice';
-import { setupListeners } from '@reduxjs/toolkit/query/react';
+// Needed if we call dispatch later
+// import { setupListeners } from '@reduxjs/toolkit/query/react';
 
 export const store = configureStore({
   reducer: {
