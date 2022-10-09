@@ -1,6 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
+import React from 'react'
+import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
+import { Btn } from './styles/ButtonStyle'
+import { useDeleteActivityMutation } from '../features/api/apiSlice'
+import { toast } from 'react-toastify'
 
 const ActivityCard = ({
   activity,
@@ -9,12 +12,20 @@ const ActivityCard = ({
   kidName,
   key,
   kidId,
+  activityId,
 }) => {
-  const navigate = useNavigate();
-  const handleClick = (KidId) => {
-    navigate(`/kids/${KidId}`);
-  };
+  const navigate = useNavigate()
+  const handleClick = KidId => {
+    navigate(`/kids/${KidId}`)
+  }
+  console.log(kidName)
 
+  const [deleteActivity] = useDeleteActivityMutation()
+  const handleActivityDelete = id => {
+    deleteActivity(id)
+    console.log(id)
+    toast.success('Activity Deleted')
+  }
   return (
     <StyledActivityCard>
       <div className="picName" key={key} onClick={() => handleClick(kidId)}>
@@ -27,10 +38,11 @@ const ActivityCard = ({
           {new Date(createdAt).toLocaleTimeString()}
         </div>
         <p>{activity} </p>
+        <Btn onClick={() => handleActivityDelete(activityId)}>Delete</Btn>
       </div>
     </StyledActivityCard>
-  );
-};
+  )
+}
 
 const StyledActivityCard = styled.article`
   @import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Montserrat:wght@400;500&family=Patrick+Hand+SC&family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -86,6 +98,6 @@ const StyledActivityCard = styled.article`
     font-size: larger;
     font-weight: 600;
   }
-`;
+`
 
-export default ActivityCard;
+export default ActivityCard

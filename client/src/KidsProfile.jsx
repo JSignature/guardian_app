@@ -3,12 +3,9 @@ import NavBar from './components/NavBar'
 import { useParams } from 'react-router-dom'
 import KidsProfileUpdate from './KidsProfileUpdate'
 import AddActivityModal from './components/modals/AddActivityModal'
-import {
-  useGetKidQuery,
-  useDeleteActivityMutation,
-} from './features/api/apiSlice'
+import { useGetKidQuery } from './features/api/apiSlice'
 import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
+
 import { DarkerBtn } from './components/styles/ButtonStyle'
 import style from 'styled-components'
 import ActivityCard from './components/ActivityCard'
@@ -26,13 +23,6 @@ const KidsProfile = () => {
 
   const navigate = useNavigate()
   const [modalIsOpen, setModalIsOpen] = useState(false)
-
-  const [deleteActivity] = useDeleteActivityMutation()
-
-  const handleActivityDelete = id => {
-    deleteActivity(id)
-    toast.success('Activity Deleted')
-  }
 
   useEffect(() => {
     if (error) {
@@ -70,6 +60,7 @@ const KidsProfile = () => {
           data.activities.map(activity => (
             <ActivityCard
               key={activity.id}
+              activityId={activity.id}
               kidImage={data.kid_image}
               activity={activity.description}
               createdAt={activity.created_at}
