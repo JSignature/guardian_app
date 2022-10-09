@@ -11,12 +11,12 @@ const Home = () => {
 
   return (
     <div>
-      <div class="navHome">
+      <div className="navHome">
         <div className="navLogo">
           <img src={logo2} alt="Ccompany logo" />
         </div>
 
-        <div class="sign">
+        <div className="sign">
           <div>
             <SignUpModal
               modalIsOpen={signUpIsOpen}
@@ -34,24 +34,24 @@ const Home = () => {
         </div>
       </div>
       <h1>Guardian App</h1>
-      <div class="hero_image_1">
-        <h2 class="block_text">
+      <div className="hero_image_1">
+        <h2 className="block_text">
           World's #1 <br /> Daycare
           <br /> App
         </h2>
         <img
-          class="block_img"
+          className="block_img"
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvKPHIuMH9Uj2LEw8DpQhsvjqocClF7CyYsw&usqp=CAU"
           alt="Kid playing"
         />
       </div>
-      <div class="hero_image_2">
+      <div className="hero_image_2">
         <img
-          class="block_img"
+          className="block_img"
           src="https://blog.bonsecours.com/wp-content/uploads/2021/01/Limiting-Screen-Time_1200x628-1.jpg"
           alt="Kid on computer"
         />
-        <p class="block_text_2">
+        <p className="block_text_2">
           Easy to learn with just a few clicks of a button, you will have your
           App up and running <br />
           faster than a toddler chasing the ice cream man. Our easy to use
@@ -63,21 +63,21 @@ const Home = () => {
           designed kid tracker app.
         </p>
       </div>
-      <div class="hero_image_3">
-        <h4 class="block_text_3">
+      <div className="hero_image_3">
+        <h4 className="block_text_3">
           Daycare teachers and parents
           <br />
           love our activity tracking feature!!
         </h4>
         <img
-          class="block_img"
+          className="block_img"
           src="https://images.squarespace-cdn.com/content/v1/5cf67eec7f82570001a1b780/1610291778195-UJB45GEYNV26QDEXLWVA/happy-smiling-hispanic-preschool-teacher.jpg?format=1000w"
           alt="Teacher"
         />
       </div>
 
-      <div class="pricing_boxes">
-        <div class="price_box_1">
+      <div className="pricing_boxes">
+        <div className="price_box_1">
           <h3>BASIC</h3>
           <h4>$19.99 a month</h4>
           <ul>
@@ -89,7 +89,7 @@ const Home = () => {
             <li>Texting </li>
           </ul>
         </div>
-        <div class="price_box_2">
+        <div className="price_box_2">
           <h3> MOST POPULAR</h3>
           <h4>$39.99 a month</h4>
           <ul>
@@ -101,7 +101,7 @@ const Home = () => {
             <li>Texting</li>
           </ul>
         </div>
-        <div class="price_box_3">
+        <div className="price_box_3">
           <h3>ENTERPRISE</h3>
           <h4>$69.99 a month</h4>
           <ul>
@@ -115,7 +115,7 @@ const Home = () => {
         </div>
       </div>
 
-      <h2 class="review_text">Try our free 30 day trial!</h2>
+      <h2 className="review_text">Try our free 30 day trial!</h2>
     </div>
   );
 };

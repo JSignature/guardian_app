@@ -1,48 +1,47 @@
-import { useEffect } from 'react'
-import Modal from 'react-modal'
-import { useForm } from 'react-hook-form'
-import { useUserLoginMutation } from '../../features/api/apiUserSlice'
-import { toast } from 'react-toastify'
-import { useNavigate } from 'react-router-dom'
-import '../styles/ModalStyle.css'
-import styled, { css } from 'styled-components/macro'
-import { BrighterBtn, XBtn } from '../styles/ButtonStyle'
+import { useEffect } from 'react';
+import Modal from 'react-modal';
+import { useForm } from 'react-hook-form';
+import { useUserLoginMutation } from '../../features/api/apiUserSlice';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import '../styles/ModalStyle.css';
+import { BrighterBtn, XBtn } from '../styles/ButtonStyle';
 
-Modal.setAppElement('#root')
+Modal.setAppElement('#root');
 
 const SignInModal = ({ modalIsOpen, setModalIsOpen }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const [loginUser, { data, isSuccess, isError, error }] =
-    useUserLoginMutation()
+    useUserLoginMutation();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm();
 
-  const onSubmit = async userData => {
-    await loginUser(userData)
-  }
+  const onSubmit = async (userData) => {
+    await loginUser(userData);
+  };
 
   useEffect(() => {
     if (isSuccess) {
-      const token = data.token
-      const user_id = data.user_id
-      const user_first_name = data.user_first_name
-      localStorage.setItem('token', token)
-      localStorage.setItem('user_id', user_id)
-      localStorage.setItem('user_first_name', user_first_name)
+      const token = data.token;
+      const user_id = data.user_id;
+      const user_first_name = data.user_first_name;
+      localStorage.setItem('token', token);
+      localStorage.setItem('user_id', user_id);
+      localStorage.setItem('user_first_name', user_first_name);
 
-      navigate('/dashboard')
-      setModalIsOpen(false)
-      toast.success(`Welcome ${user_first_name}, you have been logged in!`)
+      navigate('/dashboard');
+      setModalIsOpen(false);
+      toast.success(`Welcome ${user_first_name}, you have been logged in!`);
     } else if (isError) {
-      console.log(error)
-      toast.error(error.data.errors[0])
+      console.log(error);
+      toast.error(error.data.errors[0]);
     }
-  }, [isSuccess, isError, data, error, navigate, setModalIsOpen])
+  }, [isSuccess, isError, data, error, navigate, setModalIsOpen]);
 
   return (
     <Modal
@@ -74,7 +73,7 @@ const SignInModal = ({ modalIsOpen, setModalIsOpen }) => {
       </form>
       <XBtn onClick={() => setModalIsOpen(false)}>X</XBtn>
     </Modal>
-  )
-}
+  );
+};
 
-export default SignInModal
+export default SignInModal;

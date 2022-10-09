@@ -59,9 +59,8 @@ const StyledGuardianSearch = styled.article`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 90vw;
-
-    margin-left: 120px;
+    width: 80vw;
+    margin: auto;
   }
 `;
 
