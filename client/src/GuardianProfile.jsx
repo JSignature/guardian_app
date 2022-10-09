@@ -3,34 +3,22 @@ import NavBar from './components/NavBar';
 import AddKidModal from './components/modals/AddKidModal';
 import GuardianProfileUpdate from './components/GuardianProfileUpdate';
 import { useParams } from 'react-router-dom';
-import {
-  useDeleteGuardianMutation,
-  useGetGuardianQuery,
-} from './features/api/apiSlice';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import style, { css } from 'styled-components/macro';
-import { DarkerBtn, Btn } from './components/styles/ButtonStyle';
+import { useGetGuardianQuery } from './features/api/apiSlice';
+
+import style from 'styled-components/macro';
+import { DarkerBtn } from './components/styles/ButtonStyle';
 import KidCard from './components/KidCard';
 
 const GuardianProfile = () => {
   const params = useParams();
   const [kidModalIsOpen, setKidModalIsOpen] = useState(false);
 
-  const [deleteGuardian] = useDeleteGuardianMutation();
   const {
     data = [],
     isSuccess,
     refetch,
     error,
   } = useGetGuardianQuery(params.guardian_id);
-  const navigate = useNavigate();
-
-  // const handleDelete = async (id) => {
-  //   await deleteGuardian(id);
-  //   toast.success('Contact has been Deleted');
-  //   navigate('/guardians');
-  // };
 
   useEffect(() => {
     if (error) {
