@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 import { SearchBar } from './components/SearchBar';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const KidsSearch = () => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const KidsSearch = () => {
 
   useEffect(() => {
     if (error) {
-      alert('You Must be logged in to access this feature');
+      toast.error('You Must be logged in to access this feature');
       navigate('/');
     }
   }, [error, navigate]);

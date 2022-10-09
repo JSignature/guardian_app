@@ -7,6 +7,7 @@ import AddGuardianModal from './components/modals/AddGuardianModal';
 import { DarkerBtn } from './components/styles/ButtonStyle';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { toast } from 'react-toastify';
 
 const GuardianSearch = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -29,7 +30,7 @@ const GuardianSearch = () => {
 
   useEffect(() => {
     if (error) {
-      alert('You Must be logged in to access this feature');
+      toast.error('You Must be logged in to access this feature');
       navigate('/');
     }
   }, [error, navigate]);
