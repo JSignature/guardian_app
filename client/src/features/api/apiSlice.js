@@ -10,7 +10,7 @@ export const apiSlice = createApi({
       return headers;
     },
   }),
-  tagTypes: ['Guardian', 'Kid'],
+  tagTypes: ['Guardian', 'Kid', 'Activities'],
   endpoints: (builder) => ({
     getGuardians: builder.query({
       query: () => '/guardians',
@@ -87,10 +87,11 @@ export const apiSlice = createApi({
         url: `/activities/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['Kid'],
+      invalidatesTags: ['Activities', 'Kid'],
     }),
     getActivities: builder.query({
       query: (id) => `/dashboard/${id}`,
+      providesTags: ['Activities'],
     }),
   }),
 });

@@ -21,7 +21,6 @@ const ActivityCard = ({
   const [deleteActivity] = useDeleteActivityMutation();
   const handleActivityDelete = (id) => {
     deleteActivity(id);
-    console.log(id);
     toast.success('Activity Deleted');
   };
   return (
@@ -30,12 +29,12 @@ const ActivityCard = ({
         {kidName}
         <img src={`${kidImage}`} alt="" />
       </div>
-      <div className="activty" onClick={() => handleClick(kidId)}>
+      <div className="activty">
         <div className="dateTime">
           {new Date(createdAt).toLocaleDateString()} at:
           {new Date(createdAt).toLocaleTimeString()}
         </div>
-        <p>{activity} </p>
+        <p onClick={() => handleClick(kidId)}>{activity} </p>
         <Btn onClick={() => handleActivityDelete(activityId)}>Delete</Btn>
       </div>
     </StyledActivityCard>
