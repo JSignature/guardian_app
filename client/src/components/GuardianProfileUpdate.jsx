@@ -86,6 +86,7 @@ const GuardianProfileUpdate = ({ guardian }) => {
             placeholder="Street Address"
             {...register('streetAddress', {})}
           />
+
           <input type="text" placeholder="City" {...register('city', {})} />
           <input
             type="text"

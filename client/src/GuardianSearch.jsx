@@ -1,24 +1,42 @@
-import { React, useEffect, useState } from 'react'
-import { useGetGuardiansQuery } from './features/api/apiSlice'
-import { SearchBar } from './components/SearchBar'
-import NavBar from './components/NavBar'
-import GuardianCards from './components/GuardianCards'
-import AddGuardianModal from './components/modals/AddGuardianModal'
-import { DarkerBtn } from './components/styles/ButtonStyle'
-import { useNavigate } from 'react-router-dom'
-import styled from 'styled-components'
+import { React, useEffect, useState } from 'react';
+import { useGetGuardiansQuery } from './features/api/apiSlice';
+import { SearchBar } from './components/SearchBar';
+import NavBar from './components/NavBar';
+import GuardianCards from './components/GuardianCards';
+import AddGuardianModal from './components/modals/AddGuardianModal';
+import { DarkerBtn } from './components/styles/ButtonStyle';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
 const GuardianSearch = () => {
-  const [modalIsOpen, setModalIsOpen] = useState(false)
-  const navigate = useNavigate()
-  const { data = [], error } = useGetGuardiansQuery()
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [searchText, setSearchText] = useState(' ');
+  const navigate = useNavigate();
+  // const { data = [], error } = useGetGuardiansQuery();
 
-  useEffect(() => {
-    if (error) {
-      alert('You Must be logged in to access this feature')
-      navigate('/')
-    }
-  }, [error])
+  const { guardian, isSucess } = useGetGuardiansQuery(undefined, {
+    selectFromResult: ({ data }) => ({
+      guardian: data?.filter((item) => {
+        console.log(item.guardian_first_name.toLowerCase());
+        return searchText.toLowerCase() === ' '
+          ? item
+          : item.guardian_first_name
+              .toLowerCase()
+              .includes(searchText.toLowerCase());
+      }),
+    }),
+  });
+
+  console.log(searchText);
+  console.log(guardian);
+  console.log(isSucess);
+
+  // useEffect(() => {
+  //   if (error) {
+  //     alert('You Must be logged in to access this feature');
+  //     navigate('/');
+  //   }
+  // }, [error]);
 
   return (
     <StyledGuardianSearch>
@@ -28,14 +46,16 @@ const GuardianSearch = () => {
         setModalIsOpen={setModalIsOpen}
       />
       <div className="searchHeader">
-        <DarkerBtn onClick={() => setModalIsOpen(true)}>+ Add Family</DarkerBtn>
+        <DarkerBtn onClick={() => setModalIsOpen(true)}>
+          + Add Guardian
+        </DarkerBtn>
         <h1>Guardians</h1>
-        <SearchBar />
+        <SearchBar setSearchText={setSearchText} />
       </div>
-      <GuardianCards data={data} />
+      {isSucess ? <GuardianCards data={guardian} /> : <div>Loading</div>}
     </StyledGuardianSearch>
-  )
-}
+  );
+};
 
 const StyledGuardianSearch = styled.article`
   .searchHeader {
@@ -46,6 +66,6 @@ const StyledGuardianSearch = styled.article`
 
     margin-left: 120px;
   }
-`
+`;
 
-export default GuardianSearch
+export default GuardianSearch;
