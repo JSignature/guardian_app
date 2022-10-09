@@ -12,10 +12,9 @@ const GuardianSearch = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [searchText, setSearchText] = useState(' ');
   const navigate = useNavigate();
-  // const { data: guardian, error } = useGetGuardiansQuery();
 
-  const { guardian, isSuccess } = useGetGuardiansQuery(undefined, {
-    selectFromResult: ({ data, isSuccess }) => ({
+  const { guardian, isSuccess, error } = useGetGuardiansQuery(undefined, {
+    selectFromResult: ({ data, isSuccess, error }) => ({
       guardian: data?.filter((item) => {
         console.log(item.guardian_first_name.toLowerCase());
         return searchText.toLowerCase() === ' '
@@ -25,19 +24,20 @@ const GuardianSearch = () => {
               .includes(searchText.toLowerCase());
       }),
       isSuccess,
+      error,
     }),
   });
 
   console.log(searchText);
-  // console.log(guardian);
+
   console.log(isSuccess);
 
-  // useEffect(() => {
-  //   if (error) {
-  //     alert('You Must be logged in to access this feature');
-  //     navigate('/');
-  //   }
-  // }, [error]);
+  useEffect(() => {
+    if (error) {
+      alert('You Must be logged in to access this feature');
+      navigate('/');
+    }
+  }, [error]);
 
   return (
     <StyledGuardianSearch>

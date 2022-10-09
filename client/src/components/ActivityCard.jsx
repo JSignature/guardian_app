@@ -2,7 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
-const ActivityCard = ({ activity }) => {
+const ActivityCard = ({
+  activity,
+  kidImage,
+  createdAt,
+  kidName,
+  key,
+  kidId,
+}) => {
   const navigate = useNavigate();
   const handleClick = (KidId) => {
     navigate(`/kids/${KidId}`);
@@ -10,20 +17,16 @@ const ActivityCard = ({ activity }) => {
 
   return (
     <StyledActivityCard>
-      <div
-        className="picName"
-        key={activity.id}
-        onClick={() => handleClick(activity.kid.id)}
-      >
-        {activity.kid.kid_first_name}
-        <img src={`${activity.kid.kid_image}`} alt="" />
+      <div className="picName" key={key} onClick={() => handleClick(kidId)}>
+        {kidName}
+        <img src={`${kidImage}`} alt="" />
       </div>
-      <div className="activty" onClick={() => handleClick(activity.kid.id)}>
+      <div className="activty" onClick={() => handleClick(kidId)}>
         <div className="dateTime">
-          {new Date(activity.created_at).toLocaleDateString()} at:
-          {new Date(activity.created_at).toLocaleTimeString()}
+          {new Date(createdAt).toLocaleDateString()} at:
+          {new Date(createdAt).toLocaleTimeString()}
         </div>
-        <p>{activity.description} </p>
+        <p>{activity} </p>
       </div>
     </StyledActivityCard>
   );

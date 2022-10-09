@@ -1,5 +1,5 @@
 class GuardiansController < ApplicationController
-  # before_action :authenticate
+  before_action :authenticate
 
   def create
     guardian = Guardian.create(guardian_params)

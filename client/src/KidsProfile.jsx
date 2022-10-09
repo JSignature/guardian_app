@@ -1,39 +1,52 @@
-import { React, useState, useEffect } from 'react'
-import NavBar from './components/NavBar'
-import { useParams } from 'react-router-dom'
-import KidsProfileUpdate from './KidsProfileUpdate'
-import AddActivityModal from './components/modals/AddActivityModal'
+import { React, useState, useEffect } from 'react';
+import NavBar from './components/NavBar';
+import { useParams } from 'react-router-dom';
+import KidsProfileUpdate from './KidsProfileUpdate';
+import AddActivityModal from './components/modals/AddActivityModal';
 import {
   useGetKidQuery,
   useDeleteActivityMutation,
-} from './features/api/apiSlice'
-import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
-import { Btn, DarkerBtn } from './components/styles/ButtonStyle'
-import style from 'styled-components'
+} from './features/api/apiSlice';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { Btn, DarkerBtn } from './components/styles/ButtonStyle';
+import style from 'styled-components';
+import ActivityCard from './components/ActivityCard';
 
 const KidsProfile = () => {
-  const params = useParams()
-  const { data = [], isSuccess, error, refetch } = useGetKidQuery(params.kid_id)
+  const params = useParams();
+  const {
+    data = [],
+    isSuccess,
+    error,
+    refetch,
+  } = useGetKidQuery(params.kid_id);
 
-  const navigate = useNavigate()
-  const [modalIsOpen, setModalIsOpen] = useState(false)
-
-  const [deleteActivity] = useDeleteActivityMutation()
-
-  const handleActivityDelete = id => {
-    deleteActivity(id)
-    toast.success('Activity Deleted')
+  if (isSuccess) {
+    const activities = [];
+    const kid_first_name = data.kid_first_name;
+    activities.push(kid_first_name);
+    console.log(activities);
   }
+
+  const navigate = useNavigate();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const [deleteActivity] = useDeleteActivityMutation();
+
+  const handleActivityDelete = (id) => {
+    deleteActivity(id);
+    toast.success('Activity Deleted');
+  };
 
   useEffect(() => {
     if (error) {
-      refetch()
+      refetch();
       // alert('Something Went Wrong');
-      console.log('Error from the fetch:' + error)
+      console.log('Error from the fetch:' + error);
     }
-  }, [error])
-  console.log(data)
+  }, [error]);
+  console.log(data);
   return (
     <StyledKidProfile>
       <NavBar />
@@ -53,28 +66,25 @@ const KidsProfile = () => {
           setModalIsOpen={setModalIsOpen}
         />
         <DarkerBtn onClick={() => setModalIsOpen(true)}>Add Activity</DarkerBtn>
-        {/* Prob need to make an activity card to clean this up */}
+
         {isSuccess ? (
-          data.activities.map(activity => (
-            <div>
-              <p key={activity.id}>
-                {activity.description}{' '}
-                {new Date(activity.created_at).toLocaleDateString()} at:
-                {new Date(activity.created_at).toLocaleTimeString()}
-                {activity.id}
-                <button onClick={() => handleActivityDelete(activity.id)}>
-                  Delete Activity
-                </button>
-              </p>
-            </div>
+          data.activities.map((activity) => (
+            <ActivityCard
+              key={activity.id}
+              kidImage={data.kid_image}
+              activity={activity.description}
+              createdAt={activity.created_at}
+              kidName={data.kid_first_name}
+              kidId={data.id}
+            />
           ))
         ) : (
           <div>loading</div>
         )}
       </div>
     </StyledKidProfile>
-  )
-}
+  );
+};
 
 const StyledKidProfile = style.div`
 
@@ -106,9 +116,9 @@ align-items: center;
 
 }
 
-`
+`;
 
-export default KidsProfile
+export default KidsProfile;
 
 {
   /* 
