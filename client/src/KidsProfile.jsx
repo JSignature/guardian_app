@@ -1,52 +1,37 @@
-import { React, useState, useEffect } from 'react';
-import NavBar from './components/NavBar';
-import { useParams } from 'react-router-dom';
-import KidsProfileUpdate from './KidsProfileUpdate';
-import AddActivityModal from './components/modals/AddActivityModal';
-import {
-  useGetKidQuery,
-  useDeleteActivityMutation,
-} from './features/api/apiSlice';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { Btn, DarkerBtn } from './components/styles/ButtonStyle';
-import style from 'styled-components';
-import ActivityCard from './components/ActivityCard';
+import { React, useState, useEffect } from 'react'
+import NavBar from './components/NavBar'
+import { useParams } from 'react-router-dom'
+import KidsProfileUpdate from './KidsProfileUpdate'
+import AddActivityModal from './components/modals/AddActivityModal'
+import { useGetKidQuery } from './features/api/apiSlice'
+import { useNavigate } from 'react-router-dom'
+
+import { DarkerBtn } from './components/styles/ButtonStyle'
+import style from 'styled-components'
+import ActivityCard from './components/ActivityCard'
 
 const KidsProfile = () => {
-  const params = useParams();
-  const {
-    data = [],
-    isSuccess,
-    error,
-    refetch,
-  } = useGetKidQuery(params.kid_id);
+  const params = useParams()
+  const { data = [], isSuccess, error, refetch } = useGetKidQuery(params.kid_id)
 
   if (isSuccess) {
-    const activities = [];
-    const kid_first_name = data.kid_first_name;
-    activities.push(kid_first_name);
-    console.log(activities);
+    const activities = []
+    const kid_first_name = data.kid_first_name
+    activities.push(kid_first_name)
+    console.log(activities)
   }
 
-  const navigate = useNavigate();
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  const [deleteActivity] = useDeleteActivityMutation();
-
-  const handleActivityDelete = (id) => {
-    deleteActivity(id);
-    toast.success('Activity Deleted');
-  };
+  const navigate = useNavigate()
+  const [modalIsOpen, setModalIsOpen] = useState(false)
 
   useEffect(() => {
     if (error) {
-      refetch();
+      refetch()
       // alert('Something Went Wrong');
-      console.log('Error from the fetch:' + error);
+      console.log('Error from the fetch:' + error)
     }
-  }, [error]);
-  console.log(data);
+  }, [error])
+  console.log(data)
   return (
     <StyledKidProfile>
       <NavBar />
@@ -60,17 +45,22 @@ const KidsProfile = () => {
 
       <div>
         <h2>Activities</h2>
-        <div></div>
+
         <AddActivityModal
           modalIsOpen={modalIsOpen}
           setModalIsOpen={setModalIsOpen}
         />
-        <DarkerBtn onClick={() => setModalIsOpen(true)}>Add Activity</DarkerBtn>
-
+        <div className="darkBtn">
+          <DarkerBtn onClick={() => setModalIsOpen(true)}>
+            Add Activity
+          </DarkerBtn>
+        </div>
+        {/* Prob need to make an activity card to clean this up */}
         {isSuccess ? (
-          data.activities.map((activity) => (
+          data.activities.map(activity => (
             <ActivityCard
               key={activity.id}
+              activityId={activity.id}
               kidImage={data.kid_image}
               activity={activity.description}
               createdAt={activity.created_at}
@@ -83,8 +73,8 @@ const KidsProfile = () => {
         )}
       </div>
     </StyledKidProfile>
-  );
-};
+  )
+}
 
 const StyledKidProfile = style.div`
 
@@ -110,15 +100,19 @@ margin-left: 100px;
   color: #56a3a6;
 
 }
-.DarkerBtn{
+.darkBtn{
   display:flex;
 align-items: center;
+justify-content: right;
+margin-right: 90px;
+margin-bottom: 10px;
+
 
 }
 
-`;
+`
 
-export default KidsProfile;
+export default KidsProfile
 
 {
   /* 

@@ -1,22 +1,22 @@
-import { React, useEffect } from 'react';
-import Modal from 'react-modal';
-import { useForm } from 'react-hook-form';
-import { useAddGuardianMutation } from '../../features/api/apiSlice';
-import '../styles/ModalStyle.css';
-import { BrighterBtn, DarkerBtn, Btn, XBtn } from '../styles/ButtonStyle';
-import { toast } from 'react-toastify';
+import { React, useEffect } from 'react'
+import Modal from 'react-modal'
+import { useForm } from 'react-hook-form'
+import { useAddGuardianMutation } from '../../features/api/apiSlice'
+import '../styles/ModalStyle.css'
+import { BrighterBtn, XBtn } from '../styles/ButtonStyle'
+import { toast } from 'react-toastify'
 
-Modal.setAppElement('#root');
+Modal.setAppElement('#root')
 const AddGuardianModal = ({ modalIsOpen, setModalIsOpen }) => {
-  const [addGuardian, { error, isError, isSuccess }] = useAddGuardianMutation();
+  const [addGuardian, { error, isError, isSuccess }] = useAddGuardianMutation()
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm()
 
-  const onSubmit = async (data) => {
-    console.log(data);
+  const onSubmit = async data => {
+    console.log(data)
     const newGuardian = {
       is_primary: true,
       guardian_first_name: data.firstName,
@@ -28,19 +28,19 @@ const AddGuardianModal = ({ modalIsOpen, setModalIsOpen }) => {
       guardian_phone: data.phone,
       guardian_email: data.email,
       guardian_image: data.image,
-    };
-    await addGuardian(newGuardian);
-  };
+    }
+    await addGuardian(newGuardian)
+  }
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success('A new Guardian has been added');
-      setModalIsOpen(false);
+      toast.success('A new Guardian has been added')
+      setModalIsOpen(false)
     } else if (isError) {
-      console.log(error);
-      toast.error(error.data.errors[0]);
+      console.log(error)
+      toast.error(error.data.errors[0])
     }
-  }, [error, isError, isSuccess]);
+  }, [error, isError, isSuccess])
 
   return (
     <Modal
@@ -119,12 +119,14 @@ const AddGuardianModal = ({ modalIsOpen, setModalIsOpen }) => {
         <p>{errors.email?.message}</p>
         <input type="text" placeholder="Image" {...register('image')} />
         <p>{errors.image?.message}</p>
-        <BrighterBtn type="submit">Submit</BrighterBtn>
+        <div className="submitBtn">
+          <BrighterBtn type="submit">Submit</BrighterBtn>
+        </div>
         {/* <input type="submit" /> */}
       </form>
       <XBtn onClick={() => setModalIsOpen(false)}>X</XBtn>
     </Modal>
-  );
-};
+  )
+}
 
-export default AddGuardianModal;
+export default AddGuardianModal

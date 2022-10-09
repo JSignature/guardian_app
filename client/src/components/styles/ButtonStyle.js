@@ -26,6 +26,7 @@ export const Btn = styled.button`
 export const DarkerBtn = styled(Btn)`
   background: #56a3a6;
   color: #d3d4d9;
+
   &:hover {
     opacity: 0.9;
     transform: scale (0.98);

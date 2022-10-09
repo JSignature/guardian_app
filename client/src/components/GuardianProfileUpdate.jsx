@@ -1,22 +1,21 @@
-import { React } from 'react';
-import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
+import { React } from 'react'
+import { useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
 import {
   useUpdateGuardianMutation,
   useDeleteGuardianMutation,
-} from '../features/api/apiSlice';
-import { useParams } from 'react-router-dom';
-import { StyledForm } from './styles/FormStyle';
-import { Btn } from './styles/ButtonStyle';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components/macro';
+} from '../features/api/apiSlice'
+import { useParams } from 'react-router-dom'
+import { StyledForm } from './styles/FormStyle'
+import { Btn } from './styles/ButtonStyle'
+import { useNavigate } from 'react-router-dom'
 
 const GuardianProfileUpdate = ({ guardian }) => {
-  const navigate = useNavigate();
-  const params = useParams();
-  const paramsId = parseInt(params.guardian_id);
-  const [updateGuardian] = useUpdateGuardianMutation();
-  const [deleteGuardian] = useDeleteGuardianMutation();
+  const navigate = useNavigate()
+  const params = useParams()
+  const paramsId = parseInt(params.guardian_id)
+  const [updateGuardian] = useUpdateGuardianMutation()
+  const [deleteGuardian] = useDeleteGuardianMutation()
 
   const {
     register,
@@ -34,15 +33,15 @@ const GuardianProfileUpdate = ({ guardian }) => {
       email: `${guardian.guardian_email}`,
       image: `${guardian.guardian_image}`,
     },
-  });
+  })
 
-  const handleDelete = async (id) => {
-    await deleteGuardian(id);
-    toast.success('Contact has been Deleted');
-    navigate('/guardians');
-  };
+  const handleDelete = async id => {
+    await deleteGuardian(id)
+    toast.success('Contact has been Deleted')
+    navigate('/guardians')
+  }
 
-  const onSubmit = async (data) => {
+  const onSubmit = async data => {
     const updatedGuardian = {
       id: paramsId,
       guardian_first_name: data.firstName,
@@ -54,11 +53,11 @@ const GuardianProfileUpdate = ({ guardian }) => {
       guardian_phone: data.phone,
       guardian_email: data.email,
       guardian_image: data.image,
-    };
+    }
 
-    await updateGuardian(updatedGuardian);
-    toast.success('Contact has been Updated');
-  };
+    await updateGuardian(updatedGuardian)
+    toast.success('Contact has been Updated')
+  }
 
   return (
     <StyledForm>
@@ -76,6 +75,7 @@ const GuardianProfileUpdate = ({ guardian }) => {
             placeholder="First name"
             {...register('firstName', { required: true, maxLength: 80 })}
           />
+
           <input
             type="text"
             placeholder="Last name"
@@ -108,7 +108,7 @@ const GuardianProfileUpdate = ({ guardian }) => {
         </Btn>
       </div>
     </StyledForm>
-  );
-};
+  )
+}
 
-export default GuardianProfileUpdate;
+export default GuardianProfileUpdate
