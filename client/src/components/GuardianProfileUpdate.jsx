@@ -58,7 +58,6 @@ const GuardianProfileUpdate = ({ guardian }) => {
     await updateGuardian(updatedGuardian)
     toast.success('Contact has been Updated')
   }
-  console.log(errors)
 
   return (
     <StyledForm>
@@ -87,6 +86,7 @@ const GuardianProfileUpdate = ({ guardian }) => {
             placeholder="Street Address"
             {...register('streetAddress', {})}
           />
+
           <input type="text" placeholder="City" {...register('city', {})} />
           <input
             type="text"

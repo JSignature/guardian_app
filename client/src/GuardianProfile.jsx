@@ -10,8 +10,8 @@ import {
 } from './features/api/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import style from 'styled-components/macro'
-import { DarkerBtn } from './components/styles/ButtonStyle'
+import style, { css } from 'styled-components/macro'
+import { DarkerBtn, Btn } from './components/styles/ButtonStyle'
 import KidCard from './components/KidCard'
 
 const GuardianProfile = () => {
@@ -62,7 +62,7 @@ const GuardianProfile = () => {
 
           {/* <Btn onClick={() => handleDelete(params.guardian_id)}>Delete</Btn> */}
         </div>
-        <div>
+        {/* <div>
           <h2>Additonal Guardians</h2>
           <AddGuardianModal
             modalIsOpen={guardianModalIsOpen}
@@ -77,7 +77,7 @@ const GuardianProfile = () => {
           >
             + Add Additional Guardian
           </DarkerBtn>
-        </div>
+        </div> */}
         <div>
           <h2>Kids</h2>
           <AddKidModal

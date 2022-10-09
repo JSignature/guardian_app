@@ -17,6 +17,13 @@ const KidsProfile = () => {
   const params = useParams()
   const { data = [], isSuccess, error, refetch } = useGetKidQuery(params.kid_id)
 
+  if (isSuccess) {
+    const activities = []
+    const kid_first_name = data.kid_first_name
+    activities.push(kid_first_name)
+    console.log(activities)
+  }
+
   const navigate = useNavigate()
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
@@ -61,18 +68,14 @@ const KidsProfile = () => {
         {/* Prob need to make an activity card to clean this up */}
         {isSuccess ? (
           data.activities.map(activity => (
-            // <ActivityCard key={activity.id} activity={activity} />
-            <div>
-              <p key={activity.id}>
-                {activity.description}{' '}
-                {new Date(activity.created_at).toLocaleDateString()} at:
-                {new Date(activity.created_at).toLocaleTimeString()}
-                {activity.id}
-                <button onClick={() => handleActivityDelete(activity.id)}>
-                  Delete Activity
-                </button>
-              </p>
-            </div>
+            <ActivityCard
+              key={activity.id}
+              kidImage={data.kid_image}
+              activity={activity.description}
+              createdAt={activity.created_at}
+              kidName={data.kid_first_name}
+              kidId={data.id}
+            />
           ))
         ) : (
           <div>loading</div>
