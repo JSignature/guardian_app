@@ -16,7 +16,6 @@ const GuardianSearch = () => {
   const { guardian, isSuccess, error } = useGetGuardiansQuery(undefined, {
     selectFromResult: ({ data, isSuccess, error }) => ({
       guardian: data?.filter((item) => {
-        console.log(item.guardian_first_name.toLowerCase());
         return searchText.toLowerCase() === ' '
           ? item
           : item.guardian_first_name
@@ -27,10 +26,6 @@ const GuardianSearch = () => {
       error,
     }),
   });
-
-  console.log(searchText);
-
-  console.log(isSuccess);
 
   useEffect(() => {
     if (error) {
