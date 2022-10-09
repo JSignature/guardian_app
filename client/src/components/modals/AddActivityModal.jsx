@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import '../styles/ModalStyle.css'
-import { BrighterBtn, DarkerBtn, Btn, XBtn } from '../styles/ButtonStyle'
+import { XBtn, BrighterBtn } from '../styles/ButtonStyle'
 Modal.setAppElement('#root')
 
 const AddActivityModal = ({ modalIsOpen, setModalIsOpen }) => {
@@ -33,27 +33,26 @@ const AddActivityModal = ({ modalIsOpen, setModalIsOpen }) => {
   }
 
   return (
-    <div>
-      <Modal
-        className="ModalStyle"
-        isOpen={modalIsOpen}
-        onRequestClose={() => setModalIsOpen(false)}
-      >
-        <header>
-          <h1>Add Activity</h1>
-        </header>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <textarea
-            placeholder="Enter Activity Description"
-            {...register('description', { required: true })}
-          />
+    <Modal
+      className="ModalStyle"
+      isOpen={modalIsOpen}
+      onRequestClose={() => setModalIsOpen(false)}
+    >
+      <header className="activityHeader">
+        <h1>Add Activity</h1>
+      </header>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <textarea
+          placeholder="Enter Activity Description"
+          {...register('description', { required: true })}
+        />
+        <div className="submitBtn">
+          <BrighterBtn type="submit">Submit</BrighterBtn>
+        </div>
+      </form>
 
-          <input type="submit" />
-        </form>
-
-        <XBtn onClick={() => setModalIsOpen(false)}>X</XBtn>
-      </Modal>
-    </div>
+      <XBtn onClick={() => setModalIsOpen(false)}>X</XBtn>
+    </Modal>
   )
 }
 

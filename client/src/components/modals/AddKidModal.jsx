@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { useAddKidMutation } from '../../features/api/apiSlice'
 import { toast } from 'react-toastify'
-import { BrighterBtn, DarkerBtn, Btn, XBtn } from '../styles/ButtonStyle'
+import { BrighterBtn, XBtn } from '../styles/ButtonStyle'
 import '../styles/ModalStyle.css'
 
 Modal.setAppElement('#root')
@@ -77,10 +77,11 @@ const AddKidModal = ({ modalIsOpen, setModalIsOpen }) => {
           />
           <textarea {...register('notes', {})} />
           <input type="text" placeholder="Image" {...register('image', {})} />
-
-          <BrighterBtn input type="submit">
-            Submit
-          </BrighterBtn>
+          <div className="submitBtn">
+            <BrighterBtn input type="submit">
+              Submit
+            </BrighterBtn>
+          </div>
         </form>
 
         <XBtn onClick={() => setModalIsOpen(false)}>X</XBtn>

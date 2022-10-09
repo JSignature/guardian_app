@@ -59,3 +59,16 @@ button {
   width: 100%;
   margin-top: -150px;
 }
+.submitBtn {
+  display: flex;
+  justify-content: center;
+}
+textarea {
+  margin-top: 15px;
+}
+.activityHeader h1 {
+  margin-top: -190px;
+  background-color: #44cfcb;
+  width: 100%;
+  height: 80px;
+}

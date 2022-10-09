@@ -9,7 +9,6 @@ import { useParams } from 'react-router-dom'
 import { StyledForm } from './styles/FormStyle'
 import { Btn } from './styles/ButtonStyle'
 import { useNavigate } from 'react-router-dom'
-import styled from 'styled-components/macro'
 
 const GuardianProfileUpdate = ({ guardian }) => {
   const navigate = useNavigate()

@@ -9,7 +9,7 @@ import {
 } from './features/api/apiSlice'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { Btn, DarkerBtn } from './components/styles/ButtonStyle'
+import { DarkerBtn } from './components/styles/ButtonStyle'
 import style from 'styled-components'
 
 const KidsProfile = () => {
@@ -47,12 +47,16 @@ const KidsProfile = () => {
 
       <div>
         <h2>Activities</h2>
-        <div></div>
+
         <AddActivityModal
           modalIsOpen={modalIsOpen}
           setModalIsOpen={setModalIsOpen}
         />
-        <DarkerBtn onClick={() => setModalIsOpen(true)}>Add Activity</DarkerBtn>
+        <div className="darkBtn">
+          <DarkerBtn onClick={() => setModalIsOpen(true)}>
+            Add Activity
+          </DarkerBtn>
+        </div>
         {/* Prob need to make an activity card to clean this up */}
         {isSuccess ? (
           data.activities.map(activity => (
@@ -100,9 +104,13 @@ margin-left: 100px;
   color: #56a3a6;
 
 }
-.DarkerBtn{
+.darkBtn{
   display:flex;
 align-items: center;
+justify-content: right;
+margin-right: 90px;
+margin-bottom: 10px;
+
 
 }
 
