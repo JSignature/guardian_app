@@ -1,25 +1,25 @@
-import React from 'react';
-import logo2 from './styles/logo2.png';
-import styled from 'styled-components';
-import { Btn } from './styles/ButtonStyle';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import React from 'react'
+import logo2 from './styles/logo2.png'
+import styled from 'styled-components'
+import { Btn } from './styles/ButtonStyle'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 //Needed this to clear redux store previous try
 // import store from '../store';
 // import { apiSlice } from '../features/api/apiSlice';
 
 const NavBar = () => {
-  const navigate = useNavigate();
-  const userName = localStorage.getItem('user_first_name');
+  const navigate = useNavigate()
+  const userName = localStorage.getItem('user_first_name')
 
-  const handleLogout = (e) => {
-    e.preventDefault();
-    toast.success(`${userName} is out!!! Come back soon!`);
+  const handleLogout = e => {
+    e.preventDefault()
+    toast.success(`${userName} is out!!! Come back soon!`)
     // This can be used to clear the redux store cache
     // store.dispatch(apiSlice.util.resetApiState());
-    localStorage.clear();
-    navigate('/');
-  };
+    localStorage.clear()
+    navigate('/')
+  }
 
   return (
     <NavWrapper>
@@ -30,7 +30,9 @@ const NavBar = () => {
           </a>
         </div>
         <div>
-          <p>{`HI ${userName}`}</p>
+          <a href="/dashboard">
+            <p>{`HI ${userName}`}</p>
+          </a>
         </div>
         <nav>
           <ul className="navLinks">
@@ -49,8 +51,8 @@ const NavBar = () => {
         </a>
       </div>
     </NavWrapper>
-  );
-};
+  )
+}
 
 const NavWrapper = styled.div`
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
@@ -119,6 +121,9 @@ const NavWrapper = styled.div`
     margin-right: 292px;
     text-shadow: 2px 2px 2px #ffa987;
   }
-`;
+  a {
+    text-decoration: none;
+  }
+`
 
-export default NavBar;
+export default NavBar

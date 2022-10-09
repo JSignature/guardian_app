@@ -23,7 +23,7 @@ ul {
 .sign {
   display: flex;
   align-items: center;
-  margin-right: 20px;
+  margin-right: 80px;
 }
 
 .pricing_boxes {
@@ -148,6 +148,9 @@ h2 {
 .block_text_3 {
   font-size: 18px;
 }
+.block_text_2 {
+  font-size: 15px;
+}
 .review_text {
   margin-top: 185px;
   text-align: center;
@@ -157,7 +160,7 @@ h2 {
   width: 50px;
 
   border-radius: 50%;
-  margin-left: 20px;
+  margin-left: 50px;
 }
 .navLogo div:hover {
   cursor: pointer;
