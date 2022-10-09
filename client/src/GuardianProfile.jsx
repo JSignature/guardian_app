@@ -26,11 +26,11 @@ const GuardianProfile = () => {
   } = useGetGuardianQuery(params.guardian_id);
   const navigate = useNavigate();
 
-  const handleDelete = async (id) => {
-    await deleteGuardian(id);
-    toast.success('Contact has been Deleted');
-    navigate('/guardians');
-  };
+  // const handleDelete = async (id) => {
+  //   await deleteGuardian(id);
+  //   toast.success('Contact has been Deleted');
+  //   navigate('/guardians');
+  // };
 
   useEffect(() => {
     if (error) {
@@ -82,7 +82,7 @@ const GuardianProfile = () => {
             className="DarkerBtn"
             onClick={() => setKidModalIsOpen(true)}
           >
-            + Add Additional Kid
+            + Add Kid
           </DarkerBtn>
           {isSuccess ? (
             data.kids.map((kid) => <KidCard key={kid.id} kid={kid} />)
