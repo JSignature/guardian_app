@@ -1,26 +1,26 @@
-import { React } from 'react'
-import Modal from 'react-modal'
-import { useParams } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
-import { useAddKidMutation } from '../../features/api/apiSlice'
-import { toast } from 'react-toastify'
-import { BrighterBtn, DarkerBtn, Btn, XBtn } from '../styles/ButtonStyle'
-import '../styles/ModalStyle.css'
+import { React, useEffect } from 'react';
+import Modal from 'react-modal';
+import { useParams } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { useAddKidMutation } from '../../features/api/apiSlice';
+import { toast } from 'react-toastify';
+import { BrighterBtn, DarkerBtn, Btn, XBtn } from '../styles/ButtonStyle';
+import '../styles/ModalStyle.css';
 
-Modal.setAppElement('#root')
+Modal.setAppElement('#root');
 
 const AddKidModal = ({ modalIsOpen, setModalIsOpen }) => {
-  const params = useParams()
-  const paramsId = parseInt(params.guardian_id)
-  const [addKid] = useAddKidMutation()
+  const params = useParams();
+  const paramsId = parseInt(params.guardian_id);
+  const [addKid, { error, isError, isSuccess }] = useAddKidMutation();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm();
 
-  const onSubmit = async data => {
+  const onSubmit = async (data) => {
     const newKid = {
       guardian_id: paramsId,
       kid_first_name: data.firstName,
@@ -32,13 +32,19 @@ const AddKidModal = ({ modalIsOpen, setModalIsOpen }) => {
       kid_allergies: data.allergies,
       kid_notes: data.notes,
       kid_image: data.image,
+    };
+    await addKid(newKid);
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success('A new Kid has been added');
+      setModalIsOpen(false);
+    } else if (isError) {
+      console.log(error);
+      toast.error(error.data.errors[0]);
     }
-    await addKid(newKid)
-    toast.success('Kid has been added!! Yaayy!')
-    setModalIsOpen(false)
-    console.log(data)
-  }
-  console.log(errors)
+  }, [error, isError, isSuccess]);
 
   return (
     <div>
@@ -55,27 +61,48 @@ const AddKidModal = ({ modalIsOpen, setModalIsOpen }) => {
           <input
             type="text"
             placeholder="First name"
-            {...register('firstName', { required: true, maxLength: 80 })}
+            {...register('firstName', {
+              required: 'This is a required field',
+              maxLength: 80,
+            })}
           />
+          <p>{errors.firstName?.message}</p>
           <input
             type="text"
             placeholder="Last name"
-            {...register('lastName', { required: true, maxLength: 100 })}
+            {...register('lastName', {
+              required: 'This is a required field',
+              maxLength: 100,
+            })}
           />
+          <p>{errors.lastName?.message}</p>
           <input
             type="text"
             placeholder="Nickname"
             {...register('nickname', {})}
           />
-          <input type="number" placeholder="Age" {...register('age', {})} />
-          <input type="text" placeholder="Gender" {...register('gender', {})} />
+          <p>{errors.nickname?.message}</p>
+          <input
+            type="number"
+            placeholder="Age"
+            {...register('age', { required: 'This is a required field' })}
+          />
+          <p>{errors.age?.message}</p>
+          <input
+            type="text"
+            placeholder="Gender"
+            {...register('gender', { required: 'This is a required field' })}
+          />
+          <p>{errors.gender?.message}</p>
           <input type="text" placeholder="Group" {...register('group', {})} />
           <input
             type="text"
             placeholder="Allergies"
             {...register('allergies', {})}
           />
+          <p>{errors.allergies?.message}</p>
           <textarea {...register('notes', {})} />
+          <p>{errors.notes?.message}</p>
           <input type="text" placeholder="Image" {...register('image', {})} />
 
           <BrighterBtn input type="submit">
@@ -86,7 +113,7 @@ const AddKidModal = ({ modalIsOpen, setModalIsOpen }) => {
         <XBtn onClick={() => setModalIsOpen(false)}>X</XBtn>
       </Modal>
     </div>
-  )
-}
+  );
+};
 
-export default AddKidModal
+export default AddKidModal;

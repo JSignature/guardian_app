@@ -1,10 +1,9 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
 
-import { Btn } from './styles/ButtonStyle'
+import { Btn } from './styles/ButtonStyle';
 
 const KidCard = ({ kid }) => {
-  console.log(kid)
   return (
     <StyledKidCard>
       <img src={kid.kid_image} alt="" />
@@ -20,8 +19,8 @@ const KidCard = ({ kid }) => {
         </a>
       </div>
     </StyledKidCard>
-  )
-}
+  );
+};
 
 const StyledKidCard = styled.article`
   display: grid;
@@ -65,6 +64,6 @@ const StyledKidCard = styled.article`
   /* @media (min-width: 768px) {
     max-width: 600px;
   } */
-`
+`;
 
-export default KidCard
+export default KidCard;

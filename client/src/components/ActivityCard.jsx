@@ -1,23 +1,36 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
-const ActivityCard = ({ activity }) => {
+const ActivityCard = ({
+  activity,
+  kidImage,
+  createdAt,
+  kidName,
+  key,
+  kidId,
+}) => {
+  const navigate = useNavigate();
+  const handleClick = (KidId) => {
+    navigate(`/kids/${KidId}`);
+  };
+
   return (
     <StyledActivityCard>
-      <div className="picName" key={activity.id}>
-        {activity.kid.kid_first_name}
-        <img src={`${activity.kid.kid_image}`} alt="" />
+      <div className="picName" key={key} onClick={() => handleClick(kidId)}>
+        {kidName}
+        <img src={`${kidImage}`} alt="" />
       </div>
-      <div className="activty">
+      <div className="activty" onClick={() => handleClick(kidId)}>
         <div className="dateTime">
-          {new Date(activity.created_at).toLocaleDateString()} at:
-          {new Date(activity.created_at).toLocaleTimeString()}
+          {new Date(createdAt).toLocaleDateString()} at:
+          {new Date(createdAt).toLocaleTimeString()}
         </div>
-        <p>{activity.description} </p>
+        <p>{activity} </p>
       </div>
     </StyledActivityCard>
-  )
-}
+  );
+};
 
 const StyledActivityCard = styled.article`
   @import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Montserrat:wght@400;500&family=Patrick+Hand+SC&family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -73,6 +86,6 @@ const StyledActivityCard = styled.article`
     font-size: larger;
     font-weight: 600;
   }
-`
+`;
 
-export default ActivityCard
+export default ActivityCard;
