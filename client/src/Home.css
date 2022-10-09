@@ -71,7 +71,7 @@ ul {
 }
 .price_box_2:hover {
   cursor: pointer;
-  box-shadow: 0 15px 15px #44cfcb;
+  box-shadow: 0 15px 18px #44cfcb;
   transition: all 0.5s ease-in-out;
   color: #44cfcb;
 }

@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { DarkerBtn } from './components/styles/ButtonStyle'
 import style from 'styled-components'
+import ActivityCard from './components/ActivityCard'
 
 const KidsProfile = () => {
   const params = useParams()
@@ -60,6 +61,7 @@ const KidsProfile = () => {
         {/* Prob need to make an activity card to clean this up */}
         {isSuccess ? (
           data.activities.map(activity => (
+            // <ActivityCard key={activity.id} activity={activity} />
             <div>
               <p key={activity.id}>
                 {activity.description}{' '}
