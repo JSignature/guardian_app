@@ -58,43 +58,55 @@ const AddKidModal = ({ modalIsOpen, setModalIsOpen }) => {
         </header>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          <input
-            type="text"
-            placeholder="First name"
-            {...register('firstName', {
-              required: 'This is a required field',
-              maxLength: 80,
-            })}
-          />
-          <p>{errors.firstName?.message}</p>
-          <input
-            type="text"
-            placeholder="Last name"
-            {...register('lastName', {
-              required: 'This is a required field',
-              maxLength: 100,
-            })}
-          />
-          <p>{errors.lastName?.message}</p>
-          <input
-            type="text"
-            placeholder="Nickname"
-            {...register('nickname', {})}
-          />
-          <p>{errors.nickname?.message}</p>
-          <input
-            type="number"
-            placeholder="Age"
-            {...register('age', { required: 'This is a required field' })}
-          />
-          <p>{errors.age?.message}</p>
-          <input
-            type="text"
-            placeholder="Gender"
-            {...register('gender', { required: 'This is a required field' })}
-          />
-          <p>{errors.gender?.message}</p>
+          <div className="formFlex">
+            <input
+              type="text"
+              placeholder="First name"
+              {...register('firstName', {
+                required: 'This is a required field',
+                maxLength: 80,
+              })}
+            />
+            <p>{errors.firstName?.message}</p>
+          </div>
+          <div className="formFlex">
+            <input
+              type="text"
+              placeholder="Last name"
+              {...register('lastName', {
+                required: 'This is a required field',
+                maxLength: 100,
+              })}
+            />
+            <p>{errors.lastName?.message}</p>
+          </div>
+          <div className="formFlex">
+            <input
+              type="text"
+              placeholder="Nickname"
+              {...register('nickname', {})}
+            />
+            <p>{errors.nickname?.message}</p>
+          </div>
+          <div className="formFlex">
+            <input
+              type="number"
+              placeholder="Age"
+              {...register('age', { required: 'This is a required field' })}
+            />
+            <p>{errors.age?.message}</p>
+          </div>
+          <div className="formFlex">
+            <input
+              type="text"
+              placeholder="Gender"
+              {...register('gender', { required: 'This is a required field' })}
+            />
+            <p>{errors.gender?.message}</p>
+          </div>
+
           <input type="text" placeholder="Group" {...register('group', {})} />
+
           <input
             type="text"
             placeholder="Allergies"
