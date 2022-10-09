@@ -1,36 +1,42 @@
-import { useEffect } from 'react';
-import Modal from 'react-modal';
-import { useForm } from 'react-hook-form';
-import { useAddUserMutation } from '../../features/api/apiUserSlice';
-import { toast } from 'react-toastify';
+import { useEffect } from 'react'
+import Modal from 'react-modal'
+import { useForm } from 'react-hook-form'
+import { useAddUserMutation } from '../../features/api/apiUserSlice'
+import { toast } from 'react-toastify'
+import { BrighterBtn, XBtn } from '../styles/ButtonStyle'
+import '../styles/ModalStyle.css'
 
-Modal.setAppElement('#root');
+Modal.setAppElement('#root')
 
 const SignUpModal = ({ modalIsOpen, setModalIsOpen }) => {
-  const [addUser, { error, isError, isSuccess }] = useAddUserMutation();
+  const [addUser, { error, isError, isSuccess }] = useAddUserMutation()
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm()
 
-  const onSubmit = async (data) => {
-    await addUser(data);
-  };
+  const onSubmit = async data => {
+    await addUser(data)
+  }
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success('A new user has been created, please login!!');
-      setModalIsOpen(false);
+      toast.success('A new user has been created, please login!!')
+      setModalIsOpen(false)
     } else if (isError) {
-      toast.error(error.data.errors[0]);
+      toast.error(error.data.errors[0])
     }
-  }, [isSuccess, isError, setModalIsOpen, error]);
+  }, [isSuccess, isError, setModalIsOpen, error])
 
   return (
     <div>
-      <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+      <Modal
+        className="ModalStyle"
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+      >
         <h1>Sign Up for Guardian App!</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
@@ -73,12 +79,14 @@ const SignUpModal = ({ modalIsOpen, setModalIsOpen }) => {
           />
           <p>{errors.password?.message}</p>
 
-          <input type="submit" />
+          <BrighterBtn input type="submit">
+            Submit
+          </BrighterBtn>
         </form>
-        <button onClick={() => setModalIsOpen(false)}>X</button>
+        <XBtn onClick={() => setModalIsOpen(false)}>X</XBtn>
       </Modal>
     </div>
-  );
-};
+  )
+}
 
-export default SignUpModal;
+export default SignUpModal
