@@ -58,8 +58,8 @@ const Home = () => {
           interface is designed to <br />
           be quick reacting and responsive even on your busiest daycare days.
           Log kid's actvities minute <br /> by minute and never lose track of
-          who was fed last, who is missed a nap, or how long outdoor <br /> play
-          lasted! No child will fly under your radar with this specially
+          who was fed last, who has missed a nap, or how long outdoor <br />{' '}
+          play lasted! No child will fly under your radar with this specially
           designed kid tracker app.
         </p>
       </div>

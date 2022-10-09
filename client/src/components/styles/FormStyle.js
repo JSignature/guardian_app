@@ -21,6 +21,7 @@ export const StyledForm = styled.article`
     border-radius: 0.25rem;
     border-width: 2px;
     border: none;
+    outline: noen;
     transition: all 0.5s ease-in-out;
     &:hover {
       cursor: pointer;

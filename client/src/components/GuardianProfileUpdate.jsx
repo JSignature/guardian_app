@@ -76,6 +76,7 @@ const GuardianProfileUpdate = ({ guardian }) => {
             placeholder="First name"
             {...register('firstName', { required: true, maxLength: 80 })}
           />
+
           <input
             type="text"
             placeholder="Last name"
