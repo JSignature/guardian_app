@@ -32,7 +32,7 @@ const GuardianSearch = () => {
       alert('You Must be logged in to access this feature');
       navigate('/');
     }
-  }, [error]);
+  }, [error, navigate]);
 
   return (
     <StyledGuardianSearch>

@@ -1,19 +1,19 @@
-import { React, useState } from 'react'
-import './Home.css'
-import SignUpModal from './components/modals/SignUpModal'
-import SignInModal from './components/modals/SignInModal'
-import { Btn } from './components/styles/ButtonStyle'
-import logo2 from './components/styles/logo2.png'
+import { React, useState } from 'react';
+import './Home.css';
+import SignUpModal from './components/modals/SignUpModal';
+import SignInModal from './components/modals/SignInModal';
+import { Btn } from './components/styles/ButtonStyle';
+import logo2 from './components/styles/logo2.png';
 
 const Home = () => {
-  const [signUpIsOpen, setSignUpIsOpen] = useState(false)
-  const [signInIsOpen, setSignInIsOpen] = useState(false)
+  const [signUpIsOpen, setSignUpIsOpen] = useState(false);
+  const [signInIsOpen, setSignInIsOpen] = useState(false);
 
   return (
     <div>
       <div class="navHome">
         <div className="navLogo">
-          <img src={logo2} alt="picture of company logo" />
+          <img src={logo2} alt="Ccompany logo" />
         </div>
 
         <div class="sign">
@@ -42,14 +42,14 @@ const Home = () => {
         <img
           class="block_img"
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvKPHIuMH9Uj2LEw8DpQhsvjqocClF7CyYsw&usqp=CAU"
-          alt="picture of kid playing"
+          alt="Kid playing"
         />
       </div>
       <div class="hero_image_2">
         <img
           class="block_img"
           src="https://blog.bonsecours.com/wp-content/uploads/2021/01/Limiting-Screen-Time_1200x628-1.jpg"
-          alt="picture of kid on computer"
+          alt="Kid on computer"
         />
         <p class="block_text_2">
           Easy to learn with just a few clicks of a button, you will have your
@@ -72,7 +72,7 @@ const Home = () => {
         <img
           class="block_img"
           src="https://images.squarespace-cdn.com/content/v1/5cf67eec7f82570001a1b780/1610291778195-UJB45GEYNV26QDEXLWVA/happy-smiling-hispanic-preschool-teacher.jpg?format=1000w"
-          alt="picture of teacher"
+          alt="Teacher"
         />
       </div>
 
@@ -117,7 +117,7 @@ const Home = () => {
 
       <h2 class="review_text">Try our free 30 day trial!</h2>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

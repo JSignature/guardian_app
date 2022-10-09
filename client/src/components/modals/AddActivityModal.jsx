@@ -1,36 +1,36 @@
-import Modal from 'react-modal'
-import { useAddActivityMutation } from '../../features/api/apiSlice'
-import { useParams } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
-import { toast } from 'react-toastify'
-import '../styles/ModalStyle.css'
-import { XBtn, BrighterBtn } from '../styles/ButtonStyle'
-Modal.setAppElement('#root')
+import Modal from 'react-modal';
+import { useAddActivityMutation } from '../../features/api/apiSlice';
+import { useParams } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import '../styles/ModalStyle.css';
+import { XBtn, BrighterBtn } from '../styles/ButtonStyle';
+Modal.setAppElement('#root');
 
 const AddActivityModal = ({ modalIsOpen, setModalIsOpen }) => {
-  const params = useParams()
-  const paramsId = parseInt(params.kid_id)
+  const params = useParams();
+  const paramsId = parseInt(params.kid_id);
 
-  const [addActivity] = useAddActivityMutation()
+  const [addActivity] = useAddActivityMutation();
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm()
+    // formState: { errors },
+  } = useForm();
 
-  const onSubmit = async data => {
-    console.log(data)
+  const onSubmit = async (data) => {
+    console.log(data);
     const newActivity = {
       user_id: 1, //This needs to be dynamic
       kid_id: paramsId,
       description: data.description,
-    }
-    await addActivity(newActivity)
+    };
+    await addActivity(newActivity);
 
-    toast.success('A new activity has been added')
-    setModalIsOpen(false)
-  }
+    toast.success('A new activity has been added');
+    setModalIsOpen(false);
+  };
 
   return (
     <Modal
@@ -53,7 +53,7 @@ const AddActivityModal = ({ modalIsOpen, setModalIsOpen }) => {
 
       <XBtn onClick={() => setModalIsOpen(false)}>X</XBtn>
     </Modal>
-  )
-}
+  );
+};
 
-export default AddActivityModal
+export default AddActivityModal;
