@@ -52,73 +52,92 @@ const AddGuardianModal = ({ modalIsOpen, setModalIsOpen }) => {
         <h1>Add Guardian</h1>
       </header>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type="text"
-          placeholder="First Name"
-          {...register('firstName', {
-            required: 'This is a required field',
-          })}
-        />
-        <p>{errors.firstName?.message}</p>
-        <input
-          type="text"
-          placeholder="Last Name"
-          {...register('lastName', {
-            required: 'This is a required field',
-          })}
-        />
-        <p>{errors.lastName?.message}</p>
-        <input
-          type="text"
-          placeholder="Street Address"
-          {...register('street', {
-            required: 'This is a required field',
-          })}
-        />
-        <p>{errors.street?.message}</p>
-        <input
-          type="text"
-          placeholder="City"
-          {...register('city', {
-            required: 'This is a required field',
-            maxLength: 80,
-          })}
-        />
-        <p>{errors.city?.message}</p>
-        <input
-          type="text"
-          placeholder="State"
-          {...register('state', {
-            required: 'This is a required field',
-          })}
-        />
-        <p>{errors.state?.message}</p>
-        <input
-          type="number"
-          placeholder="Zip"
-          {...register('zip', {
-            required: 'This is a required field',
-          })}
-        />
-        <p>{errors.zip?.message}</p>
-        <input
-          type="text"
-          placeholder="Phone"
-          {...register('phone', {
-            required: 'This is a required field',
-          })}
-        />
-        <p>{errors.phone?.message}</p>
-        <input
-          type="email"
-          placeholder="Email"
-          {...register('email', {
-            required: 'This is a required field',
-          })}
-        />
-        <p>{errors.email?.message}</p>
-        <input type="text" placeholder="Image" {...register('image')} />
-        <p>{errors.image?.message}</p>
+        <div className="formFlex">
+          <input
+            type="text"
+            placeholder="First Name"
+            {...register('firstName', {
+              required: 'This is a required field',
+            })}
+          />
+          <p>{errors.firstName?.message}</p>
+        </div>
+        <div className="formFlex">
+          <input
+            type="text"
+            placeholder="Last Name"
+            {...register('lastName', {
+              required: 'This is a required field',
+            })}
+          />
+          <p>{errors.lastName?.message}</p>
+        </div>
+        <div className="formFlex">
+          <input
+            type="text"
+            placeholder="Street Address"
+            {...register('street', {
+              required: 'This is a required field',
+            })}
+          />
+          <p>{errors.street?.message}</p>
+        </div>
+        <div className="formFlex">
+          <input
+            type="text"
+            placeholder="City"
+            {...register('city', {
+              required: 'This is a required field',
+              maxLength: 80,
+            })}
+          />
+          <p>{errors.city?.message}</p>
+        </div>
+
+        <div className="formFlex">
+          <input
+            type="text"
+            placeholder="State"
+            {...register('state', {
+              required: 'This is a required field',
+            })}
+          />
+          <p>{errors.state?.message}</p>
+        </div>
+        <div className="formFlex">
+          <input
+            type="number"
+            placeholder="Zip"
+            {...register('zip', {
+              required: 'This is a required field',
+            })}
+          />
+          <p>{errors.zip?.message}</p>
+        </div>
+        <div className="formFlex">
+          <input
+            type="text"
+            placeholder="Phone"
+            {...register('phone', {
+              required: 'This is a required field',
+            })}
+          />
+          <p>{errors.phone?.message}</p>
+        </div>
+        <div className="formFlex">
+          <input
+            type="email"
+            placeholder="Email"
+            {...register('email', {
+              required: 'This is a required field',
+            })}
+          />
+          <p>{errors.email?.message}</p>
+        </div>
+        <div className="formFlex">
+          <input type="text" placeholder="Image" {...register('image')} />
+          <p>{errors.image?.message}</p>
+        </div>
         <div className="submitBtn">
           <BrighterBtn type="submit">Submit</BrighterBtn>
         </div>
