@@ -39,7 +39,6 @@ ul {
   border: 2px solid #086375;
   width: 200px;
   height: 300px;
-  text-align: center;
   margin-top: 40px;
   margin-right: 65px;
   color: #474350;
@@ -49,6 +48,14 @@ ul {
   align-items: center;
   justify-content: center;
   border-radius: 5px;
+  border: none;
+  box-shadow: 0 5px 5px lightgrey;
+}
+.price_box_1:hover {
+  cursor: pointer;
+  box-shadow: 0 5px 5px #4f6d7a;
+  transition: all 0.5s ease-in-out;
+  color: #4f6d7a;
 }
 
 .price_box_2 {
@@ -59,6 +66,14 @@ ul {
   margin-top: 8px;
   background-color: snow;
   border-radius: 5px;
+  border: none;
+  box-shadow: 0 5px 5px lightgrey;
+}
+.price_box_2:hover {
+  cursor: pointer;
+  box-shadow: 0 15px 15px #44cfcb;
+  transition: all 0.5s ease-in-out;
+  color: #44cfcb;
 }
 
 .price_box_3 {
@@ -71,6 +86,15 @@ ul {
   color: #474350;
   background-color: snow;
   border-radius: 5px;
+  border: none;
+  box-shadow: 0 5px 5px lightgrey;
+}
+
+.price_box_3:hover {
+  cursor: pointer;
+  box-shadow: 0 5px 5px #4f6d7a;
+  transition: all 0.5s ease-in-out;
+  color: #4f6d7a;
 }
 
 .hero_image_1 {
