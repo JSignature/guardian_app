@@ -12,10 +12,10 @@ const GuardianSearch = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [searchText, setSearchText] = useState(' ');
   const navigate = useNavigate();
-  // const { data = [], error } = useGetGuardiansQuery();
+  // const { data: guardian, error } = useGetGuardiansQuery();
 
-  const { guardian, isSucess } = useGetGuardiansQuery(undefined, {
-    selectFromResult: ({ data }) => ({
+  const { guardian, isSuccess } = useGetGuardiansQuery(undefined, {
+    selectFromResult: ({ data, isSuccess }) => ({
       guardian: data?.filter((item) => {
         console.log(item.guardian_first_name.toLowerCase());
         return searchText.toLowerCase() === ' '
@@ -24,12 +24,13 @@ const GuardianSearch = () => {
               .toLowerCase()
               .includes(searchText.toLowerCase());
       }),
+      isSuccess,
     }),
   });
 
   console.log(searchText);
-  console.log(guardian);
-  console.log(isSucess);
+  // console.log(guardian);
+  console.log(isSuccess);
 
   // useEffect(() => {
   //   if (error) {
@@ -52,7 +53,7 @@ const GuardianSearch = () => {
         <h1>Guardians</h1>
         <SearchBar setSearchText={setSearchText} />
       </div>
-      {isSucess ? <GuardianCards data={guardian} /> : <div>Loading</div>}
+      {isSuccess ? <GuardianCards data={guardian} /> : <div>Loading</div>}
     </StyledGuardianSearch>
   );
 };
