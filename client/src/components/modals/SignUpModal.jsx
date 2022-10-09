@@ -78,10 +78,11 @@ const SignUpModal = ({ modalIsOpen, setModalIsOpen }) => {
             })}
           />
           <p>{errors.password?.message}</p>
-
-          <BrighterBtn input type="submit">
-            Submit
-          </BrighterBtn>
+          <div className="submitBtn">
+            <BrighterBtn input type="submit">
+              Submit
+            </BrighterBtn>
+          </div>
         </form>
         <XBtn onClick={() => setModalIsOpen(false)}>X</XBtn>
       </Modal>
