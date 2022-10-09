@@ -1,25 +1,25 @@
-import React from 'react'
-import logo2 from './styles/logo2.png'
-import styled from 'styled-components'
-import { Btn } from './styles/ButtonStyle'
-import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
+import React from 'react';
+import logo2 from './styles/logo2.png';
+import styled from 'styled-components';
+import { Btn } from './styles/ButtonStyle';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 //Needed this to clear redux store previous try
 // import store from '../store';
 // import { apiSlice } from '../features/api/apiSlice';
 
 const NavBar = () => {
-  const navigate = useNavigate()
-  const userName = localStorage.getItem('user_first_name')
+  const navigate = useNavigate();
+  const userName = localStorage.getItem('user_first_name');
 
-  const handleLogout = e => {
-    e.preventDefault()
-    toast.success(`${userName} is out!!! Come back soon!`)
+  const handleLogout = (e) => {
+    e.preventDefault();
+    toast.success(`${userName} is out!!! Come back soon!`);
     // This can be used to clear the redux store cache
     // store.dispatch(apiSlice.util.resetApiState());
-    localStorage.clear()
-    navigate('/')
-  }
+    localStorage.clear();
+    navigate('/');
+  };
 
   return (
     <NavWrapper>
@@ -49,8 +49,8 @@ const NavBar = () => {
         </Btn>
       </div>
     </NavWrapper>
-  )
-}
+  );
+};
 
 const NavWrapper = styled.div`
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
@@ -68,7 +68,7 @@ const NavWrapper = styled.div`
     justify-content: flex-end;
     align-items: center;
     padding: 30px, 10%;
-    width: 1475px;
+    width: 100%;
     height: 60px;
     background-color: #56a3a6;
   }
@@ -95,21 +95,22 @@ const NavWrapper = styled.div`
     transition: all 0.03s ease 0s;
     text-decoration: none;
   }
-  .logOutBtn {
-    text-decoration: none;
-    list-style: none;
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-  .logOutBtn h4:hover {
-    color: #ffa987;
-  }
+  // .logOutBtn {
+  //   text-decoration: none;
+  //   list-style: none;
+  //   margin-left: 20px;
+  //   margin-right: 20px;
+  // }
+  // .logOutBtn h4:hover {
+  //   color: #ffa987;
+  // }
   .navLinks li a:hover {
     color: #4f6d7a;
   }
   .navButton {
     color: #56a3a6;
     font-size: 10px;
+    margin-right: 5%;
   }
   p {
     color: #fff;
@@ -122,6 +123,6 @@ const NavWrapper = styled.div`
   a {
     text-decoration: none;
   }
-`
+`;
 
-export default NavBar
+export default NavBar;

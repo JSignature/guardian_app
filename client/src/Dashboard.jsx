@@ -37,6 +37,8 @@ const Dashboard = () => {
             createdAt={activity.created_at}
             kidName={activity.kid.kid_first_name}
             kidId={activity.kid.id}
+            activityId={activity.id}
+            userName={activity.user.user_first_name}
           />
         ))
       ) : (

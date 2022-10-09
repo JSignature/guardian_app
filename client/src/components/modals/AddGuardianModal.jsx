@@ -21,7 +21,7 @@ const AddGuardianModal = ({ modalIsOpen, setModalIsOpen }) => {
       is_primary: true,
       guardian_first_name: data.firstName,
       guardian_last_name: data.lastName,
-      guardian_address_street: data.streetAddress,
+      guardian_address_street: data.street,
       guardian_address_city: data.city,
       guardian_address_state: data.state,
       guardian_address_zip: data.zip,

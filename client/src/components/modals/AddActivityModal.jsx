@@ -10,7 +10,7 @@ Modal.setAppElement('#root');
 const AddActivityModal = ({ modalIsOpen, setModalIsOpen }) => {
   const params = useParams();
   const paramsId = parseInt(params.kid_id);
-
+  const userId = localStorage.getItem('user_id');
   const [addActivity] = useAddActivityMutation();
 
   const {
@@ -20,9 +20,8 @@ const AddActivityModal = ({ modalIsOpen, setModalIsOpen }) => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    console.log(data);
     const newActivity = {
-      user_id: 1, //This needs to be dynamic
+      user_id: userId, //This needs to be dynamic
       kid_id: paramsId,
       description: data.description,
     };
