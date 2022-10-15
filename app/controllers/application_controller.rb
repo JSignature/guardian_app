@@ -33,7 +33,7 @@ class ApplicationController < ActionController::API
       #            user: @user,
       #          },
       #          status: :unauthorized
-      end
+      # end
     end
   end
 
