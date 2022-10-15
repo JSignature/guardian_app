@@ -8,6 +8,7 @@ import { useGetKidQuery } from './features/api/apiSlice';
 import { DarkerBtn } from './components/styles/ButtonStyle';
 import style from 'styled-components';
 import ActivityCard from './components/ActivityCard';
+import GuardianCard from './components/GuardianCard';
 
 const KidsProfile = () => {
   const params = useParams();
@@ -36,6 +37,11 @@ const KidsProfile = () => {
 
       <h2>Guardians</h2>
 
+      {isSuccess ? (
+        <GuardianCard guardian={data.guardian} />
+      ) : (
+        <div>loading</div>
+      )}
       <div></div>
 
       <div>
