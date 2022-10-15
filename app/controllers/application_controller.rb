@@ -21,14 +21,18 @@ class ApplicationController < ActionController::API
       begin
         payload = JWT.decode(token, secret_key)[0]
         @user = User.find(payload['user_id'])
-      rescue StandardError
-        render json: {
-                 error: 'Must be logged in to do this!',
-                 secret_key: secret_key,
-                 payload: payload,
-                 user: @user,
-               },
-               status: :unauthorized
+      rescue JWT::DecodeError
+        nil
+      end
+
+      # rescue StandardError
+      #   render json: {
+      #            error: 'Must be logged in to do this!',
+      #            secret_key: secret_key,
+      #            payload: payload,
+      #            user: @user,
+      #          },
+      #          status: :unauthorized
       end
     end
   end
