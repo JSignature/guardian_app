@@ -1,36 +1,35 @@
-import { React, useEffect, useState } from 'react';
-import { useGetKidsQuery } from './features/api/apiSlice';
-import KidsCards from './components/KidsCards';
-import NavBar from './components/NavBar';
-import { SearchBar } from './components/SearchBar';
-import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { React, useEffect, useState } from 'react'
+import { useGetKidsQuery } from './features/api/apiSlice'
+import KidsCards from './components/KidsCards'
+import NavBar from './components/NavBar'
+import { SearchBar } from './components/SearchBar'
+import styled from 'styled-components'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import Loading from './components/styles/LoadingStyle'
 
 const KidsSearch = () => {
-  const navigate = useNavigate();
-  const [searchText, setSearchText] = useState(' ');
+  const navigate = useNavigate()
+  const [searchText, setSearchText] = useState(' ')
 
   const { kid, isSuccess, error } = useGetKidsQuery(undefined, {
     selectFromResult: ({ data, isSuccess, error }) => ({
-      kid: data?.filter((item) => {
+      kid: data?.filter(item => {
         return searchText.toLowerCase() === ' '
           ? item
-          : item.kid_first_name
-              .toLowerCase()
-              .includes(searchText.toLowerCase());
+          : item.kid_first_name.toLowerCase().includes(searchText.toLowerCase())
       }),
       isSuccess,
       error,
     }),
-  });
+  })
 
   useEffect(() => {
     if (error) {
-      toast.error('You Must be logged in to access this feature');
-      navigate('/');
+      toast.error('You Must be logged in to access this feature')
+      navigate('/')
     }
-  }, [error, navigate]);
+  }, [error, navigate])
 
   return (
     <StyledKidSearch>
@@ -39,10 +38,10 @@ const KidsSearch = () => {
         <h1>Kids</h1>
         <SearchBar setSearchText={setSearchText} />
       </div>
-      {isSuccess ? <KidsCards kid={kid} /> : <div>Loading</div>}
+      {isSuccess ? <KidsCards kid={kid} /> : <Loading />}
     </StyledKidSearch>
-  );
-};
+  )
+}
 
 const StyledKidSearch = styled.article`
   .searchHeader {
@@ -52,6 +51,6 @@ const StyledKidSearch = styled.article`
     width: 90vw;
     margin-left: 200px;
   }
-`;
+`
 
-export default KidsSearch;
+export default KidsSearch

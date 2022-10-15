@@ -1,31 +1,27 @@
-import { React, useState, useEffect } from 'react';
-import NavBar from './components/NavBar';
-import { useParams } from 'react-router-dom';
-import KidsProfileUpdate from './KidsProfileUpdate';
-import AddActivityModal from './components/modals/AddActivityModal';
-import { useGetKidQuery } from './features/api/apiSlice';
+import { React, useState, useEffect } from 'react'
+import NavBar from './components/NavBar'
+import { useParams } from 'react-router-dom'
+import KidsProfileUpdate from './KidsProfileUpdate'
+import AddActivityModal from './components/modals/AddActivityModal'
+import { useGetKidQuery } from './features/api/apiSlice'
 
-import { DarkerBtn } from './components/styles/ButtonStyle';
-import style from 'styled-components';
-import ActivityCard from './components/ActivityCard';
-import GuardianCard from './components/GuardianCard';
+import { DarkerBtn } from './components/styles/ButtonStyle'
+import style from 'styled-components'
+import ActivityCard from './components/ActivityCard'
+import GuardianCard from './components/GuardianCard'
+import Loading from './components/styles/LoadingStyle'
 
 const KidsProfile = () => {
-  const params = useParams();
-  const {
-    data = [],
-    isSuccess,
-    error,
-    refetch,
-  } = useGetKidQuery(params.kid_id);
+  const params = useParams()
+  const { data = [], isSuccess, error, refetch } = useGetKidQuery(params.kid_id)
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false)
 
   useEffect(() => {
     if (error) {
-      refetch();
+      refetch()
     }
-  }, [error, refetch]);
+  }, [error, refetch])
 
   return (
     <StyledKidProfile>
@@ -37,11 +33,7 @@ const KidsProfile = () => {
 
       <h2>Guardians</h2>
 
-      {isSuccess ? (
-        <GuardianCard guardian={data.guardian} />
-      ) : (
-        <div>loading</div>
-      )}
+      {isSuccess ? <GuardianCard guardian={data.guardian} /> : <Loading />}
       <div></div>
 
       <div>
@@ -58,7 +50,7 @@ const KidsProfile = () => {
         </div>
         {/* Prob need to make an activity card to clean this up */}
         {isSuccess ? (
-          data.activities.map((activity) => (
+          data.activities.map(activity => (
             <ActivityCard
               key={activity.id}
               activityId={activity.id}
@@ -75,8 +67,8 @@ const KidsProfile = () => {
         )}
       </div>
     </StyledKidProfile>
-  );
-};
+  )
+}
 
 const StyledKidProfile = style.div`
 
@@ -112,6 +104,6 @@ margin-bottom: 10px;
 
 }
 
-`;
+`
 
-export default KidsProfile;
+export default KidsProfile
