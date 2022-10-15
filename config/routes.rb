@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
-  
-  
-  resources :activities
-  resources :kids
-  resources :guardians
+  namespace :api do
+    resources :activities
+    resources :kids
+    resources :guardians
+    resources :users, only: [:create]
+    post 'login', to: 'authentication#login'
+    get '/dashboard/:id', to: 'activities#userActivities'
+  end
+
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
-  get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
-  resources :users, only: [:create]
-  post "login", to: "authentication#login"
-  resources :guardians
-  get "/dashboard/:id", to: "activities#userActivities"
+  get '*path',
+      to: 'fallback#index',
+      constraints: ->(req) { !req.xhr? && req.format.html? }
 end

@@ -1,4 +1,4 @@
-class GuardiansController < ApplicationController
+class Api::GuardiansController < ApplicationController
   before_action :authenticate
 
   def create

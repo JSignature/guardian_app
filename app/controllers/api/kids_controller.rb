@@ -1,5 +1,5 @@
-class KidsController < ApplicationController
-  # before_action :authenticate
+class Api::KidsController < ApplicationController
+  before_action :authenticate
 
   def create
     kid = Kid.create!(kid_params)
