@@ -18,6 +18,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'faker', '~> 1.6', '>= 1.6.6'
 
+gem 'twilio-ruby'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

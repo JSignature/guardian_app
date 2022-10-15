@@ -78,6 +78,10 @@ GEM
     erubi (1.10.0)
     faker (1.9.6)
       i18n (>= 0.7)
+    faraday (2.6.0)
+      faraday-net_http (>= 2.0, < 3.1)
+      ruby2_keywords (>= 0.0.4)
+    faraday-net_http (3.0.1)
     ffi (1.15.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -160,6 +164,7 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
+    ruby2_keywords (0.0.5)
     shoulda-matchers (4.5.1)
       activesupport (>= 4.2.0)
     spring (2.1.1)
@@ -171,6 +176,10 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     thor (1.1.0)
+    twilio-ruby (5.72.1)
+      faraday (>= 0.9, < 3.0)
+      jwt (>= 1.5, <= 2.5)
+      nokogiri (>= 1.6, < 2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     websocket-driver (0.7.4)
@@ -197,6 +206,7 @@ DEPENDENCIES
   rspec-rails (~> 5.0.0)
   shoulda-matchers (~> 4.0)
   spring
+  twilio-ruby
   tzinfo-data
 
 RUBY VERSION

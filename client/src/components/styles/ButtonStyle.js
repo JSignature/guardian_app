@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Btn = styled.button`
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -22,7 +22,7 @@ export const Btn = styled.button`
     transform: scale (0.98);
     color: #086375;
   }
-`
+`;
 export const DarkerBtn = styled(Btn)`
   background: #56a3a6;
   color: #d3d4d9;
@@ -32,11 +32,11 @@ export const DarkerBtn = styled(Btn)`
     transform: scale (0.98);
     color: #44cfcb;
   }
-`
+`;
 export const BrighterBtn = styled(Btn)`
   background: #44cfcb;
   color: #d3d4d9;
-`
+`;
 export const XBtn = styled(Btn)`
   background: transparent;
   color: #fff;
@@ -47,4 +47,4 @@ export const XBtn = styled(Btn)`
   position: absolute;
   margin-right: -1020px;
   margin-top: -550px;
-`
+`;
