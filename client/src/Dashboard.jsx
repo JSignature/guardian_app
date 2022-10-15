@@ -1,26 +1,27 @@
-import React, { useEffect } from 'react';
-import NavBar from './components/NavBar';
-import { useGetActivitiesQuery } from '../src/features/api/apiSlice';
-import styled from 'styled-components';
-import ActivityCard from './components/ActivityCard';
-import { toast } from 'react-toastify';
+import React, { useEffect } from 'react'
+import NavBar from './components/NavBar'
+import { useGetActivitiesQuery } from '../src/features/api/apiSlice'
+import styled from 'styled-components'
+import ActivityCard from './components/ActivityCard'
+import { toast } from 'react-toastify'
+import Loading from './components/styles/LoadingStyle'
 
 const Dashboard = () => {
-  const user_id = localStorage.getItem('user_id');
-  const user_first_name = localStorage.getItem('user_first_name');
+  const user_id = localStorage.getItem('user_id')
+  const user_first_name = localStorage.getItem('user_first_name')
 
   const {
     data = [],
     isError,
     isSuccess,
     error,
-  } = useGetActivitiesQuery(user_id);
+  } = useGetActivitiesQuery(user_id)
 
   useEffect(() => {
     if (isError) {
-      toast.error('Trouble connecting to the server');
+      toast.error('Trouble connecting to the server')
     }
-  }, [isError, error]);
+  }, [isError, error])
 
   return (
     <StyledDashboard>
@@ -29,7 +30,7 @@ const Dashboard = () => {
       <h1>Kid's Activities</h1>
 
       {isSuccess ? (
-        data.map((activity) => (
+        data.map(activity => (
           <ActivityCard
             key={activity.id}
             kidImage={activity.kid.kid_image}
@@ -42,11 +43,11 @@ const Dashboard = () => {
           />
         ))
       ) : (
-        <div>loading</div>
+        <Loading />
       )}
     </StyledDashboard>
-  );
-};
+  )
+}
 
 const StyledDashboard = styled.article`
   // @import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Montserrat:wght@400;500&family=Patrick+Hand+SC&family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -58,6 +59,6 @@ const StyledDashboard = styled.article`
     font-size: 16px;
     color: #44cfcb;
   }
-`;
+`
 
-export default Dashboard;
+export default Dashboard
