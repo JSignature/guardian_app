@@ -22,6 +22,9 @@ class ApplicationController < ActionController::API
       rescue StandardError
         render json: {
                  error: 'Must be logged in to do this!',
+                 secret_key: secret_key,
+                 payload: payload,
+                 user: @user,
                },
                status: :unauthorized
       end
