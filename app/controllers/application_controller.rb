@@ -15,7 +15,9 @@ class ApplicationController < ActionController::API
              },
              status: :unauthorized
     else
-      secret_key = Rails.application.secrets.secret_key_base
+      # secret_key = Rails.application.secrets.secret_key_base
+      # changed to see if this will change anything
+      secret_key = Rails.application.credentials.secret_key_base
       begin
         payload = JWT.decode(token, secret_key)[0]
         @user = User.find(payload['user_id'])
