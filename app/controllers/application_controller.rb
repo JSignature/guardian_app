@@ -10,7 +10,8 @@ class ApplicationController < ActionController::API
 
     if !token
       render json: {
-               error: 'Must be logged in to do this!',
+               error:
+                 'Must be logged in to do this, incorrect Token sent to Server',
              },
              status: :unauthorized
     else
