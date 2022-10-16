@@ -41,7 +41,7 @@ export const StyledForm = styled.article`
     margin-bottom: 20px;
   }
   h3 {
-    margin-left: 20px;
+    float: center;
   }
 
   label {
@@ -64,10 +64,11 @@ export const StyledForm = styled.article`
   }
   .deleteBtn {
     margin-top: -10px;
+    float: center;
   }
   article {
     text-align: center;
-    padding: 10px;
+    padding: 20px;
     margin-bottom: auto;
   }
 `
