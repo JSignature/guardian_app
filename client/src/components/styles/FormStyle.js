@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro'
+import styled from 'styled-components/macro';
 
 export const StyledForm = styled.article`
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -47,9 +47,9 @@ export const StyledForm = styled.article`
   label {
     display: inline-block;
     font-size: 10px;
-    width: 5vw;
+    width: 12vw;
     text-align: left;
-    padding: 10px;
+    padding: 15px;
   }
   .formDiv {
     display: flex;
@@ -71,4 +71,4 @@ export const StyledForm = styled.article`
     padding: 20px;
     margin-bottom: auto;
   }
-`
+`;
