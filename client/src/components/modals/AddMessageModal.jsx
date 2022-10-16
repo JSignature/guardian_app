@@ -1,25 +1,24 @@
-import Modal from 'react-modal'
-import { XBtn } from '../styles/ButtonStyle'
-import { useForm } from 'react-hook-form'
-import { useAddMessageMutation } from '../../features/api/apiSlice'
-import { toast } from 'react-toastify'
-import '../styles/TextModalStyle.css'
+import Modal from 'react-modal';
+import { useForm } from 'react-hook-form';
+import { useAddMessageMutation } from '../../features/api/apiSlice';
+import { toast } from 'react-toastify';
+import '../styles/TextModalStyle.css';
 
-Modal.setAppElement('#root')
+Modal.setAppElement('#root');
 
 const AddMessageModal = ({ modalIsOpen, setModalIsOpen, guardianPhone }) => {
-  const [sendMessage] = useAddMessageMutation()
-  const { register, handleSubmit } = useForm()
+  const [sendMessage] = useAddMessageMutation();
+  const { register, handleSubmit } = useForm();
 
-  const onSubmit = data => {
+  const onSubmit = (data) => {
     const message = {
       phone_number: guardianPhone,
       message: data.smsMessage,
-    }
-    sendMessage(message)
-    setModalIsOpen(false)
-    toast.success('Your Message has been sent')
-  }
+    };
+    sendMessage(message);
+    setModalIsOpen(false);
+    toast.success('Your Message has been sent');
+  };
 
   return (
     <Modal
@@ -41,7 +40,7 @@ const AddMessageModal = ({ modalIsOpen, setModalIsOpen, guardianPhone }) => {
         </form>
       </div>
     </Modal>
-  )
-}
+  );
+};
 
-export default AddMessageModal
+export default AddMessageModal;
