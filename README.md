@@ -34,14 +34,15 @@ There are validations on several of the models including the User model which ch
 
 ### Implement something new not taught in the curriculum.
 
-The following technologies not reviewed at Flatiron were used to produce Guardian App
-React Styled Components (No CSS libraries were used in this project!)
-React Hook Forms
-React Modals
-RTK Query
-Toastify
-CSS loading Spinner
-Twilio (Used to send a SMS message to Guardian, Credentials stored secured in Ruby yml)
+The following technologies not reviewed at Flatiron were used to produce Guardian App:
+
+- React Styled Components (No CSS libraries were used in this project!)
+- React Hook Forms
+- React Modals
+- RTK Query
+- Toastify
+- CSS loading Spinner
+- Twilio (Used to send a SMS message to Guardian, Credentials stored secured in Ruby yml)
 
 ### Implement useContext or Redux.
 
