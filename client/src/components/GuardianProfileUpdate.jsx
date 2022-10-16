@@ -1,21 +1,21 @@
-import { React } from 'react';
-import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
+import { React } from 'react'
+import { useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
 import {
   useUpdateGuardianMutation,
   useDeleteGuardianMutation,
-} from '../features/api/apiSlice';
-import { useParams } from 'react-router-dom';
-import { StyledForm } from './styles/FormStyle';
-import { Btn } from './styles/ButtonStyle';
-import { useNavigate } from 'react-router-dom';
+} from '../features/api/apiSlice'
+import { useParams } from 'react-router-dom'
+import { StyledForm } from './styles/FormStyle'
+import { Btn } from './styles/ButtonStyle'
+import { useNavigate } from 'react-router-dom'
 
 const GuardianProfileUpdate = ({ guardian }) => {
-  const navigate = useNavigate();
-  const params = useParams();
-  const paramsId = parseInt(params.guardian_id);
-  const [updateGuardian] = useUpdateGuardianMutation();
-  const [deleteGuardian] = useDeleteGuardianMutation();
+  const navigate = useNavigate()
+  const params = useParams()
+  const paramsId = parseInt(params.guardian_id)
+  const [updateGuardian] = useUpdateGuardianMutation()
+  const [deleteGuardian] = useDeleteGuardianMutation()
 
   const {
     register,
@@ -33,15 +33,15 @@ const GuardianProfileUpdate = ({ guardian }) => {
       email: `${guardian.guardian_email}`,
       image: `${guardian.guardian_image}`,
     },
-  });
+  })
 
-  const handleDelete = async (id) => {
-    await deleteGuardian(id);
-    toast.success('Contact has been Deleted');
-    navigate('/guardians');
-  };
+  const handleDelete = async id => {
+    await deleteGuardian(id)
+    toast.success('Contact has been Deleted')
+    navigate('/guardians')
+  }
 
-  const onSubmit = async (data) => {
+  const onSubmit = async data => {
     const updatedGuardian = {
       id: paramsId,
       guardian_first_name: data.firstName,
@@ -53,62 +53,113 @@ const GuardianProfileUpdate = ({ guardian }) => {
       guardian_phone: data.phone,
       guardian_email: data.email,
       guardian_image: data.image,
-    };
+    }
 
-    await updateGuardian(updatedGuardian);
-    toast.success('Contact has been Updated');
-  };
+    await updateGuardian(updatedGuardian)
+    toast.success('Contact has been Updated')
+  }
 
   return (
     <StyledForm>
       <div>
         <div className="firstDiv">
           <img className="GuardianImg" src={guardian.guardian_image} alt="" />
-          <h3>
-            {guardian.guardian_first_name} {guardian.guardian_last_name}
-          </h3>
+          <article>
+            <h3>
+              {guardian.guardian_first_name} {guardian.guardian_last_name}
+            </h3>
+            <Btn
+              className="deleteBtn"
+              onClick={() => handleDelete(params.guardian_id)}
+            >
+              Delete
+            </Btn>
+          </article>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          <input
-            type="text"
-            placeholder="First name"
-            {...register('firstName', { required: true, maxLength: 80 })}
-          />
+          <div className="formDiv">
+            <label>
+              First Name:
+              <input
+                type="text"
+                placeholder="First name"
+                {...register('firstName', { required: true, maxLength: 80 })}
+              />
+            </label>
 
-          <input
-            type="text"
-            placeholder="Last name"
-            {...register('lastName', { required: true, maxLength: 100 })}
-          />
-          <input
-            type="text"
-            placeholder="Street Address"
-            {...register('streetAddress', {})}
-          />
+            <label>
+              Last Name:
+              <input
+                type="text"
+                placeholder="Last name"
+                {...register('lastName', { required: true, maxLength: 100 })}
+              />
+            </label>
+            <label>
+              Street name:
+              <input
+                type="text"
+                placeholder="Street Address"
+                {...register('streetAddress', {})}
+              />
+            </label>
+          </div>
+          <div className="formDiv">
+            <label>
+              City:
+              <input type="text" placeholder="City" {...register('city', {})} />
+            </label>
+            <label>
+              State:
+              <input
+                type="text"
+                placeholder="State"
+                {...register('state', { maxLength: 2 })}
+              />
+            </label>
+            <label>
+              Zip:
+              <input
+                type="text"
+                id="zip"
+                placeholder="Zip"
+                {...register('zip', {})}
+              />
+            </label>
+          </div>
+          <div className="formDiv">
+            <label>
+              Phone:
+              <input
+                type="tel"
+                placeholder="Phone"
+                {...register('phone', {})}
+              />
+            </label>
+            <label>
+              Email:
+              <input
+                type="email"
+                placeholder="Email"
+                {...register('email', {})}
+              />
+            </label>
+            <label>
+              Image:
+              <input
+                type="text"
+                placeholder="Image"
+                {...register('image', {})}
+              />
+            </label>
+          </div>
 
-          <input type="text" placeholder="City" {...register('city', {})} />
-          <input
-            type="text"
-            placeholder="State"
-            {...register('state', { maxLength: 2 })}
-          />
-          <input type="text" placeholder="Zip" {...register('zip', {})} />
-          <input type="tel" placeholder="Phone" {...register('phone', {})} />
-          <input type="email" placeholder="Email" {...register('email', {})} />
-          <input type="text" placeholder="Image" {...register('image', {})} />
-
-          <Btn>Update</Btn>
+          <Btn className="updateBtn">Update</Btn>
         </form>
-        <Btn
-          className="deleteBtn"
-          onClick={() => handleDelete(params.guardian_id)}
-        >
-          Delete
-        </Btn>
       </div>
     </StyledForm>
-  );
-};
+  )
+}
 
-export default GuardianProfileUpdate;
+export default GuardianProfileUpdate
