@@ -4,7 +4,6 @@ import { toast } from 'react-toastify';
 import {
   useUpdateGuardianMutation,
   useDeleteGuardianMutation,
-  useAddMessageMutation,
 } from '../features/api/apiSlice';
 import { useParams } from 'react-router-dom';
 import { StyledForm } from './styles/FormStyle';
@@ -17,7 +16,6 @@ const GuardianProfileUpdate = ({ guardian }) => {
   const paramsId = parseInt(params.guardian_id);
   const [updateGuardian] = useUpdateGuardianMutation();
   const [deleteGuardian] = useDeleteGuardianMutation();
-  const [sendMessage] = useAddMessageMutation();
 
   const {
     register,
@@ -61,17 +59,6 @@ const GuardianProfileUpdate = ({ guardian }) => {
     toast.success('Contact has been Updated');
   };
 
-  const handleMessage = (e) => {
-    e.preventDefault();
-    const message = {
-      phone_number: guardian.guardian_phone,
-      message: e.target[0].value,
-    };
-    sendMessage(message);
-    console.log(message);
-    toast.success('Your Message has been sent');
-  };
-
   return (
     <StyledForm>
       <div>
@@ -113,10 +100,7 @@ const GuardianProfileUpdate = ({ guardian }) => {
 
           <Btn>Update</Btn>
         </form>
-        <form onSubmit={(e) => handleMessage(e)}>
-          <input type="text" placeholder="Enter a message" />
-          <button type="submit">Send SMS Message</button>
-        </form>
+
         <Btn
           className="deleteBtn"
           onClick={() => handleDelete(params.guardian_id)}

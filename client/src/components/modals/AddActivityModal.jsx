@@ -21,7 +21,7 @@ const AddActivityModal = ({ modalIsOpen, setModalIsOpen }) => {
 
   const onSubmit = async (data) => {
     const newActivity = {
-      user_id: userId, //This needs to be dynamic
+      user_id: userId,
       kid_id: paramsId,
       description: data.description,
     };
