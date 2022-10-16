@@ -141,7 +141,6 @@ const AddGuardianModal = ({ modalIsOpen, setModalIsOpen }) => {
         <div className="submitBtn">
           <BrighterBtn type="submit">Submit</BrighterBtn>
         </div>
-        {/* <input type="submit" /> */}
       </form>
       <XBtn onClick={() => setModalIsOpen(false)}>X</XBtn>
     </Modal>
