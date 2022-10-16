@@ -1,8 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { apiSlice } from './features/api/apiSlice';
 import { apiUserSlice } from './features/api/apiUserSlice';
-// Needed if we call dispatch later
-// import { setupListeners } from '@reduxjs/toolkit/query/react';
 
 export const store = configureStore({
   reducer: {
@@ -15,8 +13,3 @@ export const store = configureStore({
   middleware1: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(apiUserSlice.middleware),
 });
-
-//Added these in order to trigger a cache clear of store from logout button
-
-// setupListeners(store.dispatch);
-// export default store;

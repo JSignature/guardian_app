@@ -1,13 +1,13 @@
-import './App.css'
-import Home from './Home'
-import { Route, Routes } from 'react-router-dom'
-import GuardianSearch from './GuardianSearch'
-import GuardianProfile from './GuardianProfile'
-import KidsSearch from './KidsSearch'
-import KidsProfile from './KidsProfile'
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import Dashboard from './Dashboard'
+import './App.css';
+import Home from './Home';
+import { Route, Routes } from 'react-router-dom';
+import GuardianSearch from './GuardianSearch';
+import GuardianProfile from './GuardianProfile';
+import KidsSearch from './KidsSearch';
+import KidsProfile from './KidsProfile';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Dashboard from './Dashboard';
 
 function App() {
   return (
@@ -22,8 +22,7 @@ function App() {
         <Route path={'/dashboard'} element={<Dashboard />} />
       </Routes>
     </>
-    // {/* <Home /> */}
-  )
+  );
 }
 
-export default App
+export default App;

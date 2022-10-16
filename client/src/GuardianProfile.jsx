@@ -1,31 +1,31 @@
-import { React, useState, useEffect } from 'react'
-import NavBar from './components/NavBar'
-import AddKidModal from './components/modals/AddKidModal'
-import GuardianProfileUpdate from './components/GuardianProfileUpdate'
-import { useParams } from 'react-router-dom'
-import { useGetGuardianQuery } from './features/api/apiSlice'
-import style from 'styled-components/macro'
-import { DarkerBtn } from './components/styles/ButtonStyle'
-import KidCard from './components/KidCard'
-import Loading from './components/styles/LoadingStyle'
+import { React, useState, useEffect } from 'react';
+import NavBar from './components/NavBar';
+import AddKidModal from './components/modals/AddKidModal';
+import GuardianProfileUpdate from './components/GuardianProfileUpdate';
+import { useParams } from 'react-router-dom';
+import { useGetGuardianQuery } from './features/api/apiSlice';
+import style from 'styled-components/macro';
+import { DarkerBtn } from './components/styles/ButtonStyle';
+import KidCard from './components/KidCard';
+import Loading from './components/styles/LoadingStyle';
 
 const GuardianProfile = () => {
-  const params = useParams()
-  const [kidModalIsOpen, setKidModalIsOpen] = useState(false)
+  const params = useParams();
+  const [kidModalIsOpen, setKidModalIsOpen] = useState(false);
 
   const {
     data = [],
     isSuccess,
     refetch,
     error,
-  } = useGetGuardianQuery(params.guardian_id)
+  } = useGetGuardianQuery(params.guardian_id);
 
   useEffect(() => {
     if (error) {
-      refetch()
-      alert('Something Went Wrong')
+      refetch();
+      alert('Something Went Wrong');
     }
-  }, [error, refetch])
+  }, [error, refetch]);
 
   return (
     <>
@@ -38,25 +38,8 @@ const GuardianProfile = () => {
           ) : (
             <Loading></Loading>
           )}
-
-          {/* <Btn onClick={() => handleDelete(params.guardian_id)}>Delete</Btn> */}
         </div>
-        {/* <div>
-          <h2>Additonal Guardians</h2>
-          <AddGuardianModal
-            modalIsOpen={guardianModalIsOpen}
-            setModalIsOpen={setGuardianModalIsOpen}
-          />
-          <DarkerBtn
-            css={`
-              margin-left: 1220px;
-            `}
-            className="DarkerBtn"
-            onClick={() => setGuardianModalIsOpen(true)}
-          >
-            + Add Additional Guardian
-          </DarkerBtn>
-        </div> */}
+
         <div>
           <h2>Kids</h2>
           <AddKidModal
@@ -73,15 +56,15 @@ const GuardianProfile = () => {
             + Add Kid
           </DarkerBtn>
           {isSuccess ? (
-            data.kids.map(kid => <KidCard key={kid.id} kid={kid} />)
+            data.kids.map((kid) => <KidCard key={kid.id} kid={kid} />)
           ) : (
             <Loading></Loading>
           )}
         </div>
       </StyledGuardianProfile>
     </>
-  )
-}
+  );
+};
 
 const StyledGuardianProfile = style.div`
 
@@ -108,6 +91,6 @@ margin-left: 100px;
 }
 
 
-`
+`;
 
-export default GuardianProfile
+export default GuardianProfile;
