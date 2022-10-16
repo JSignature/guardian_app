@@ -41,7 +41,6 @@ const AddKidModal = ({ modalIsOpen, setModalIsOpen }) => {
       toast.success('A new Kid has been added');
       setModalIsOpen(false);
     } else if (isError) {
-      console.log(error);
       toast.error(error.data.errors[0]);
     }
   }, [error, isError, isSuccess, setModalIsOpen]);

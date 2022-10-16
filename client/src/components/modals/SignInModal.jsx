@@ -38,7 +38,6 @@ const SignInModal = ({ modalIsOpen, setModalIsOpen }) => {
       setModalIsOpen(false);
       toast.success(`Welcome ${user_first_name}, you have been logged in!`);
     } else if (isError) {
-      console.log(error);
       toast.error(error.data.errors[0]);
     }
   }, [isSuccess, isError, data, error, navigate, setModalIsOpen]);

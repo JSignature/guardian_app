@@ -40,7 +40,6 @@
 .ModalStyle input:hover {
   cursor: pointer;
   box-shadow: 0 3px 3px #44cfcb;
-  /* border-bottom: #44cfcb; */
   transition: all 0.5s ease-in-out;
 }
 
