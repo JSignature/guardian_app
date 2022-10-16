@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Btn = styled.button`
-  // @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Poppins:wght@300;400;500;600;700&display=swap');
   border-radius: 15px;
   border: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
