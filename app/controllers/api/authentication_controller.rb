@@ -6,7 +6,6 @@ class Api::AuthenticationController < ApplicationController
     else
       if user.authenticate(params[:password])
         secret_key = Rails.application.credentials.secret_key_base
-        # secret_key = Rails.application.secrets.secret_key_base
 
         token =
           JWT.encode(
