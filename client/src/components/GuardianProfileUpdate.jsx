@@ -19,11 +19,7 @@ const GuardianProfileUpdate = ({ guardian }) => {
   const [deleteGuardian] = useDeleteGuardianMutation();
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    // formState: { errors },
-  } = useForm({
+  const { register, handleSubmit } = useForm({
     defaultValues: {
       firstName: `${guardian.guardian_first_name}`,
       lastName: `${guardian.guardian_last_name}`,
