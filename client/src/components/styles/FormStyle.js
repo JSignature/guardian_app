@@ -4,8 +4,7 @@ export const StyledForm = styled.article`
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Poppins:wght@300;400;500;600;700&display=swap');
   width: 900px;
   height: 200px;
-  /* background: #44cfcb; */
-  padding: 2rem;
+  padding: 5rem;
   margin-top: -11rem;
   color: #086375;
   border-radius: 10px;
@@ -14,14 +13,12 @@ export const StyledForm = styled.article`
     font-family: 'poppins';
     color: #56a3a6;
     font-size: 15px;
-    margin-right: 40px;
-    margin-bottom: 5px;
     box-sizing: border-box;
-    padding: 0.3rem;
+
     border-radius: 0.25rem;
     border-width: 2px;
     border: none;
-    outline: noen;
+    outline: none;
     transition: all 0.5s ease-in-out;
     &:hover {
       cursor: pointer;
@@ -34,7 +31,6 @@ export const StyledForm = styled.article`
     height: 10rem;
     object-fit: cover;
     border-radius: 50%;
-    // padding: 10px;
     box-shadow: 0px 0px 20px grey;
     background-color: white;
   }
@@ -48,7 +44,30 @@ export const StyledForm = styled.article`
     margin-left: 20px;
   }
 
+  label {
+    display: inline-block;
+    font-size: 10px;
+    width: 5vw;
+    text-align: left;
+    padding: 10px;
+  }
+  .formDiv {
+    display: flex;
+    margin-top: -15px;
+    justify-content: space-around;
+  }
+  .Btn {
+    background-color: hotpink;
+  }
+  .updateBtn {
+    float: right;
+  }
   .deleteBtn {
-    margin-left: 710px;
+    margin-top: -10px;
+  }
+  article {
+    text-align: center;
+    padding: 10px;
+    margin-bottom: auto;
   }
 `
