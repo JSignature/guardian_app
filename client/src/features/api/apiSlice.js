@@ -10,7 +10,7 @@ export const apiSlice = createApi({
       return headers;
     },
   }),
-  tagTypes: ['Guardian', 'Kid', 'Activities'],
+  tagTypes: ['Guardian', 'Kid', 'Activities', 'Message'],
   endpoints: (builder) => ({
     getGuardians: builder.query({
       query: () => '/guardians',
@@ -93,6 +93,14 @@ export const apiSlice = createApi({
       query: (id) => `/dashboard/${id}`,
       providesTags: ['Activities'],
     }),
+    addMessage: builder.mutation({
+      query: (message) => ({
+        url: '/messages',
+        method: 'POST',
+        body: message,
+      }),
+      invalidatesTags: ['Message'],
+    }),
   }),
 });
 
@@ -110,4 +118,5 @@ export const {
   useAddActivityMutation,
   useDeleteActivityMutation,
   useGetActivitiesQuery,
+  useAddMessageMutation,
 } = apiSlice;
