@@ -12,6 +12,4 @@ export const store = configureStore({
     getDefaultMiddleware()
       .concat(apiSlice.middleware)
       .concat(apiUserSlice.middleware),
-  // middleware: (getDefaultMiddleware) =>
-  //   getDefaultMiddleware().concat(apiUserSlice.middleware),
 });

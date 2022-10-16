@@ -54,7 +54,6 @@ const GuardianProfileUpdate = ({ guardian }) => {
     };
 
     await updateGuardian(updatedGuardian);
-
     toast.success('Contact has been Updated');
   };
 
