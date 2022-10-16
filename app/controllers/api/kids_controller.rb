@@ -15,7 +15,6 @@ class Api::KidsController < ApplicationController
   def show
     kid = Kid.find(params[:id])
     render json: kid, status: :ok
-    # render json: kid, status: :ok
   rescue ActiveRecord::RecordNotFound => error
     render json: { message: error.message }
   end
