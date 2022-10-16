@@ -13,11 +13,7 @@ const AddActivityModal = ({ modalIsOpen, setModalIsOpen }) => {
   const userId = localStorage.getItem('user_id');
   const [addActivity] = useAddActivityMutation();
 
-  const {
-    register,
-    handleSubmit,
-    // formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
     const newActivity = {
