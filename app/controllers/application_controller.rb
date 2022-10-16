@@ -16,12 +16,30 @@ class ApplicationController < ActionController::API
              status: :unauthorized
     else
       secret_key = Rails.application.credentials.secret_key_base
+
       begin
+        # payload =
+        #   JWT.decode(
+        #     token,
+        #     'e443049bc91527d2b23332e41c9c026af4be76693cbd9283af9bcce653008dc75666db3a85614a5f540b4bc3a0271168545958d68298414164a8e70c17f142eb',
+        #   )[
+        #     0
+        #   ]
         payload = JWT.decode(token, secret_key)[0]
+
         @user = User.find(payload['user_id'])
-      rescue JWT::DecodeError
-        nil
+      rescue StandardError
+        render json: {
+                 error: 'Must be logged in to do this!',
+                 secret_key: secret_key,
+                 payload: payload,
+                 user: @user,
+               },
+               status: :unauthorized
       end
+      # rescue JWT::DecodeError
+      #   nil
+      # end
     end
   end
 
