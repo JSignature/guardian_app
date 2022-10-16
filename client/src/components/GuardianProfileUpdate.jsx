@@ -64,49 +64,99 @@ const GuardianProfileUpdate = ({ guardian }) => {
       <div>
         <div className="firstDiv">
           <img className="GuardianImg" src={guardian.guardian_image} alt="" />
-          <h3>
-            {guardian.guardian_first_name} {guardian.guardian_last_name}
-          </h3>
+          <article>
+            <h3>
+              {guardian.guardian_first_name} {guardian.guardian_last_name}
+            </h3>
+            <Btn
+              className="deleteBtn"
+              onClick={() => handleDelete(params.guardian_id)}
+            >
+              Delete
+            </Btn>
+          </article>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          <input
-            type="text"
-            placeholder="First name"
-            {...register('firstName', { required: true, maxLength: 80 })}
-          />
+          <div className="formDiv">
+            <label>
+              First Name:
+              <input
+                type="text"
+                placeholder="First name"
+                {...register('firstName', { required: true, maxLength: 80 })}
+              />
+            </label>
 
-          <input
-            type="text"
-            placeholder="Last name"
-            {...register('lastName', { required: true, maxLength: 100 })}
-          />
-          <input
-            type="text"
-            placeholder="Street Address"
-            {...register('streetAddress', {})}
-          />
+            <label>
+              Last Name:
+              <input
+                type="text"
+                placeholder="Last name"
+                {...register('lastName', { required: true, maxLength: 100 })}
+              />
+            </label>
+            <label>
+              Street name:
+              <input
+                type="text"
+                placeholder="Street Address"
+                {...register('streetAddress', {})}
+              />
+            </label>
+          </div>
+          <div className="formDiv">
+            <label>
+              City:
+              <input type="text" placeholder="City" {...register('city', {})} />
+            </label>
+            <label>
+              State:
+              <input
+                type="text"
+                placeholder="State"
+                {...register('state', { maxLength: 2 })}
+              />
+            </label>
+            <label>
+              Zip:
+              <input
+                type="text"
+                id="zip"
+                placeholder="Zip"
+                {...register('zip', {})}
+              />
+            </label>
+          </div>
+          <div className="formDiv">
+            <label>
+              Phone:
+              <input
+                type="tel"
+                placeholder="Phone"
+                {...register('phone', {})}
+              />
+            </label>
+            <label>
+              Email:
+              <input
+                type="email"
+                placeholder="Email"
+                {...register('email', {})}
+              />
+            </label>
+            <label>
+              Image:
+              <input
+                type="text"
+                placeholder="Image"
+                {...register('image', {})}
+              />
+            </label>
+          </div>
 
-          <input type="text" placeholder="City" {...register('city', {})} />
-          <input
-            type="text"
-            placeholder="State"
-            {...register('state', { maxLength: 2 })}
-          />
-          <input type="text" placeholder="Zip" {...register('zip', {})} />
-          <input type="tel" placeholder="Phone" {...register('phone', {})} />
-          <input type="email" placeholder="Email" {...register('email', {})} />
-          <input type="text" placeholder="Image" {...register('image', {})} />
-
-          <Btn>Update</Btn>
+          <Btn className="updateBtn">Update</Btn>
         </form>
-
-        <Btn
-          className="deleteBtn"
-          onClick={() => handleDelete(params.guardian_id)}
-        >
-          Delete
-        </Btn>
       </div>
     </StyledForm>
   );
