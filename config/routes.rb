@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :users, only: [:create]
     post 'login', to: 'authentication#login'
     get '/dashboard/:id', to: 'activities#userActivities'
+    resources :messages, only: [:create]
   end
 
   # Routing logic: fallback requests for React Router.

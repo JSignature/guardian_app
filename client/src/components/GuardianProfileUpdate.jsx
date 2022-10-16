@@ -59,6 +59,16 @@ const GuardianProfileUpdate = ({ guardian }) => {
     toast.success('Contact has been Updated');
   };
 
+  const handleMessage = (e) => {
+    e.preventDefault();
+    const message = {
+      phone_number: guardian.guardian_phone,
+      message: 'Sent from port 4000',
+    };
+
+    console.log(message);
+  };
+
   return (
     <StyledForm>
       <div>
@@ -99,6 +109,10 @@ const GuardianProfileUpdate = ({ guardian }) => {
           <input type="text" placeholder="Image" {...register('image', {})} />
 
           <Btn>Update</Btn>
+        </form>
+        <form onSubmit={(e) => handleMessage(e)}>
+          <input type="text" placeholder="Enter a message" />
+          <button type="submit">Do the thing</button>
         </form>
         <Btn
           className="deleteBtn"
