@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.ModalStyleText {
+  width: 40vw;
+  height: 50vh;
+  font-family: 'Poppins';
+  background-color: #44cfcb;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 120px;
+  margin-left: 400px;
+  border-radius: 20px;
+  font-size: 16px;
+}
+
+.ModalStyleText h1 {
+  font-family: 'poppins';
+  color: #f7ebe8;
+  text-shadow: 5px 5px 20px rgb(32, 31, 31);
+}
+
+.ModalStyleText input {
+  width: 100px;
+  margin-top: 15px;
+  display: flex;
+  border-radius: 5px;
+  border: none;
+  appearance: none;
+  padding: 5px;
+  outline: none;
+  border-radius: 0;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  color: #44cfcb;
+}
+
+.ModalStyleText input:hover {
+  cursor: pointer;
+  box-shadow: 0 3px 3px #44cfcb;
+  /* border-bottom: #44cfcb; */
+  transition: all 0.5s ease-in-out;
+}
+
+button {
+  margin-top: 10px;
+  color: #44cfcb;
+}
+.ModalStyleText header {
+  background-color: #44cfcb;
+  width: 100%;
+  margin-top: -150px;
+}
+.submitBtn {
+  display: flex;
+}
+
+p {
+  font-size: 10px;
+  margin-left: 20px;
+  color: #474350;
+}
+form {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+textarea {
+  width: 00 rem;
+  margin-top: 15px;
+}
