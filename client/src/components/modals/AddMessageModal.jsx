@@ -11,7 +11,6 @@ const AddMessageModal = ({ modalIsOpen, setModalIsOpen, guardianPhone }) => {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data.smsMessage);
     const message = {
       phone_number: guardianPhone,
       message: data.smsMessage,

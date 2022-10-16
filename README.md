@@ -41,7 +41,7 @@ React Modals
 RTK Query
 Toastify
 CSS loading Spinner
-Twilio (Used to send a SMS message to Guardian)
+Twilio (Used to send a SMS message to Guardian, Credentials stored secured in Ruby yml)
 
 ### Implement useContext or Redux.
 
